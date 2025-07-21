@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template-collection",
+      "settings": {
+        "show_featured_image": true,
+        "show_description": true,
+        "enable_filtering": false,
+        "enable_sorting": false,
+        "products_in_rows": 2,
+        "numbers_of_rows": 5
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

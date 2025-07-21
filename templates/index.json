@@ -1,0 +1,172 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "home_image_with_text_overlay_gadgxw": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image": "shopify://shop_images/0975715e995854f62e84085920b57726a964fd11_1_2.jpg",
+        "image_height_desktop": "large",
+        "image_height_mobile": "original",
+        "title": "Image with text overlay",
+        "caption": "<p>Select imagery and text that relates to your style and story.</p>",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "home-text-columns-with-images-1": {
+      "type": "home-text-columns-with-images",
+      "blocks": {
+        "block-1": {
+          "type": "text_column",
+          "settings": {
+            "title": "Foodservice",
+            "caption": "",
+            "button_text": "Learn More",
+            "button_link": "",
+            "image": "shopify://shop_images/market_icon_4.png"
+          }
+        },
+        "block-2": {
+          "type": "text_column",
+          "settings": {
+            "title": "Industrial",
+            "caption": "",
+            "button_text": "Learn More",
+            "button_link": "",
+            "image": "shopify://shop_images/market_icon_1_1.png"
+          }
+        },
+        "text_column_jYLYbp": {
+          "type": "text_column",
+          "settings": {
+            "title": "Healthcare",
+            "caption": "",
+            "button_text": "Learn More",
+            "button_link": "",
+            "image": "shopify://shop_images/market_icon_2_1.png"
+          }
+        },
+        "block-3": {
+          "type": "text_column",
+          "settings": {
+            "title": "Commercial",
+            "caption": "",
+            "button_text": "Learn More",
+            "button_link": "",
+            "image": "shopify://shop_images/market_icon_3_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "block-1",
+        "block-2",
+        "text_column_jYLYbp",
+        "block-3"
+      ],
+      "settings": {
+        "style": "default-style",
+        "title": "Markets We Serve",
+        "max_image_width": 25
+      }
+    },
+    "home_collection_list_qRY4dt": {
+      "type": "home-collection-list",
+      "blocks": {
+        "collection_ewBxYi": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_rdjDB3": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_X8UWTt": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_ewBxYi",
+        "collection_rdjDB3",
+        "collection_X8UWTt"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "style": "default-style",
+        "title": "",
+        "show_product_count": false
+      }
+    },
+    "home_image_with_text_overlay_XXrVYC": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image": "shopify://shop_images/f1d1ae6ba3c7682ee98d5c6c7bf65e1ddcb2324c_1.jpg",
+        "image_height_desktop": "large",
+        "image_height_mobile": "original",
+        "title": "Image with text overlay",
+        "caption": "<p>Select imagery and text that relates to your style and story.</p>",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": ""
+      }
+    },
+    "home_featured_collection_rwUXtg": {
+      "type": "home-featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "style": "default-style",
+        "title": "Featured collection",
+        "button": "",
+        "link": "",
+        "collection": "",
+        "products_in_rows": 3,
+        "number_of_rows": 1
+      }
+    },
+    "home_image_with_text_overlay_wMw9Qz": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image": "shopify://shop_images/653f464aef602f0ae7be0b38d0ff518d39cb8685_1.jpg",
+        "image_height_desktop": "large",
+        "image_height_mobile": "original",
+        "title": "Image with text overlay",
+        "caption": "<p>Select imagery and text that relates to your style and story.</p>",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "home_image_with_text_overlay_gadgxw",
+    "home-text-columns-with-images-1",
+    "home_collection_list_qRY4dt",
+    "home_image_with_text_overlay_XXrVYC",
+    "home_featured_collection_rwUXtg",
+    "home_image_with_text_overlay_wMw9Qz"
+  ]
+}
