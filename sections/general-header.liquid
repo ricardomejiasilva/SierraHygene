@@ -15,12 +15,34 @@
     assign is_password_page = true
   endif
 
+  assign desktop_nav_style = 'center'
+  assign mobile_nav_style = section.settings.mobile_nav_style | default: 'drawer'
+  assign mobile_logo_center = section.settings.mobile_logo_center | default: true
+
   assign nav_position = 'center'
-  if is_password_page or section.settings.menu_style == 'drawer'
+  if is_password_page
     assign nav_position = 'none'
-  elsif section.settings.menu_style == 'below-header'
-    assign nav_position = 'below'
+  else
+    if desktop_nav_style == 'header'
+      assign nav_position = 'below-left'
+    elsif desktop_nav_style == 'center'
+      assign nav_position = 'center'
+    elsif desktop_nav_style == 'left'
+      assign nav_position = 'left'
+    elsif desktop_nav_style == 'below'
+      assign nav_position = 'below'
+    elsif desktop_nav_style == 'none'
+      assign nav_position = 'none'
+    elsif section.settings.menu_style == 'drawer'
+      assign nav_position = 'none'
+    elsif section.settings.menu_style == 'below-header'
+      assign nav_position = 'below'
+    else
+      assign nav_position = 'below-left'
+    endif
   endif
+
+
 
   assign shopify_section_classname = 'main-header-section'
   assign sticky = section.settings.header_sticky
@@ -127,14 +149,150 @@
   </style>
 {% endif %}
 
+<style>
+  /* Desktop Navigation Styles */
+  @media (min-width: 720px) {
+    .header-nav--desktop-only {
+      display: flex !important;
+    }
+    
+    .site-header__menu-button--mobile-only {
+      display: none !important;
+    }
+    
+    .site-header--desktop-nav-header .header-nav {
+      justify-content: center;
+    }
+    
+    .site-header--desktop-nav-left .header-nav__tier-1 {
+      justify-content: flex-start;
+    }
+    
+    .site-header--desktop-nav-below .header-nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: {{ settings.header-background-color }};
+      border-top: 1px solid {{ settings.border-color }};
+      padding: 1rem 0;
+    }
+    
+    /* Two-row layout: Logo/buttons on top, nav below on left */
+    .site-header--nav-position-below-left .site-header__nav-row {
+      background-color: {{ settings.header-background-color }};
+      padding: 0 0 0.75rem 0;
+    }
+    
+    .site-header--nav-position-below-left .header-nav--below-left {
+      justify-content: flex-start;
+    }
+    
+    .site-header--nav-position-below-left .header-nav__tier-1 {
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+    
+    .site-header--nav-position-below-left .header-nav__tier-1-item:first-child .header-nav__tier-1-link {
+      padding-left: 0;
+    }
+    
+    .site-header--desktop-nav-none .header-nav--desktop-only {
+      display: none !important;
+    }
+    
+    .site-header--desktop-nav-none .site-header__menu-button--mobile-only {
+      display: block !important;
+    }
+  }
+
+  /* Mobile Navigation Styles */
+  @media (max-width: 719px) {
+    .header-nav--desktop-only {
+      display: none !important;
+    }
+    
+    .site-header__menu-button--mobile-only {
+      display: block !important;
+    }
+    
+    .site-header--mobile-logo-center .site-header__title {
+      order: 2;
+      flex: 1;
+      text-align: center;
+    }
+    
+    .site-header--mobile-logo-center .site-header__controls--first {
+      order: 1;
+    }
+    
+    .site-header--mobile-logo-center .site-header__controls--last {
+      order: 3;
+    }
+    
+    .site-header--mobile-nav-visible .header-nav--desktop-only {
+      display: flex !important;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: {{ settings.header-background-color }};
+      border-top: 1px solid {{ settings.border-color }};
+      padding: 1rem 30px;
+      flex-direction: column;
+    }
+    
+    .site-header--mobile-nav-visible .header-nav__tier-1 {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .site-header--mobile-nav-visible .header-nav__tier-1-link {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid {{ settings.border-color | color_modify: 'alpha', 0.3 }};
+    }
+    
+    .site-header--mobile-nav-visible .site-header__menu-button--mobile-only {
+      display: none !important;
+    }
+  }
+
+  /* Responsive adjustments */
+  .site-header--nav-position-center .site-header__wrapper {
+    justify-content: space-between;
+  }
+  
+  @media (min-width: 720px) {
+    .site-header--nav-position-center.site-header--desktop-nav-header .site-header__wrapper {
+      justify-content: flex-start;
+      gap: 2rem;
+    }
+    
+    /* Ensure proper spacing for below-left layout */
+    .site-header--nav-position-below-left .site-header__wrapper {
+      justify-content: space-between;
+    }
+    
+    .site-header--nav-position-below-left .site-header__title {
+      text-align: left;
+      flex: 0 0 auto;
+    }
+  }
+</style>
+
 
 <header
   class="
     site-header
     site-header--nav-position-{{ nav_position }}
+    site-header--desktop-nav-{{ desktop_nav_style }}
+    site-header--mobile-nav-{{ mobile_nav_style }}
+    {% if mobile_logo_center %}site-header--mobile-logo-center{% endif %}
     {{ section_classes }}
   "
   data-site-header
+  data-desktop-nav="{{ desktop_nav_style }}"
+  data-mobile-nav="{{ mobile_nav_style }}"
   {{ section_attributes }}
 >
   <div
@@ -149,7 +307,7 @@
       data-header-controls
     >
       <button
-        class="site-header__menu-button site-header__menu-button--first"
+        class="site-header__menu-button site-header__menu-button--first site-header__menu-button--mobile-only"
         data-menu-button
         aria-haspopup="true"
       >
@@ -183,9 +341,7 @@
         href="{{ routes.root_url }}"
         class="
           site-header__logo
-          {% if logo %}site-header__logo--has-image{% endif %}
-          {% if logo_transparent %}site-header__logo--has-transparent-image{% endif %}
-          {% if mobile_logo %}site-header__logo--has-mobile-image{% endif %}
+          site-header__logo--has-image
         "
         style="
           --logo-width: {{ logo_width }}px;
@@ -194,44 +350,9 @@
         aria-label="{{ shop.name }}"
         data-header-logo
       >
-        {% if logo %}
-          <div class="site-header__logo-image" data-logo-image>
-            {%
-              render 'rimg',
-              img: logo,
-              size: logo_width_size,
-              lazy: true,
-              canvas: true,
-              focal_point: logo.presentation.focal_point,
-            %}
-          </div>
-        {% endif %}
-
-        {% if logo_transparent %}
-          <div class="site-header__logo-image-transparent" data-logo-image-transparent>
-            {%
-              render 'rimg',
-              img: logo_transparent,
-              size: logo_width_size,
-              lazy: true,
-              canvas: true,
-              focal_point: logo_transparent.presentation.focal_point,
-            %}
-          </div>
-        {% endif %}
-
-        {% if mobile_logo %}
-          <div class="site-header__mobile-image" data-logo-image-mobile>
-            {%
-              render 'rimg',
-              img: mobile_logo,
-              size: mobile_logo_width_size,
-              lazy: true,
-              canvas: true,
-              focal_point: mobile_logo.presentation.focal_point,
-            %}
-          </div>
-        {% endif %}
+        <div class="site-header__logo-image" data-logo-image>
+          <img src="{{ 'logo-green.svg' | asset_url }}" alt="{{ shop.name }}" width="{{ logo_width }}" height="{{ logo_width | divided_by: 3 | round }}" style="width: 100%; height: auto;" />
+        </div>
 
         <span class="site-header__site-name">{{ shop.name }}</span>
       </a>
@@ -244,7 +365,15 @@
     {% if nav_position == 'center' %}
       {%
         render 'header-nav',
-        menu: menu
+        menu: menu,
+        nav_classes: 'header-nav--desktop-only'
+      %}
+    {% endif %}
+    {% if nav_position == 'left' %}
+      {%
+        render 'header-nav',
+        menu: menu,
+        nav_classes: 'header-nav--desktop-only header-nav--position-left'
       %}
     {% endif %}
 
@@ -291,8 +420,9 @@
         </a>
       {% endif %}
       <button
-        class="site-header__menu-button site-header__menu-button--last"
+        class="site-header__menu-button site-header__menu-button--last site-header__menu-button--mobile-only"
         data-menu-button
+        aria-haspopup="true"
       >
         <span class="site-header__menu-text">{{ 'sections.header.menu' | t }}</span>
       </button>
@@ -302,8 +432,21 @@
   {% if nav_position == 'below' %}
     {%
       render 'header-nav',
-      menu: menu
+      menu: menu,
+      nav_classes: 'header-nav--desktop-only header-nav--below-header'
     %}
+  {% endif %}
+  
+  {% if nav_position == 'below-left' %}
+    <div class="site-header__nav-row">
+      <div class="site-header__wrapper">
+        {%
+          render 'header-nav',
+          menu: menu,
+          nav_classes: 'header-nav--desktop-only header-nav--below-left'
+        %}
+      </div>
+    </div>
   {% endif %}
 </header>
 
@@ -792,7 +935,8 @@
     {
       "type": "select",
       "id": "menu_style",
-      "label": "Menu style",
+      "label": "Menu style (Legacy)",
+      "info": "Use the Desktop and Mobile navigation settings below for better control",
       "options": [
         {
           "value": "drawer",
@@ -808,6 +952,64 @@
         }
       ],
       "default": "drawer"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Navigation"
+    },
+    {
+      "type": "select",
+      "id": "desktop_nav_style",
+      "label": "Desktop menu position",
+      "options": [
+        {
+          "value": "header",
+          "label": "Below logo (left aligned)"
+        },
+        {
+          "value": "center",
+          "label": "Next to logo (center)"
+        },
+        {
+          "value": "left",
+          "label": "Left side"
+        },
+        {
+          "value": "below",
+          "label": "Below header (full width)"
+        },
+        {
+          "value": "none",
+          "label": "Hidden (drawer only)"
+        }
+      ],
+      "default": "header"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Navigation"
+    },
+    {
+      "type": "select",
+      "id": "mobile_nav_style",
+      "label": "Mobile menu style",
+      "options": [
+        {
+          "value": "drawer",
+          "label": "Hamburger menu (recommended)"
+        },
+        {
+          "value": "visible",
+          "label": "Always visible"
+        }
+      ],
+      "default": "drawer"
+    },
+    {
+      "type": "checkbox",
+      "id": "mobile_logo_center",
+      "label": "Center logo on mobile",
+      "default": true
     },
     {
       "type": "header",

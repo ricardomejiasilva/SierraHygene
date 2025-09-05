@@ -11,74 +11,24 @@
   "sections": {
     "home_image_with_text_overlay_gadgxw": {
       "type": "home-image-with-text-overlay",
+      "custom_css": [
+        ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px;}"
+      ],
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/0975715e995854f62e84085920b57726a964fd11_1_2.jpg",
-        "image_height_desktop": "large",
+        "image": "shopify://shop_images/image_1_3.jpg",
+        "image_height_desktop": "medium",
         "image_height_mobile": "original",
-        "title": "Image with text overlay",
-        "caption": "<p>Select imagery and text that relates to your style and story.</p>",
+        "title": "Commercial Paper Products",
+        "caption": "<p>We provide customers and distributors with innovative products and programs</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
-        "overlay_text_color": "#FFFFFF",
-        "button_text": "",
-        "button_link": ""
-      }
-    },
-    "home-text-columns-with-images-1": {
-      "type": "home-text-columns-with-images",
-      "blocks": {
-        "block-1": {
-          "type": "text_column",
-          "settings": {
-            "title": "Foodservice",
-            "caption": "",
-            "button_text": "Learn More",
-            "button_link": "",
-            "image": "shopify://shop_images/market_icon_4.png"
-          }
-        },
-        "block-2": {
-          "type": "text_column",
-          "settings": {
-            "title": "Industrial",
-            "caption": "",
-            "button_text": "Learn More",
-            "button_link": "",
-            "image": "shopify://shop_images/market_icon_1_1.png"
-          }
-        },
-        "text_column_jYLYbp": {
-          "type": "text_column",
-          "settings": {
-            "title": "Healthcare",
-            "caption": "",
-            "button_text": "Learn More",
-            "button_link": "",
-            "image": "shopify://shop_images/market_icon_2_1.png"
-          }
-        },
-        "block-3": {
-          "type": "text_column",
-          "settings": {
-            "title": "Commercial",
-            "caption": "",
-            "button_text": "Learn More",
-            "button_link": "",
-            "image": "shopify://shop_images/market_icon_3_1.png"
-          }
-        }
-      },
-      "block_order": [
-        "block-1",
-        "block-2",
-        "text_column_jYLYbp",
-        "block-3"
-      ],
-      "settings": {
-        "style": "default-style",
-        "title": "Markets We Serve",
-        "max_image_width": 25
+        "overlay_text_color": "#ffffff",
+        "button_text": "SEE OUR PRODUCTS",
+        "button_link": "",
+        "heading_font_size": "56",
+        "text_font_size": "30",
+        "full_width": false
       }
     },
     "home_collection_list_qRY4dt": {
@@ -87,48 +37,111 @@
         "collection_ewBxYi": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "center-pull-roll-paper"
           }
         },
         "collection_rdjDB3": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "hardwound-roll-paper"
           }
         },
         "collection_X8UWTt": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "jumbo-toilet-tissue"
+          }
+        },
+        "collection_73ikPK": {
+          "type": "collection",
+          "settings": {
+            "collection": "center-pull-roll-paper"
+          }
+        },
+        "collection_HwTPQK": {
+          "type": "collection",
+          "settings": {
+            "collection": "household-paper-towels"
+          }
+        },
+        "collection_fGbP7J": {
+          "type": "collection",
+          "settings": {
+            "collection": "white-dinner-napkins"
+          }
+        },
+        "collection_qMiQTC": {
+          "type": "collection",
+          "settings": {
+            "collection": "color-dinner-napkins"
+          }
+        },
+        "collection_R6tPMj": {
+          "type": "collection",
+          "settings": {
+            "collection": "linen-beverage-napkins"
+          }
+        },
+        "collection_cVEFpC": {
+          "type": "collection",
+          "settings": {
+            "collection": "linen-dinner-napkins"
+          }
+        },
+        "collection_93hmWf": {
+          "type": "collection",
+          "settings": {
+            "collection": "beverage-napkins"
+          }
+        },
+        "collection_ePpFAR": {
+          "type": "collection",
+          "settings": {
+            "collection": "coffee-cups"
           }
         }
       },
       "block_order": [
         "collection_ewBxYi",
         "collection_rdjDB3",
-        "collection_X8UWTt"
+        "collection_X8UWTt",
+        "collection_73ikPK",
+        "collection_HwTPQK",
+        "collection_fGbP7J",
+        "collection_qMiQTC",
+        "collection_R6tPMj",
+        "collection_cVEFpC",
+        "collection_93hmWf",
+        "collection_ePpFAR"
       ],
       "name": "Collection list",
       "settings": {
         "style": "default-style",
-        "title": "",
-        "show_product_count": false
+        "title": "Shop Our Products",
+        "show_product_count": false,
+        "show_button": true,
+        "button_text": "Shop All Products",
+        "button_link": "",
+        "button_style": "secondary"
       }
     },
     "home_image_with_text_overlay_XXrVYC": {
       "type": "home-image-with-text-overlay",
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/f1d1ae6ba3c7682ee98d5c6c7bf65e1ddcb2324c_1.jpg",
-        "image_height_desktop": "large",
-        "image_height_mobile": "original",
-        "title": "Image with text overlay",
-        "caption": "<p>Select imagery and text that relates to your style and story.</p>",
+        "image": "shopify://shop_images/image_18_1.png",
+        "image_height_desktop": "medium",
+        "image_height_mobile": "large",
+        "title": "The Sierra Hygiene Mission",
+        "caption": "<p>We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
-        "overlay_text_color": "#FFFFFF",
-        "button_text": "",
-        "button_link": ""
+        "overlay_text_color": "#ffffff",
+        "button_text": "LEARN MORE",
+        "button_link": "",
+        "heading_font_size": "40",
+        "text_font_size": "20",
+        "full_width": false
       }
     },
     "home_featured_collection_rwUXtg": {
@@ -136,34 +149,43 @@
       "name": "Featured collection",
       "settings": {
         "style": "default-style",
-        "title": "Featured collection",
+        "title": "Our Best Sellers",
         "button": "",
         "link": "",
-        "collection": "",
+        "collection": "home-featured",
         "products_in_rows": 3,
-        "number_of_rows": 1
+        "number_of_rows": 1,
+        "enable_filters": false,
+        "enable_product_type_filter": true,
+        "default_product_type": "",
+        "enable_color_filter": true,
+        "default_color": "",
+        "enable_featured_filter": true,
+        "default_sort": "price-low-high"
       }
     },
     "home_image_with_text_overlay_wMw9Qz": {
       "type": "home-image-with-text-overlay",
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/653f464aef602f0ae7be0b38d0ff518d39cb8685_1.jpg",
-        "image_height_desktop": "large",
+        "image": "shopify://shop_images/image_19_1.png",
+        "image_height_desktop": "medium",
         "image_height_mobile": "original",
         "title": "Image with text overlay",
         "caption": "<p>Select imagery and text that relates to your style and story.</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
-        "overlay_text_color": "#FFFFFF",
-        "button_text": "",
-        "button_link": ""
+        "overlay_text_color": "#ffffff",
+        "button_text": "Learn More",
+        "button_link": "",
+        "heading_font_size": "40",
+        "text_font_size": "20",
+        "full_width": false
       }
     }
   },
   "order": [
     "home_image_with_text_overlay_gadgxw",
-    "home-text-columns-with-images-1",
     "home_collection_list_qRY4dt",
     "home_image_with_text_overlay_XXrVYC",
     "home_featured_collection_rwUXtg",

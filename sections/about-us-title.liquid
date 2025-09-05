@@ -1,0 +1,61 @@
+<section
+  class="about-us-title-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="about-us-title"
+>
+  <div class="about-us-title-container">
+    {% if section.settings.title != blank %}
+      <h1 class="about-us-main-title">{{ section.settings.title | escape }}</h1>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .about-us-title-section {
+    padding: 0px 0 20px 0;
+    text-align: center;
+  }
+  
+  .about-us-title-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .about-us-main-title {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: 1.2;
+  }
+  
+  /* Remove any default borders or lines */
+  .about-us-title-section::after,
+  .about-us-title-section::before {
+    display: none;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Page Title",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Page Title",
+      "default": "The Sierra Hygiene Story"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Page Title",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %} 

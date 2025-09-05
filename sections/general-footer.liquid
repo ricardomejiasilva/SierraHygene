@@ -248,13 +248,27 @@
         {% if menus[section.settings[menu]].links.size > 0 %}
           {% capture menu %}{{ section.settings[menu] }}{% endcapture %}
           <div class="footer-link-list {{ menus[menu].handle }}">
-            {% if section.settings.show_menu_heading %}
-              <h2 class="footer-title">{{ menus[menu].title }}</h2>
-            {% endif %}
-
+           
             <ul>
               {% for link in menus[menu].links %}
-                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                <li>
+                  <a href="{{ link.url }}">
+                    {% comment %} Add social media icons for second menu {% endcomment %}
+                    {% if i == 2 %}
+                      {% assign link_title_lower = link.title | downcase %}
+                      {% if link_title_lower contains 'facebook' %}
+                        <img src="https://www.webstaurantstore.com/uploads/images/2025/7/container.png" alt="Facebook" class="social-icon" width="16" height="16">
+                      {% elsif link_title_lower contains 'instagram' %}
+                        <img src="https://www.webstaurantstore.com/uploads/images/2025/7/instagram.png" alt="Instagram" class="social-icon" width="16" height="16">
+                      {% elsif link_title_lower contains 'pinterest' %}
+                        <img src="https://www.webstaurantstore.com/uploads/images/2025/7/pinterest.png" alt="Pinterest" class="social-icon" width="16" height="16">
+                      {% elsif link_title_lower contains 'twitter' or link_title_lower contains 'x' %}
+                        <img src="https://www.webstaurantstore.com/uploads/images/2025/7/twitter.png" alt="Twitter/X" class="social-icon" width="16" height="16">
+                      {% endif %}
+                    {% endif %}
+                    {{ link.title }}
+                  </a>
+                </li>
               {% endfor %}
             </ul>
           </div>
@@ -264,7 +278,7 @@
       {% if section.settings.show_social_buttons%}
         <div class="footer-link-list social-icons">
           {% if section.settings.social_heading != blank %}
-            <h2 class="footer-title">{{ section.settings.social_heading }}</h2>
+            <p class="footer-title">{{ section.settings.social_heading }}</p>
           {% endif %}
           {% if has_social %}
               {% render 'social-icons' %}
@@ -275,7 +289,7 @@
       {% if section.settings.show_share_buttons %}
         <div class="social-share-section">
           {% if section.settings.sharing_heading != blank %}
-            <h2 class="footer-title">{{ section.settings.sharing_heading }}</h2>
+            <p class="footer-title footer-title-end">{{ section.settings.sharing_heading }}</p>
           {% endif %}
 
           {% assign byline = section.settings.sharing_description %}

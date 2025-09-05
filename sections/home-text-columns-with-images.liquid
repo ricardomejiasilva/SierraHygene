@@ -1,12 +1,21 @@
 <section
-  class="module-container {{ section.settings.style }}"
+  class="module-container {{ section.settings.style }}{% if section.settings.background_image %} has-background-image{% endif %}{% if section.settings.background_color != blank and section.settings.background_color != 'rgba(0,0,0,0)' %} has-background-color{% endif %}"
   data-section-id="{{ section.id }}"
   data-section-type="dynamic-inline-feature"
+  style="
+    position: relative;
+    {% if section.settings.background_image %}background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}'); background-size: cover; background-position: center; background-repeat: no-repeat;{% endif %}
+    {% if section.settings.background_color != blank and section.settings.background_color != 'rgba(0,0,0,0)' %}background-color: {{ section.settings.background_color }};{% endif %}
+  "
 >
-  <div class="module-inner module-inline-items home-inline-features">
+  {% if section.settings.background_image and section.settings.background_overlay_opacity > 0 %}
+    <div class="background-overlay" style="background-color: {{ section.settings.background_overlay_color }}; opacity: {{ section.settings.background_overlay_opacity | divided_by: 100.0 }}; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;"></div>
+  {% endif %}
+
+  <div class="module-inner module-inline-items home-inline-features" style="position: relative; z-index: 2;">
 
     {% if section.settings.title != blank %}
-      <h3 class="section-title">{{ section.settings.title | escape }}</h3>
+      <h3 class="section-title" style="color: white;">{{ section.settings.title | escape }}</h3>
     {% endif %}
 
     {% for block in section.blocks %}
@@ -36,18 +45,18 @@
 
         <article class="home-inline-text">
           {% if block.settings.title != blank %}
-            <h1 class="feature-title">{{ block.settings.title | escape }}</h1>
+            <h1 class="feature-title" style="color: white;">{{ block.settings.title | escape }}</h1>
           {% endif %}
 
           {% if block.settings.caption != blank %}
-            <div class="rte">
+            <div class="rte" style="color: white;">
               {{ block.settings.caption }}
             </div>
           {% endif %}
 
           {% if block.settings.button_link != blank and block.settings.button_text != blank %}
             <p class="home-inline-cta">
-              <a href="{{ block.settings.button_link }}">{{ block.settings.button_text | escape }}</a>
+              <a href="{{ block.settings.button_link }}" style="color: white;">{{ block.settings.button_text | escape }}</a>
             </p>
           {% endif %}
         </article>
@@ -56,6 +65,20 @@
 
   </div>
 </section>
+
+<style>
+#shopify-section-{{ section.id }} .section-title,
+#shopify-section-{{ section.id }} .feature-title,
+#shopify-section-{{ section.id }} .rte,
+#shopify-section-{{ section.id }} .rte *,
+#shopify-section-{{ section.id }} .home-inline-cta a {
+  color: white !important;
+}
+
+#shopify-section-{{ section.id }} .home-inline-cta a:hover {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+</style>
 
 {% schema %}
 {
@@ -97,6 +120,37 @@
       "unit": "%",
       "label": "Image width",
       "default": 100
+    },
+    {
+      "type": "header",
+      "content": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "range",
+      "id": "background_overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background overlay opacity",
+      "default": 0,
+      "info": "Only applies when background image is set"
+    },
+    {
+      "type": "color",
+      "id": "background_overlay_color",
+      "label": "Background overlay color",
+      "default": "#000000"
     }
   ],
   "blocks": [

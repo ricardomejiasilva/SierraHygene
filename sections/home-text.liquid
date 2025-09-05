@@ -1,5 +1,5 @@
 <section
-  class="module-container {{ section.settings.style }} {% if section.settings.show_borders %}borders{% endif %}"
+  class="module-container {{ section.settings.style }}"
   data-section-id="{{ section.id }}" 
   data-section-type="text">
 
@@ -7,7 +7,7 @@
     {% for block in section.blocks %}
       <div class="home-text-feature">
         {% if block.settings.title != blank %}
-          <h1 class="feature-title">{{ block.settings.title | escape }}</h1>
+          <h2 class="feature-title">{{ block.settings.title | escape }}</h2>
         {% endif %}
 
         {% if block.type == 'rich_text' and block.settings.content != blank %}
@@ -25,6 +25,51 @@
   </div>
 
 </section>
+
+<style>
+  #shopify-section-{{ section.id }} .home-text-feature {
+    text-align: left;
+  }
+  
+  #shopify-section-{{ section.id }} .feature-title {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    text-align: left;
+  }
+  
+  #shopify-section-{{ section.id }} .home-text-content {
+    text-align: left;
+  }
+  
+  #shopify-section-{{ section.id }} .rte {
+    text-align: left;
+  }
+  
+  /* Remove all borders and dividing lines */
+  #shopify-section-{{ section.id }} .home-text-feature {
+    border: none;
+    border-bottom: none;
+    border-top: none;
+  }
+  
+  #shopify-section-{{ section.id }} .module-container {
+    border: none;
+  }
+  
+  #shopify-section-{{ section.id }} .module-container.borders .home-text-feature {
+    border: none !important;
+  }
+  
+  /* Remove ::before pseudo-element line on top of text container */
+  #shopify-section-{{ section.id }}::before,
+  #shopify-section-{{ section.id }} .module-container::before,
+  #shopify-section-{{ section.id }} .module-inner::before,
+  #shopify-section-{{ section.id }} .home-text-feature::before {
+    display: none !important;
+    content: none !important;
+  }
+</style>
 
 {% schema %}
 {
@@ -67,13 +112,13 @@
           "type": "text",
           "id": "title",
           "label": "Heading",
-          "default": "Rich text"
+          "default": "This is an example of a headline, these can be used to break up paragraphs"
         },
         {
           "type": "richtext",
           "id": "content",
           "label": "Text",
-          "default": "<p>Use this section to welcome customers to your store, say a bit about your brand, or share news and seasonal promotions.</p>"
+          "default": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
         }
       ]
     },

@@ -7,6 +7,11 @@
 
   assign section_style = section.settings.style
 
+  assign show_cta = section.settings.show_button
+  assign cta_content = section.settings.button_text
+  assign cta_link = section.settings.button_link
+  assign cta_classes = section.settings.button_style
+
   assign grid_size = section.blocks.size
   if section.blocks.size > 4
     assign grid_size = 3
@@ -233,7 +238,7 @@
 {% schema %}
 {
   "name": "Collection list",
-  "max_blocks": 6,
+  "max_blocks": 12,
   "settings": [
     {
       "type": "select",
@@ -266,6 +271,43 @@
       "id": "show_product_count",
       "label": "Show product count",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop All Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary (Filled)"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary (Outlined)"
+        }
+      ],
+      "default": "primary"
     }
   ],
   "blocks": [

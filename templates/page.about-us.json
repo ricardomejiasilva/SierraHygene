@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_header": {
+      "type": "about-us-title",
+      "settings": {
+        "title": "The Sierra Hygiene Story"
+      }
+    },
+    "about_hero_image": {
+      "type": "home-image-with-text",
+      "settings": {
+        "style": "default-style",
+        "title": "",
+        "caption": "",
+        "button_text": "",
+        "button_link": "",
+        "image": "shopify://shop_images/support-min.png",
+        "media_layout": "highlight"
+      }
+    },
+    "about_content_sections": {
+      "type": "home-text",
+      "blocks": {
+        "rich_text_zfbNpd": {
+          "type": "rich_text",
+          "settings": {
+            "title": "This is an example of a headline, these can be used to break up paragraphs",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
+          }
+        },
+        "rich_text_DjDKhX": {
+          "type": "rich_text",
+          "settings": {
+            "title": "This is an example of a headline, these can be used to break up paragraphs",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
+          }
+        },
+        "rich_text_AiNf9d": {
+          "type": "rich_text",
+          "settings": {
+            "title": "This is an example of a headline, these can be used to break up paragraphs",
+            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "rich_text_zfbNpd",
+        "rich_text_DjDKhX",
+        "rich_text_AiNf9d"
+      ],
+      "settings": {
+        "style": "default-style",
+        "show_borders": false
+      }
+    }
+  },
+  "order": [
+    "page_header",
+    "about_hero_image",
+    "about_content_sections"
+  ]
+}

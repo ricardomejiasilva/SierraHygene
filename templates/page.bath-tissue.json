@@ -1,0 +1,50 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "about_us_title_eH8TWc": {
+      "type": "about-us-title",
+      "name": "Page Title",
+      "settings": {
+        "title": "Bath Tissue"
+      }
+    },
+    "home_featured_collection_Pt3bNe": {
+      "type": "home-featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "style": "default-style",
+        "title": "",
+        "button": "",
+        "link": "",
+        "collection": "frontpage",
+        "products_in_rows": 3,
+        "number_of_rows": 3,
+        "enable_filters": true,
+        "enable_product_type_filter": true,
+        "default_product_type": "",
+        "enable_color_filter": true,
+        "default_color": "",
+        "enable_featured_filter": true,
+        "default_sort": "featured"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "about_us_title_eH8TWc",
+    "home_featured_collection_Pt3bNe"
+  ]
+}

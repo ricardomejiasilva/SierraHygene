@@ -14,7 +14,106 @@
       <h1 class="section-title">{{ section.settings.title | escape }}</h1>
     {% endif %}
 
-    <div class="collection-products">
+    {% comment %} Optional Filters {% endcomment %}
+    {% if section.settings.enable_filters %}
+      <div class="featured-collection-filters" data-featured-collection-filters>
+        <div class="filter-group-left">
+          {% if section.settings.enable_product_type_filter %}
+            <div class="filter-wrapper">
+              <div class="select-wrapper featured-collection-filter__wrapper">
+                <label class="select-text featured-collection-filter__label" for="filter-product-type-{{ section.id }}" data-select-text>
+                  Product Type
+                  <span class="featured-collection-filter__selected" data-filter-selected>
+                    {% if section.settings.default_product_type != blank %}
+                      {{ section.settings.default_product_type }}
+                    {% else %}
+                      All
+                    {% endif %}
+                  </span>
+                </label>
+                <select id="filter-product-type-{{ section.id }}" class="featured-collection-filter single-option-selector" data-filter-type="product_type">
+                  <option value="">All</option>
+                  {% for product in collections[collection].products %}
+                    {% unless product.type == blank %}
+                      <option value="{{ product.type | escape }}" 
+                        {% if section.settings.default_product_type == product.type %}selected{% endif %}>
+                        {{ product.type | escape }}
+                      </option>
+                    {% endunless %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if section.settings.enable_color_filter %}
+            <div class="filter-wrapper">
+              <div class="select-wrapper featured-collection-filter__wrapper">
+                <label class="select-text featured-collection-filter__label" for="filter-color-{{ section.id }}" data-select-text>
+                  Color
+                  <span class="featured-collection-filter__selected" data-filter-selected>
+                    {% if section.settings.default_color != blank %}
+                      {{ section.settings.default_color }}
+                    {% else %}
+                      All
+                    {% endif %}
+                  </span>
+                </label>
+                <select id="filter-color-{{ section.id }}" class="featured-collection-filter single-option-selector" data-filter-type="color">
+                  <option value="">All</option>
+                  {% for product in collections[collection].products %}
+                    {% for option in product.options_with_values %}
+                      {% if option.name contains 'Color' or option.name contains 'color' or option.name contains 'Colour' or option.name contains 'colour' %}
+                        {% for value in option.values %}
+                          <option value="{{ value | escape }}" 
+                            {% if section.settings.default_color == value %}selected{% endif %}>
+                            {{ value | escape }}
+                          </option>
+                        {% endfor %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if section.settings.enable_featured_filter %}
+          <div class="filter-group-right">
+            <div class="filter-wrapper">
+              <div class="select-wrapper featured-collection-filter__wrapper">
+                <label class="select-text featured-collection-filter__label" for="filter-featured-{{ section.id }}" data-select-text>
+                  Sort by:
+                  <span class="featured-collection-filter__selected" data-filter-selected>
+                    {% case section.settings.default_sort %}
+                      {% when 'featured' %}
+                        Featured
+                      {% when 'price-low-high' %}
+                        Price: Low to High
+                      {% when 'price-high-low' %}
+                        Price: High to Low
+                      {% when 'newest' %}
+                        Newest
+                      {% else %}
+                        Featured
+                    {% endcase %}
+                  </span>
+                </label>
+                <select id="filter-featured-{{ section.id }}" class="featured-collection-filter single-option-selector" data-filter-type="sort">
+                  <option value="featured" {% if section.settings.default_sort == 'featured' %}selected{% endif %}>Featured</option>
+                  <option value="price-low-high" {% if section.settings.default_sort == 'price-low-high' %}selected{% endif %}>Price: Low to High</option>
+                  <option value="price-high-low" {% if section.settings.default_sort == 'price-high-low' %}selected{% endif %}>Price: High to Low</option>
+                  <option value="newest" {% if section.settings.default_sort == 'newest' %}selected{% endif %}>Newest</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="collection-products" data-featured-products>
       {% for product in collections[collection].products limit: product_limit %}
         {%
           render 'product-list-item',
@@ -22,8 +121,12 @@
         %}
       {% else %}
         {% for i in (1..product_limit) %}
+          {%- assign placeholder_index = i | modulo: 6 -%}
+          {%- if placeholder_index == 0 -%}
+            {%- assign placeholder_index = 6 -%}
+          {%- endif -%}
           {%- capture placeholder_image -%}
-            {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg product-list-item-image' }}
+            {{ 'product-' | append: placeholder_index | placeholder_svg_tag: 'placeholder-svg product-list-item-image' }}
           {%- endcapture -%}
           {% assign title = 'onboarding.featured_collection.product_title' | t %}
           {% assign vendor = 'onboarding.featured_collection.product_vendor' | t %}
@@ -50,6 +153,96 @@
 
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const section = document.querySelector('[data-section-id="{{ section.id }}"]');
+    if (!section) return;
+
+    const filters = section.querySelectorAll('[data-filter-type]');
+    const productsContainer = section.querySelector('[data-featured-products]');
+    const allProducts = Array.from(productsContainer.children);
+
+    // Store original product data for filtering
+    const productData = allProducts.map(item => {
+      const productType = item.querySelector('[data-product-type]')?.textContent?.trim() || '';
+      const productColors = item.querySelector('[data-product-colors]')?.textContent?.trim().split(',') || [];
+      const productPrice = parseFloat(item.querySelector('[data-product-price]')?.textContent?.replace(/[^\d.]/g, '') || 0);
+      const productDate = item.querySelector('[data-product-date]')?.textContent || '';
+      
+      return {
+        element: item,
+        type: productType,
+        colors: productColors,
+        price: productPrice,
+        date: productDate,
+        featured: item.hasAttribute('data-featured')
+      };
+    });
+
+    function filterAndSortProducts() {
+      const activeFilters = {
+        product_type: section.querySelector('[data-filter-type="product_type"]')?.value || '',
+        color: section.querySelector('[data-filter-type="color"]')?.value || '',
+        sort: section.querySelector('[data-filter-type="sort"]')?.value || 'featured'
+      };
+
+      // Filter products
+      let filteredProducts = productData.filter(product => {
+        const typeMatch = !activeFilters.product_type || product.type === activeFilters.product_type;
+        const colorMatch = !activeFilters.color || product.colors.includes(activeFilters.color);
+        
+        return typeMatch && colorMatch;
+      });
+
+      // Sort products
+      switch (activeFilters.sort) {
+        case 'price-low-high':
+          filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high-low':
+          filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'newest':
+          filteredProducts.sort((a, b) => new Date(b.date) - new Date(a.date));
+          break;
+        case 'featured':
+        default:
+          filteredProducts.sort((a, b) => {
+            if (a.featured && !b.featured) return -1;
+            if (!a.featured && b.featured) return 1;
+            return 0;
+          });
+          break;
+      }
+
+      // Update DOM
+      productsContainer.innerHTML = '';
+      filteredProducts.forEach(product => {
+        productsContainer.appendChild(product.element);
+      });
+    }
+
+    // Add event listeners
+    filters.forEach(filter => {
+      filter.addEventListener('change', function() {
+        // Update the visual label
+        const label = this.closest('.filter-wrapper').querySelector('[data-filter-selected]');
+        if (label) {
+          const selectedOption = this.options[this.selectedIndex];
+          label.textContent = selectedOption.textContent;
+        }
+        
+        filterAndSortProducts();
+      });
+    });
+
+    // Initialize filters if defaults are set
+    if (section.querySelector('[data-featured-collection-filters]')) {
+      filterAndSortProducts();
+    }
+  });
+</script>
 
 {% schema %}
 {
@@ -113,6 +306,70 @@
       "max": 3,
       "step": 1,
       "default": 1
+    },
+    {
+      "type": "header",
+      "content": "Filters"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filters",
+      "label": "Enable filters",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_product_type_filter",
+      "label": "Enable product type filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "default_product_type",
+      "label": "Default product type",
+      "info": "Leave blank for 'All'"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_color_filter",
+      "label": "Enable color filter",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "default_color",
+      "label": "Default color",
+      "info": "Leave blank for 'All'"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_featured_filter",
+      "label": "Enable sort filter",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "default_sort",
+      "label": "Default sort",
+      "options": [
+        {
+          "value": "featured",
+          "label": "Featured"
+        },
+        {
+          "value": "price-low-high",
+          "label": "Price: Low to High"
+        },
+        {
+          "value": "price-high-low",
+          "label": "Price: High to Low"
+        },
+        {
+          "value": "newest",
+          "label": "Newest"
+        }
+      ],
+      "default": "featured"
     }
   ],
   "presets": [

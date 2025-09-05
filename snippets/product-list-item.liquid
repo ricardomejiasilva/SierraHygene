@@ -31,9 +31,41 @@
   if show_sale_badge == nil
     assign show_sale_badge = true
   endif
+
+  # Prepare filter data attributes
+  unless onboarding
+    assign product_colors = ''
+    for option in product.options_with_values
+      if option.name contains 'Color' or option.name contains 'color' or option.name contains 'Colour' or option.name contains 'colour'
+        for value in option.values
+          if product_colors != ''
+            assign product_colors = product_colors | append: ',' | append: value
+          else
+            assign product_colors = value
+          endif
+        endfor
+        break
+      endif
+    endfor
+    
+    assign is_featured = false
+    if product.tags contains 'featured' or product.tags contains 'Featured' or product.tags contains 'bestseller' or product.tags contains 'Bestseller'
+      assign is_featured = true
+    endif
+  endunless
 %}
 
-<article class="product-list-item" {% unless onboarding %}id="product-list-item-{{ product.id }}"{% endunless %}>
+<article 
+  class="product-list-item" 
+  {% unless onboarding %}
+    id="product-list-item-{{ product.id }}"
+    data-product-type="{{ product.type | escape }}"
+    data-product-colors="{{ product_colors | escape }}"
+    data-product-price="{{ product.price_min }}"
+    data-product-date="{{ product.created_at | date: '%Y-%m-%d' }}"
+    {% if is_featured %}data-featured{% endif %}
+  {% endunless %}
+>
 
   <figure class="product-list-item-thumbnail">
     {%- if onboarding -%}

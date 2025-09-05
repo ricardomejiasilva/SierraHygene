@@ -1,0 +1,118 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "page_header": {
+      "type": "about-us-title",
+      "settings": {
+        "title": "Our Categories"
+      }
+    },
+    "home_image_with_text_overlay_QdMNDV": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image_height_desktop": "original",
+        "image_height_mobile": "original",
+        "title": "Bath Tissue",
+        "caption": "",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": "",
+        "heading_font_size": "32",
+        "text_font_size": "20"
+      }
+    },
+    "spacer_6Yiwxq": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "60"
+      }
+    },
+    "home_image_with_text_overlay_8UUyGi": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image_height_desktop": "original",
+        "image_height_mobile": "original",
+        "title": "Paper Towels",
+        "caption": "",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": "",
+        "heading_font_size": "32",
+        "text_font_size": "20"
+      }
+    },
+    "spacer_HRTpJR": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "60"
+      }
+    },
+    "home_image_with_text_overlay_zbWpMB": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image_height_desktop": "original",
+        "image_height_mobile": "original",
+        "title": "Dispensers",
+        "caption": "",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": "",
+        "heading_font_size": "32",
+        "text_font_size": "20"
+      }
+    },
+    "spacer_mdUqhi": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "60"
+      }
+    },
+    "home_image_with_text_overlay_bPRUzX": {
+      "type": "home-image-with-text-overlay",
+      "name": "Image with text overlay",
+      "settings": {
+        "image_height_desktop": "original",
+        "image_height_mobile": "original",
+        "title": "View All Products",
+        "caption": "",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#FFFFFF",
+        "button_text": "",
+        "button_link": "",
+        "heading_font_size": "32",
+        "text_font_size": "20"
+      }
+    }
+  },
+  "order": [
+    "page_header",
+    "home_image_with_text_overlay_QdMNDV",
+    "spacer_6Yiwxq",
+    "home_image_with_text_overlay_8UUyGi",
+    "spacer_HRTpJR",
+    "home_image_with_text_overlay_zbWpMB",
+    "spacer_mdUqhi",
+    "home_image_with_text_overlay_bPRUzX"
+  ]
+}

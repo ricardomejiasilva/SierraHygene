@@ -1,0 +1,67 @@
+{% liquid
+  assign spacing_height = section.settings.spacing_height | default: 60
+%}
+
+<section 
+  class="spacer-section"
+  style="height: {{ spacing_height }}px; display: block;"
+  data-section-id="{{ section.id }}"
+>
+</section>
+
+{% schema %}
+{
+  "name": "Spacer",
+  "class": "pxs-spacer-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "spacing_height",
+      "label": "Spacing height",
+      "options": [
+        {
+          "value": "20",
+          "label": "Small (20px)"
+        },
+        {
+          "value": "40",
+          "label": "Medium (40px)"
+        },
+        {
+          "value": "60",
+          "label": "Large (60px)"
+        },
+        {
+          "value": "80",
+          "label": "Extra Large (80px)"
+        },
+        {
+          "value": "100",
+          "label": "XXL (100px)"
+        },
+        {
+          "value": "120",
+          "label": "XXXL (120px)"
+        }
+      ],
+      "default": "60"
+    }
+  ],
+  "presets": [
+    {
+      "category": "Custom",
+      "name": "Spacer"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index",
+      "product",
+      "page",
+      "collection",
+      "blog",
+      "article"
+    ]
+  }
+}
+{% endschema %} 

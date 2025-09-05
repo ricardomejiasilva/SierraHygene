@@ -1,0 +1,94 @@
+{%- liquid
+  assign divider_color = section.settings.divider_color | default: '#e0e0e0'
+  assign divider_style = section.settings.divider_style | default: 'solid'
+  assign top_spacing = section.settings.top_spacing | default: 20
+  assign bottom_spacing = section.settings.bottom_spacing | default: 20
+-%}
+
+<section class="horizontal-divider-section" style="padding-top: {{ top_spacing }}px; padding-bottom: {{ bottom_spacing }}px;">
+  <div class="horizontal-divider-container">
+    <hr class="horizontal-divider" 
+        style="border-color: {{ divider_color }}; border-style: {{ divider_style }};">
+  </div>
+</section>
+
+<style>
+  .horizontal-divider-section {
+    width: 100%;
+  }
+  
+  .horizontal-divider-container {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .horizontal-divider {
+    width: 100%;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Horizontal Divider",
+  "tag": "section",
+  "class": "section-horizontal-divider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "Divider Color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "select",
+      "id": "divider_style",
+      "label": "Divider Style",
+      "options": [
+        {
+          "value": "solid",
+          "label": "Solid"
+        },
+        {
+          "value": "dashed",
+          "label": "Dashed"
+        },
+        {
+          "value": "dotted",
+          "label": "Dotted"
+        }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "range",
+      "id": "top_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "bottom_spacing",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "Horizontal Divider"
+    }
+  ]
+}
+{% endschema %} 
