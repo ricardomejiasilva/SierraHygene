@@ -5,7 +5,7 @@
   <div class="module-inner module-inline-items dynamic-logo-list">
 
     {% if section.settings.title != blank %}
-      <h1 class="section-title">{{ section.settings.title | escape }}</h1>
+      <h2 class="section-title">{{ section.settings.title | escape }}</h2>
     {% endif %}
 
     {% for block in section.blocks %}
@@ -21,7 +21,7 @@
           {%
             render 'rimg',
             img: logo,
-            size: '330x280',
+            size: '280x164',
             lazy: true,
             focal_point: logo.presentation.focal_point,
           %}
@@ -31,6 +31,10 @@
 
         {% if url != blank %}
             </a>
+        {% endif %}
+        
+        {% if block.settings.title != blank %}
+          <p class="dynamic-logo-list-title">{{ block.settings.title | escape }}</p>
         {% endif %}
       </div>
     {% endfor %}
@@ -94,6 +98,12 @@
           "id": "logo",
           "label": "Logo image",
           "info": "660 x 560px .png recommended"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "placeholder": "Enter title for this logo"
         }
       ]
     }

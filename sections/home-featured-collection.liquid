@@ -11,7 +11,7 @@
   <div class="module-inner dynamic-featured-collection">
 
     {% if section.settings.title != blank %}
-      <h1 class="section-title">{{ section.settings.title | escape }}</h1>
+      <h2 class="section-title">{{ section.settings.title | escape }}</h2>
     {% endif %}
 
     {% comment %} Optional Filters {% endcomment %}
@@ -145,7 +145,7 @@
 
     {% if section.settings.button != blank and section.settings.link != blank %}
       <div class="home-module-cta">
-        <a class="button" href="{{ section.settings.link }}">
+        <a class="collection-list__cta button secondary" href="{{ section.settings.link }}">
           {{ section.settings.button | escape }}
         </a>
       </div>

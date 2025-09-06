@@ -12,11 +12,13 @@
   assign cta_link = section.settings.button_link
   assign cta_classes = section.settings.button_style
 
-  assign grid_size = section.blocks.size
-  if section.blocks.size > 4
+  assign grid_size = 4
+  if section.blocks.size <= 2
+    assign grid_size = section.blocks.size
+  elsif section.blocks.size == 3
     assign grid_size = 3
-  elsif section.blocks.size == 4
-    assign grid_size = 2
+  else
+    assign grid_size = 4
   endif
 %}
 
@@ -220,7 +222,7 @@
   </ul>
   {% if show_cta %}
     <a
-      class="collection-list__cta {{ cta_classes }}"
+      class="collection-list__cta button {{ cta_classes }}"
       href="{{ cta_link }}"
       data-collection-list-cta
     >

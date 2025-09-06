@@ -202,15 +202,14 @@
          -%}
          <div class="{{ base_name }}__content-wrapper {{ text_classes }}">
             {%- if heading != blank -%}
-              <h2 class="{{ base_name }}__heading" style="font-size: {{ section.settings.heading_font_size }}px;">{{ heading | escape }}</h2>
+              <h2 class="{{ base_name }}__heading" style="font-size: 72px;">{{ heading | escape }}</h2>
             {%- endif -%}
             {%- if subheading -%}
               <div class="{{ base_name }}__text" style="font-size: {{ section.settings.text_font_size }}px;">{{ subheading }}</div>
             {%- endif -%}
             {%- if button_label != blank -%}
              <a
-               class="{{ base_name }}__button"
-               style="display: inline-block; padding: 12px 30px; background: #0E6360; color: white; text-decoration: none; border-radius: 4px; font-weight: 500; margin-top: 1rem; transition: background-color 0.3s ease;"
+               class="{{ base_name }}__button button primary"
                href="{{ button_link | default: '#' }}"
              >
                {{ button_label }}

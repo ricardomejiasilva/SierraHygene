@@ -489,7 +489,7 @@ h1, .age-gate__heading {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 40px;
   margin: 0.83em 0;
 }
 
@@ -731,6 +731,19 @@ table {
   font-weight: normal;
   font-display: block;
 }
+
+/* SierraHygene typography overrides */
+/* Headings: 700 weight and italic */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700 !important;
+  font-style: italic !important;
+}
+
+/* Body and everything else: 600 weight (excluding headings) */
+body, body *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  font-weight: 600;
+}
+
 .icon {
   font-family: "Single Product Webicons Regular";
   font-size: 16px;
@@ -1305,7 +1318,7 @@ h3,
 h4,
 h5,
 h6 {
-  -moz-font-smoothing: antialiased;
+  /* -moz-font-smoothing: antialiased; */
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -1335,23 +1348,27 @@ h6 {
 
 {%- endif -%}
 
+.image-with-text-overlay__heading h2 {
+  font-size: 72px !important;
+}
+
 .image-with-text-overlay__heading, h1, .age-gate__heading, .faq__section-heading, .feature-title {
   margin-bottom: 20px;
-  font-size: 2.5rem;
+  font-size: 72px;
 }
 {%- if settings.font_heading_capitalize -%}
 .image-with-text-overlay__heading, h1, .age-gate__heading, .faq__section-heading, .feature-title {
-    font-size: 2.25rem;
+    font-size: 72px;
   }
 {%- endif -%}
 
 .product__title, h2 {
   margin-bottom: 19px;
-  font-size: 2rem;
+  font-size: 72px;
 }
 {%- if settings.font_heading_capitalize -%}
 .product__title, h2 {
-    font-size: 1.75rem;
+    font-size: 72px;
   }
 {%- endif -%}
 
@@ -2371,7 +2388,7 @@ td:first-child {
   line-height: 2;
   cursor: pointer;
   border: 0;
-  border-radius: 5px;
+  border-radius: 0px !important;
   -webkit-appearance: none;
   color: {{ settings.primary-button-color }};
   background: {{ settings.accent-color }};
@@ -2397,7 +2414,7 @@ td:first-child {
   line-height: 2;
   cursor: pointer;
   border: 0;
-  border-radius: 5px;
+  border-radius: 0px !important;
   -webkit-appearance: none;
   color: {{ settings.primary-button-color }};
   background: {{ settings.accent-color }};
@@ -2423,7 +2440,7 @@ td:first-child {
   line-height: 2;
   cursor: pointer;
   border: 0;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-appearance: none;
   color: {{ settings.accent-color }};
   background: {{ settings.background-color }};
@@ -2450,7 +2467,7 @@ td:first-child {
   line-height: 2;
   cursor: pointer;
   border: 0;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-appearance: none;
   color: {{ settings.primary-button-color }};
   background: {{ settings.accent-color }};
@@ -2482,7 +2499,7 @@ td:first-child {
   line-height: 2;
   cursor: pointer;
   border: 0;
-  border-radius: 5px;
+  border-radius: 0px;
   -webkit-appearance: none;
   color: {{ settings.primary-button-color }};
   background: {{ settings.accent-color }};
@@ -3896,6 +3913,10 @@ body:not(.user-is-tabbing) .spr-summary .spr-icon:focus, body:not(.user-is-tabbi
 .footer-wrapper {
   color: {{ settings.footer-accent-color }};
   background-color: {{ settings.footer-background-color }};
+  background-image: url('{{ 'footer-bg.png' | asset_url }}');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   clear: both;
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -8226,7 +8247,7 @@ input[type=button].cart-shipping-calculate {
 }
 
 .collection-products {
-  max-width: 1110px;
+  max-width: 1200px;
   margin: 0 auto;
   font-size: 0;
 }
@@ -8280,6 +8301,11 @@ input[type=button].cart-shipping-calculate {
 }
 .product-list-item-title a {
   color: {{ settings.heading-color }};
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .product-list-item-thumbnail {
@@ -10570,6 +10596,10 @@ input[type=text].search-input {
     flex-basis: 20%;
   }
 }
+.product-list-item-details p {
+  text-shadow: none !important;
+}
+
 .predictive-search__product .product-list-item-details {
   display: flex;
   flex-direction: column;
@@ -10732,7 +10762,7 @@ input[type=text].search-input {
   font-style: {{ fonts_font_heading_style }};
   font-weight: {{ fonts_font_heading_weight }};
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 40px;
   line-height: 1.25;
   color: {{ settings.heading-color }};
   text-align: center;
@@ -10761,26 +10791,80 @@ input[type=text].search-input {
 }
 
 .collection-list__wrapper {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-column-gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
   padding: 0 15px;
+  justify-content: center;
 }
 @media (min-width: 720px) {
   .collection-list__wrapper {
-    grid-column-gap: 30px;
+    gap: 30px;
   }
-  .row-of-3 .collection-list__wrapper {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .row-of-4 .collection-list__wrapper > * {
+    flex: 0 0 calc(25% - 22.5px);
   }
-  .row-of-2 .collection-list__wrapper {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .row-of-3 .collection-list__wrapper > * {
+    flex: 0 0 calc(33.333% - 20px);
+  }
+  .row-of-2 .collection-list__wrapper > * {
+    flex: 0 0 calc(50% - 15px);
   }
 }
 @media (max-width: 719px) {
   .collection-list__wrapper {
     margin-top: 20px;
   }
+}
+
+.collection-list {
+  text-align: center;
+}
+
+.collection-list__cta {
+  margin: 50px auto 50px;
+  border-radius: 0px !important;
+  font-weight: 700 !important;
+  margin-top: 0 !important;
+}
+
+.collection-list__cta.button.primary {
+  color: {{ settings.primary-button-color }};
+  background: {{ settings.accent-color }};
+  border: 1px solid {{ settings.accent-color }};
+}
+
+.collection-list__cta.button.primary:hover,
+.collection-list__cta.button.primary:focus {
+  color: {{ settings.primary-button-color }};
+  background: {{ color_accent_hover }};
+  border: 1px solid {{ color_accent_hover }};
+}
+
+.collection-list__cta.button.secondary {
+  color: {{ settings.accent-color }};
+  background: transparent;
+  border: 1px solid {{ settings.accent-color }};
+}
+
+.collection-list__cta.button.secondary:hover,
+.collection-list__cta.button.secondary:focus {
+  color: {{ settings.primary-button-color }};
+  background: {{ settings.accent-color }};
+  border: 1px solid {{ settings.accent-color }};
+}
+
+.dynamic-logo-list-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 15px 0 0 0;
+  text-align: center;
+  text-shadow: none !important;
+  color: {{ settings.heading-color }};
+}
+
+.product-list-item-details a {
+  color: {{ settings.body-text-color }};
 }
 
 .collection-card {
@@ -10819,6 +10903,8 @@ input[type=text].search-input {
 
 .collection-card__title {
   line-height: 1.25;
+  font-weight: 700 !important;
+  font-style: normal !important;
 }
 .contrast-style .collection-card__title, .default-style .collection-card__title {
   color: {{ settings.heading-color }};
@@ -10884,6 +10970,14 @@ input[type=text].search-input {
 .featured-post-excerpt {
   margin-top: 15px;
   font-size: 1rem;
+}
+.dynamic-featured-collection {
+  max-width: 1200px !important;
+}
+
+.dynamic-featured-collection h2 {
+  font-size: 40px;
+  text-shadow: none !important;
 }
 
 @media (min-width: 720px) {
@@ -11052,7 +11146,7 @@ input[type=text].search-input {
   text-align: center;
 }
 
-.image-with-text-overlay__content h2, h1, p {
+.image-with-text-overlay__content-wrapper h2, h1, p {
   text-shadow: 0 5px 7px rgba(0, 0, 0, 0.35);
 }
 
@@ -11068,7 +11162,8 @@ input[type=text].search-input {
 
 .image-with-text-overlay__text {
   margin: 15px 0;
-  font-size: 1.25rem;
+  font-size: 30px !important;
+  max-width: ;
 }
 @media (max-width: 719px) {
   .image-with-text-overlay__text {
@@ -11234,6 +11329,12 @@ input[type=text].search-input {
 .dynamic-logo-list {
   font-size: 0;
   text-align: center;
+  max-width: 1200px !important;
+}
+
+.dynamic-logo-list h2 {
+  font-size: 40px;
+  text-shadow: none !important;
 }
 
 .dynamic-logo-list-item {
@@ -13219,18 +13320,7 @@ h1, h2, h3, h4, h5, h6,
 [class*="heading"],
 [class*="Heading"],
 [role="heading"],
-[itemprop="headline"] {
+/* [itemprop="headline"] {
   font-style: italic !important;
-}
+} */
 
-/* SierraHygene typography overrides */
-/* Headings: 700 weight and italic */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700 !important;
-  font-style: italic !important;
-}
-
-/* Body and everything else: 600 weight (excluding headings) */
-body, body *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-weight: 600;
-}

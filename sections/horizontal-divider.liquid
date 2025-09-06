@@ -5,7 +5,7 @@
   assign bottom_spacing = section.settings.bottom_spacing | default: 20
 -%}
 
-<section class="horizontal-divider-section" style="padding-top: {{ top_spacing }}px; padding-bottom: {{ bottom_spacing }}px;">
+<section class="horizontal-divider-section" style="padding-top: {{ top_spacing }}px; padding-bottom: {{ bottom_spacing }}px; max-width: 1200px; margin: 0 auto;">
   <div class="horizontal-divider-container">
     <hr class="horizontal-divider" 
         style="border-color: {{ divider_color }}; border-style: {{ divider_style }};">

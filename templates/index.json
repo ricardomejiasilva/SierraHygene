@@ -12,14 +12,16 @@
     "home_image_with_text_overlay_gadgxw": {
       "type": "home-image-with-text-overlay",
       "custom_css": [
-        ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 690px;}"
+        ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 1200px; margin: 0 auto;}",
+        "h2 {width: 535px;}",
+        "p {width: 630px;}"
       ],
       "name": "Image with text overlay",
       "settings": {
         "image": "shopify://shop_images/image_1_3.jpg",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
-        "title": "Essentials for Every Operation",
+        "title": "Essentials ForEvery Operation",
         "caption": "<p>We provide customers and distributors with innovative products and programs</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
@@ -181,28 +183,32 @@
           "type": "logo",
           "settings": {
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png"
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
+            "title": "Food Service"
           }
         },
         "logo_Edfhrm": {
           "type": "logo",
           "settings": {
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_1_1.png"
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_1_1.png",
+            "title": "Industrial"
           }
         },
         "logo_c6YndB": {
           "type": "logo",
           "settings": {
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_1.png"
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_1.png",
+            "title": "Healthcare"
           }
         },
         "logo_wc33db": {
           "type": "logo",
           "settings": {
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3_1.png"
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3_1.png",
+            "title": "Commercial"
           }
         }
       },
