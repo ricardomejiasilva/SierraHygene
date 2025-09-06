@@ -12,14 +12,14 @@
     "home_image_with_text_overlay_gadgxw": {
       "type": "home-image-with-text-overlay",
       "custom_css": [
-        ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px;}"
+        ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 690px;}"
       ],
       "name": "Image with text overlay",
       "settings": {
         "image": "shopify://shop_images/image_1_3.jpg",
-        "image_height_desktop": "medium",
+        "image_height_desktop": "large",
         "image_height_mobile": "original",
-        "title": "Commercial Paper Products",
+        "title": "Essentials for Every Operation",
         "caption": "<p>We provide customers and distributors with innovative products and programs</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
@@ -131,7 +131,7 @@
       "settings": {
         "image": "shopify://shop_images/image_18_1.png",
         "image_height_desktop": "medium",
-        "image_height_mobile": "large",
+        "image_height_mobile": "original",
         "title": "The Sierra Hygiene Mission",
         "caption": "<p>We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers</p>",
         "overlay_opacity": 35,
@@ -150,9 +150,9 @@
       "settings": {
         "style": "default-style",
         "title": "Our Best Sellers",
-        "button": "",
-        "link": "",
-        "collection": "home-featured",
+        "button": "VIEW ALL BEST SELLERS",
+        "link": "shopify://collections/home-best-sellers",
+        "collection": "home-best-sellers",
         "products_in_rows": 3,
         "number_of_rows": 1,
         "enable_filters": false,
@@ -164,15 +164,70 @@
         "default_sort": "price-low-high"
       }
     },
+    "horizontal_divider_qrWM7C": {
+      "type": "horizontal-divider",
+      "name": "Horizontal Divider",
+      "settings": {
+        "divider_color": "#262626",
+        "divider_style": "solid",
+        "top_spacing": 20,
+        "bottom_spacing": 20
+      }
+    },
+    "home_logo_list_ehHUHp": {
+      "type": "home-logo-list",
+      "blocks": {
+        "logo_EnYjhM": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png"
+          }
+        },
+        "logo_Edfhrm": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_1_1.png"
+          }
+        },
+        "logo_c6YndB": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_1.png"
+          }
+        },
+        "logo_wc33db": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3_1.png"
+          }
+        }
+      },
+      "block_order": [
+        "logo_EnYjhM",
+        "logo_Edfhrm",
+        "logo_c6YndB",
+        "logo_wc33db"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "style": "default-style",
+        "title": "Markets We  Serve",
+        "logos_in_rows": 4
+      }
+    },
     "home_image_with_text_overlay_wMw9Qz": {
       "type": "home-image-with-text-overlay",
       "name": "Image with text overlay",
       "settings": {
         "image": "shopify://shop_images/image_19_1.png",
-        "image_height_desktop": "medium",
+        "image_height_desktop": "large",
         "image_height_mobile": "original",
-        "title": "Image with text overlay",
-        "caption": "<p>Select imagery and text that relates to your style and story.</p>",
+        "title": "Profitable Partnerships",
+        "caption": "<p>We create mutually profitable partnerships with our distributors by providing them with innovative products and programs that solve their customers’ problems.</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
@@ -189,6 +244,8 @@
     "home_collection_list_qRY4dt",
     "home_image_with_text_overlay_XXrVYC",
     "home_featured_collection_rwUXtg",
+    "horizontal_divider_qrWM7C",
+    "home_logo_list_ehHUHp",
     "home_image_with_text_overlay_wMw9Qz"
   ]
 }

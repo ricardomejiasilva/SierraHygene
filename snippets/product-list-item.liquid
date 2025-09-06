@@ -108,7 +108,7 @@
       </p>
     {% endif %}
 
-    <h1 class="product-list-item-title">
+    <a class="product-list-item-title">
       {%- unless remove_title_anchor -%}
         <a href="{% unless onboarding %}{{ product.url | within: collection }}{% endunless %}">
       {%- endunless -%}
@@ -120,7 +120,7 @@
       {%- unless remove_title_anchor -%}
         </a>
       {%- endunless -%}
-    </h1>
+    </a>
 
       <p class="product-list-item-price">
         {% if onboarding %}

@@ -31,7 +31,7 @@
         "logo_width": 105,
         "logo_width_mobile": 130,
         "enable_predictive_search": true,
-        "menu": "main-menu",
+        "menu": "",
         "menu_style": "drawer",
         "desktop_nav_style": "header",
         "mobile_nav_style": "drawer",
