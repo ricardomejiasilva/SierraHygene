@@ -13,7 +13,7 @@
       "type": "home-image-with-text-overlay",
       "custom_css": [
         ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 1200px; margin: 0 auto;}",
-        "h2 {width: 535px;}",
+        "h2 {width: 600px;}",
         "p {width: 630px;}"
       ],
       "name": "Image with text overlay",
@@ -21,7 +21,7 @@
         "image": "shopify://shop_images/image_1_3.jpg",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
-        "title": "Essentials ForEvery Operation",
+        "title": "Essentials For Every Operation",
         "caption": "<p>We provide customers and distributors with innovative products and programs</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
@@ -148,6 +148,9 @@
     },
     "home_featured_collection_rwUXtg": {
       "type": "home-featured-collection",
+      "custom_css": [
+        ".collection-list__cta {margin-bottom: 0;}"
+      ],
       "name": "Featured collection",
       "settings": {
         "style": "default-style",

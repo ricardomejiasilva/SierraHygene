@@ -2,6 +2,15 @@
   @param menu {Menu} REQUIRED
     The primary menu to use in the navigation list.
 
+  @param products_menu {Menu}
+    The menu to use for the Products dropdown.
+
+  @param about_us_page {Page}
+    The page to link for About Us.
+
+  @param section {Section}
+    The section object for accessing settings.
+
   @param classes {String}
   Any classes to add to the nav element.
 
@@ -20,36 +29,32 @@
     data-header-nav-tier-1
   >
     
-    <li class="header-nav__tier-1-item" data-header-nav-parent>
-      <details data-header-nav-details>
-        <summary class="header-nav__tier-1-link header-nav__tier-1-link--parent" data-header-nav-link aria-expanded="false" aria-controls="nav-tier-2-products" role="button">
-          <span>Products</span>
-        </summary>
-        <ul id="nav-tier-2-products" class="header-nav__tier-2" tabindex="-1" data-header-nav-tier-2 data-header-nav-submenu>
-          <li class="header-nav__tier-2-item">
-            <a href="/pages/bath-tissue" class="header-nav__tier-2-link">
-              <span>Bath Tissue</span>
-            </a>
-          </li>
-          <li class="header-nav__tier-2-item">
-            <a href="/pages/categories" class="header-nav__tier-2-link">
-              <span>Paper Towels</span>
-            </a>
-          </li>
-          <li class="header-nav__tier-2-item">
-            <a href="/pages/categories" class="header-nav__tier-2-link">
-              <span>Dispensers</span>
-            </a>
-          </li>
-        </ul>
-      </details>
-    </li>
+    {% if products_menu != blank %}
+      <li class="header-nav__tier-1-item" data-header-nav-parent>
+        <details data-header-nav-details>
+          <summary class="header-nav__tier-1-link header-nav__tier-1-link--parent" data-header-nav-link aria-expanded="false" aria-controls="nav-tier-2-products" role="button">
+            <span>Products</span>
+          </summary>
+          <ul id="nav-tier-2-products" class="header-nav__tier-2" tabindex="-1" data-header-nav-tier-2 data-header-nav-submenu>
+            {% for link in linklists[products_menu].links %}
+              <li class="header-nav__tier-2-item">
+                <a href="{{ link.url }}" class="header-nav__tier-2-link">
+                  <span>{{ link.title | escape }}</span>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </details>
+      </li>
+    {% endif %}
 
-    <li class="header-nav__tier-1-item">
-      <a href="/pages/about-us" class="header-nav__tier-1-link" data-header-nav-link>
-        <span>About Us</span>
-      </a>
-    </li>
+    {% if about_us_page != blank %}
+      <li class="header-nav__tier-1-item">
+        <a href="{{ about_us_page.url }}" class="header-nav__tier-1-link" data-header-nav-link>
+          <span>About Us</span>
+        </a>
+      </li>
+    {% endif %}
 
     {% for link_tier_1 in linklists[menu].links %}
       {% assign has_tier_2 = false %}

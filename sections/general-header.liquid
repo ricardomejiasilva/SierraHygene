@@ -1,5 +1,7 @@
 {% liquid
   assign menu = section.settings.menu
+  assign products_menu = section.settings.products_menu
+  assign about_us_page = section.settings.about_us_page
   assign logo = section.settings.header_logo
   assign logo_transparent = section.settings.header_logo_alternate
   assign logo_width = section.settings.logo_width
@@ -327,7 +329,10 @@
     {% if nav_position == 'left' %}
       {%
         render 'header-nav',
-        menu: menu
+        menu: menu,
+        products_menu: products_menu,
+        about_us_page: about_us_page,
+        section: section
       %}
     {% endif %}
 
@@ -366,6 +371,9 @@
       {%
         render 'header-nav',
         menu: menu,
+        products_menu: products_menu,
+        about_us_page: about_us_page,
+        section: section,
         nav_classes: 'header-nav--desktop-only'
       %}
     {% endif %}
@@ -373,6 +381,9 @@
       {%
         render 'header-nav',
         menu: menu,
+        products_menu: products_menu,
+        about_us_page: about_us_page,
+        section: section,
         nav_classes: 'header-nav--desktop-only header-nav--position-left'
       %}
     {% endif %}
@@ -382,7 +393,10 @@
       {%
         render 'header-nav',
         menu: menu,
-        nav_classes: 'header-nav--js-disabled'
+        products_menu: products_menu,
+        about_us_page: about_us_page,
+        section: section,
+        nav_classes: 'header-nav--js-disabled',
         nav_position: nav_position
       %}
     </noscript>
@@ -433,6 +447,9 @@
     {%
       render 'header-nav',
       menu: menu,
+      products_menu: products_menu,
+      about_us_page: about_us_page,
+      section: section,
       nav_classes: 'header-nav--desktop-only header-nav--below-header'
     %}
   {% endif %}
@@ -443,6 +460,9 @@
         {%
           render 'header-nav',
           menu: menu,
+          products_menu: products_menu,
+          about_us_page: about_us_page,
+          section: section,
           nav_classes: 'header-nav--desktop-only header-nav--below-left'
         %}
       </div>
@@ -931,6 +951,18 @@
       "id": "menu",
       "label": "Main menu",
       "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "products_menu",
+      "label": "Products dropdown menu",
+      "info": "Select the menu to display in the Products dropdown"
+    },
+    {
+      "type": "page",
+      "id": "about_us_page",
+      "label": "About Us page",
+      "info": "Select the page to link for About Us"
     },
     {
       "type": "select",
