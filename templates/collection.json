@@ -12,7 +12,7 @@
     "main": {
       "type": "template-collection",
       "settings": {
-        "show_featured_image": true,
+        "show_featured_image": false,
         "show_description": true,
         "enable_filtering": false,
         "enable_sorting": false,

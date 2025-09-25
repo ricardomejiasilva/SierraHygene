@@ -13,12 +13,11 @@
 {%- endif -%}
 
 {% if image != blank %}
-  {% assign image_size = '1440x640' %}
   {%- capture feature_image -%}
     {%
       render 'rimg',
       img: image,
-      size: image_size,
+      size: '640x426',
       class: 'feature-image',
       lazy: true,
       focal_point: image.presentation.focal_point,
@@ -49,11 +48,21 @@
     {%- endif -%}
 
     {% if section.settings.title != blank %}
-      <h1 class="feature-title">{{ section.settings.title | escape }}</h1>
+      <h1 class="feature-title" 
+          style="color: {{ section.settings.title_color }}; 
+                 font-size: {{ section.settings.title_font_size }}px; 
+                 font-style: {% if section.settings.title_italic %}italic{% else %}normal{% endif %};">
+        {{ section.settings.title | escape }}
+      </h1>
     {% endif %}
 
     {% if section.settings.caption != blank %}
-      <div class="rte">{{ section.settings.caption }}</div>
+      <div class="rte" 
+           style="color: {{ section.settings.caption_color }}; 
+                  font-size: {{ section.settings.caption_font_size }}px; 
+                  font-style: {% if section.settings.caption_italic %}italic{% else %}normal{% endif %};">
+        {{ section.settings.caption }}
+      </div>
     {% endif %}
 
     {%- if media_layout == 'regular' -%}
@@ -146,6 +155,58 @@
         }
       ],
       "default": "regular"
+    },
+    {
+      "type": "header",
+      "content": "Heading Styling"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Heading font size",
+      "min": 16,
+      "max": 72,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "title_italic",
+      "label": "Italic heading",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Text Styling"
+    },
+    {
+      "type": "color",
+      "id": "caption_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "caption_font_size",
+      "label": "Text font size",
+      "min": 12,
+      "max": 32,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "caption_italic",
+      "label": "Italic text",
+      "default": false
     }
   ],
   "presets": [

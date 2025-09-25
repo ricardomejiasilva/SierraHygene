@@ -159,6 +159,14 @@
           product: product,
           block: block,
         %}
+      {%- when 'specifications' -%}
+        <div class="product__specifications {{ first_block_class }}" {{ block.shopify_attributes }}>
+          {%
+            render 'product-specs',
+            product: product,
+            block: block,
+          %}
+        </div>
     {% endcase %}
     {% assign first_block_class = '' %}
   {% endfor %}

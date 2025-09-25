@@ -10,6 +10,17 @@
   {{ page.content }}
 </div>
 
+<div class="contact-intro-content">
+  <p>We sell to distributors by the half and full truckloads. Private Labeling is available for full truckload.</p>
+  
+  <div class="contact-info">
+    <p><span class="contact-label">For pricing</span>, please contact us at <a href="mailto:info@sierrahygiene.com">info@sierrahygiene.com</a></p>
+    <p><span class="contact-label">For ordering</span>, please contact us at <a href="mailto:sales@sierrahygiene.com">sales@sierrahygiene.com</a></p>
+    <p><span class="contact-label">Address:</span> 2207 Old Philadelphia Pike Lancaster, PA 17602</p>
+    <p><span class="contact-label">Phone:</span> (301) 689-8696</p>
+  </div>
+</div>
+
 <div class="contact-form-wrapper">
 
   {% form 'contact' %}
@@ -34,6 +45,28 @@
       </div>
 
       <div class="input-wrapper">
+        <label for="contact[reason]">{{ 'general.general.reason' | t | default: 'Reason' }}</label>
+        <select class="input-field {% if form.errors contains "reason" %}error{% endif %}" name="contact[reason]" required>
+          <option value="">{{ 'general.general.reason_placeholder' | t | default: 'Please select a reason' }}</option>
+          {% if section.settings.reason_option_1 != blank %}
+            <option value="{{ section.settings.reason_option_1 | escape }}">{{ section.settings.reason_option_1 | escape }}</option>
+          {% endif %}
+          {% if section.settings.reason_option_2 != blank %}
+            <option value="{{ section.settings.reason_option_2 | escape }}">{{ section.settings.reason_option_2 | escape }}</option>
+          {% endif %}
+          {% if section.settings.reason_option_3 != blank %}
+            <option value="{{ section.settings.reason_option_3 | escape }}">{{ section.settings.reason_option_3 | escape }}</option>
+          {% endif %}
+          {% if section.settings.reason_option_4 != blank %}
+            <option value="{{ section.settings.reason_option_4 | escape }}">{{ section.settings.reason_option_4 | escape }}</option>
+          {% endif %}
+          {% if section.settings.reason_option_5 != blank %}
+            <option value="{{ section.settings.reason_option_5 | escape }}">{{ section.settings.reason_option_5 | escape }}</option>
+          {% endif %}
+        </select>
+      </div>
+
+      <div class="input-wrapper">
         <label for="contact[body]">{{ 'general.general.message' | t }}</label>
         <textarea class="input-field-textarea {% if form.errors contains "body" %}error{% endif %}" name="contact[body]" rows="6"></textarea>
       </div>
@@ -46,3 +79,45 @@
 
   {% endform %}
 </div>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Reason Options"
+    },
+    {
+      "type": "text",
+      "id": "reason_option_1",
+      "label": "Reason Option 1",
+      "default": "Placing a Direct Order"
+    },
+    {
+      "type": "text",
+      "id": "reason_option_2",
+      "label": "Reason Option 2",
+      "default": "Asking a Question"
+    },
+    {
+      "type": "text",
+      "id": "reason_option_3",
+      "label": "Reason Option 3 (Optional)",
+      "placeholder": "e.g., Technical Support"
+    },
+    {
+      "type": "text",
+      "id": "reason_option_4",
+      "label": "Reason Option 4 (Optional)",
+      "placeholder": "e.g., Billing Question"
+    },
+    {
+      "type": "text",
+      "id": "reason_option_5",
+      "label": "Reason Option 5 (Optional)",
+      "placeholder": "e.g., Other"
+    }
+  ]
+}
+{% endschema %}

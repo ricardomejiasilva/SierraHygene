@@ -18,7 +18,7 @@
       ],
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/image_1_3.jpg",
+        "image": "shopify://shop_images/hero_1.png",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "Essentials For Every Operation",
@@ -33,70 +33,117 @@
         "full_width": false
       }
     },
-    "home_collection_list_qRY4dt": {
+    "about_us_title_VPgREP": {
+      "type": "about-us-title",
+      "name": "Page Title",
+      "settings": {
+        "title": "Shop Our Prouducts",
+        "heading_font_size": 40,
+        "heading_color": "#1c3d37",
+        "heading_italic": false,
+        "padding_top": 50,
+        "padding_bottom": 0
+      }
+    },
+    "home_collection_list_Phdjby": {
       "type": "home-collection-list",
       "blocks": {
-        "collection_ewBxYi": {
+        "collection_TekjFE": {
           "type": "collection",
           "settings": {
             "collection": "center-pull-roll-paper"
           }
         },
-        "collection_rdjDB3": {
+        "collection_xxkE4P": {
           "type": "collection",
           "settings": {
             "collection": "hardwound-roll-paper"
           }
         },
-        "collection_X8UWTt": {
+        "collection_m4EV4f": {
           "type": "collection",
           "settings": {
             "collection": "jumbo-toilet-tissue"
           }
         },
-        "collection_73ikPK": {
+        "collection_fXPxaB": {
           "type": "collection",
           "settings": {
             "collection": "center-pull-roll-paper"
           }
         },
-        "collection_HwTPQK": {
+        "collection_EnaxXg": {
           "type": "collection",
           "settings": {
             "collection": "household-paper-towels"
           }
-        },
-        "collection_fGbP7J": {
+        }
+      },
+      "block_order": [
+        "collection_TekjFE",
+        "collection_xxkE4P",
+        "collection_m4EV4f",
+        "collection_fXPxaB",
+        "collection_EnaxXg"
+      ],
+      "name": "Collection list",
+      "settings": {
+        "style": "default-style",
+        "title": "Janitorial",
+        "show_product_count": false,
+        "grid_layout": "3",
+        "heading_font_size": 32,
+        "heading_color": "#1c3d37",
+        "heading_italic": false,
+        "margin_top": 25,
+        "margin_bottom": 15,
+        "show_border": true,
+        "show_button": false,
+        "button_text": "Shop All Products",
+        "button_link": "",
+        "button_style": "secondary"
+      }
+    },
+    "home_collection_list_FUUaFK": {
+      "type": "home-collection-list",
+      "blocks": {
+        "collection_mAL3hE": {
           "type": "collection",
           "settings": {
             "collection": "white-dinner-napkins"
           }
         },
-        "collection_qMiQTC": {
+        "collection_H3HD9p": {
           "type": "collection",
           "settings": {
             "collection": "color-dinner-napkins"
           }
         },
-        "collection_R6tPMj": {
+        "collection_NJRRq8": {
           "type": "collection",
           "settings": {
             "collection": "linen-beverage-napkins"
           }
         },
-        "collection_cVEFpC": {
+        "collection_GamCXn": {
+          "type": "collection",
+          "settings": {
+            "collection": "household-paper-towels"
+          }
+        },
+        "collection_RaYqaQ": {
           "type": "collection",
           "settings": {
             "collection": "linen-dinner-napkins"
           }
         },
-        "collection_93hmWf": {
+        "collection_jKzamc": {
           "type": "collection",
           "settings": {
             "collection": "beverage-napkins"
           }
         },
-        "collection_ePpFAR": {
+        "collection_rd9Wfx": {
           "type": "collection",
           "settings": {
             "collection": "coffee-cups"
@@ -104,35 +151,52 @@
         }
       },
       "block_order": [
-        "collection_ewBxYi",
-        "collection_rdjDB3",
-        "collection_X8UWTt",
-        "collection_73ikPK",
-        "collection_HwTPQK",
-        "collection_fGbP7J",
-        "collection_qMiQTC",
-        "collection_R6tPMj",
-        "collection_cVEFpC",
-        "collection_93hmWf",
-        "collection_ePpFAR"
+        "collection_mAL3hE",
+        "collection_H3HD9p",
+        "collection_NJRRq8",
+        "collection_GamCXn",
+        "collection_RaYqaQ",
+        "collection_jKzamc",
+        "collection_rd9Wfx"
       ],
       "name": "Collection list",
       "settings": {
         "style": "default-style",
-        "title": "Shop Our Products",
+        "title": "Food Service",
         "show_product_count": false,
-        "show_button": true,
+        "grid_layout": "3",
+        "heading_font_size": 32,
+        "heading_color": "#1c3d37",
+        "heading_italic": true,
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "show_border": true,
+        "show_button": false,
         "button_text": "Shop All Products",
         "button_link": "",
         "button_style": "secondary"
+      }
+    },
+    "template_button_VBQmwx": {
+      "type": "template-button",
+      "name": "Button",
+      "settings": {
+        "show_button": true,
+        "button_text": "Shop All Products",
+        "button_link": "",
+        "button_style": "secondary",
+        "button_alignment": "center",
+        "margin_top": 0,
+        "margin_bottom": 25,
+        "show_border": false
       }
     },
     "home_image_with_text_overlay_XXrVYC": {
       "type": "home-image-with-text-overlay",
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/image_18_1.png",
-        "image_height_desktop": "medium",
+        "image": "shopify://shop_images/image_break_2.png",
+        "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "The Sierra Hygiene Mission",
         "caption": "<p>We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers</p>",
@@ -182,6 +246,14 @@
     "home_logo_list_ehHUHp": {
       "type": "home-logo-list",
       "blocks": {
+        "logo_w4Fn4G": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
+            "title": "Janitorial"
+          }
+        },
         "logo_EnYjhM": {
           "type": "logo",
           "settings": {
@@ -189,37 +261,11 @@
             "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
             "title": "Food Service"
           }
-        },
-        "logo_Edfhrm": {
-          "type": "logo",
-          "settings": {
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_1_1.png",
-            "title": "Industrial"
-          }
-        },
-        "logo_c6YndB": {
-          "type": "logo",
-          "settings": {
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_1.png",
-            "title": "Healthcare"
-          }
-        },
-        "logo_wc33db": {
-          "type": "logo",
-          "settings": {
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3_1.png",
-            "title": "Commercial"
-          }
         }
       },
       "block_order": [
-        "logo_EnYjhM",
-        "logo_Edfhrm",
-        "logo_c6YndB",
-        "logo_wc33db"
+        "logo_w4Fn4G",
+        "logo_EnYjhM"
       ],
       "name": "Logo list",
       "settings": {
@@ -232,7 +278,7 @@
       "type": "home-image-with-text-overlay",
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/image_19_1.png",
+        "image": "shopify://shop_images/image_break_1_1.png",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "Profitable Partnerships",
@@ -250,7 +296,10 @@
   },
   "order": [
     "home_image_with_text_overlay_gadgxw",
-    "home_collection_list_qRY4dt",
+    "about_us_title_VPgREP",
+    "home_collection_list_Phdjby",
+    "home_collection_list_FUUaFK",
+    "template_button_VBQmwx",
     "home_image_with_text_overlay_XXrVYC",
     "home_featured_collection_rwUXtg",
     "horizontal_divider_qrWM7C",

@@ -12,7 +12,7 @@
     "page_header": {
       "type": "about-us-title",
       "settings": {
-        "title": "The Sierra Hygiene Story"
+        "title": "Sierra Hygiene prides ourselves on producing high quality, American-Made products"
       }
     },
     "about_hero_image": {
@@ -23,8 +23,14 @@
         "caption": "",
         "button_text": "",
         "button_link": "",
-        "image": "shopify://shop_images/support-min.png",
-        "media_layout": "highlight"
+        "image": "shopify://shop_images/support_2_1.png",
+        "media_layout": "highlight",
+        "title_color": "#000000",
+        "title_font_size": 32,
+        "title_italic": false,
+        "caption_color": "#000000",
+        "caption_font_size": 16,
+        "caption_italic": false
       }
     },
     "about_content_sections": {
@@ -34,38 +40,65 @@
           "type": "rich_text",
           "settings": {
             "title": "This is an example of a headline, these can be used to break up paragraphs",
-            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
-          }
-        },
-        "rich_text_DjDKhX": {
-          "type": "rich_text",
-          "settings": {
-            "title": "This is an example of a headline, these can be used to break up paragraphs",
-            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
-          }
-        },
-        "rich_text_AiNf9d": {
-          "type": "rich_text",
-          "settings": {
-            "title": "This is an example of a headline, these can be used to break up paragraphs",
-            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
+            "content": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>",
+            "title_color": "#000000",
+            "title_font_size": 24,
+            "title_italic": false,
+            "content_color": "#000000",
+            "content_font_size": 16,
+            "content_italic": false
           }
         }
       },
       "block_order": [
-        "rich_text_zfbNpd",
-        "rich_text_DjDKhX",
-        "rich_text_AiNf9d"
+        "rich_text_zfbNpd"
       ],
       "settings": {
         "style": "default-style",
         "show_borders": false
+      }
+    },
+    "home_logo_list_NGyTVm": {
+      "type": "home-logo-list",
+      "blocks": {
+        "logo_y3XLBM": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
+            "title": "Janitorial"
+          }
+        },
+        "logo_xqgmyX": {
+          "type": "logo",
+          "settings": {
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
+            "title": "Food Service"
+          }
+        }
+      },
+      "block_order": [
+        "logo_y3XLBM",
+        "logo_xqgmyX"
+      ],
+      "custom_css": [
+        "h2 {margin-bottom: 0px;}",
+        ".dynamic-logo-list-item {margin-bottom: 0 !important;}",
+        ".dynamic-logo-list {margin-bottom: 0 !important;}"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "style": "default-style",
+        "title": "Markets We Serve",
+        "logos_in_rows": 4
       }
     }
   },
   "order": [
     "page_header",
     "about_hero_image",
-    "about_content_sections"
+    "about_content_sections",
+    "home_logo_list_NGyTVm"
   ]
 }

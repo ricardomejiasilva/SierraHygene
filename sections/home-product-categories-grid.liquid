@@ -1,0 +1,374 @@
+<section
+  class="module-container {{ section.settings.style }}"
+  data-section-id="{{ section.id }}"
+  data-section-type="product-categories-grid">
+  <div class="module-inner product-categories-grid">
+
+    {% if section.settings.title != blank %}
+      <h2 class="section-title">{{ section.settings.title | escape }}</h2>
+    {% endif %}
+
+    <div class="product-categories-grid-container">
+      {% for block in section.blocks %}
+        {%- assign image = block.settings.image -%}
+        {%- assign url = block.settings.url -%}
+        {%- assign text = block.settings.text -%}
+        {%- assign text_color = block.settings.text_color -%}
+        {%- assign text_position = block.settings.text_position -%}
+        {%- assign font_size = block.settings.font_size -%}
+
+        <div class="product-category-item" {{ block.shopify_attributes }}>
+          {% if url != blank %}
+            <a href="{{ url }}" class="product-category-link">
+          {% endif %}
+
+          <div class="product-category-image-container">
+            {% if image != blank %}
+              {%
+                render 'rimg',
+                img: image,
+                size: '373x373',
+                lazy: true,
+                focal_point: image.presentation.focal_point,
+                class: 'product-category-image'
+              %}
+            {% else %}
+              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-category-image' }}
+            {% endif %}
+
+            {% if text != blank %}
+              <div class="product-category-text-overlay {{ text_position }}" 
+                   style="color: {{ text_color }}; font-size: {{ font_size }}px;">
+                {{ text | escape }}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if url != blank %}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .product-categories-grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    justify-items: center;
+    margin-top: 30px;
+  }
+
+  #shopify-section-{{ section.id }} .product-categories-grid {
+    margin-top: 0px;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-item {
+    width: 100%;
+    max-width: 373px;
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-link:hover {
+    transform: scale(1.02);
+  }
+
+  #shopify-section-{{ section.id }} .product-category-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay {
+    position: absolute;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    pointer-events: none;
+    line-height: 1.2;
+    text-align: center;
+    max-width: 90%;
+  }
+
+  /* Text Position Classes */
+  #shopify-section-{{ section.id }} .product-category-text-overlay.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay.top-left {
+    top: 20px;
+    left: 20px;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay.top-center {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay.top-right {
+    top: 20px;
+    right: 20px;
+    text-align: right;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay.bottom-center {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #shopify-section-{{ section.id }} .product-category-text-overlay.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    text-align: right;
+  }
+
+  /* Mobile Responsive - Single Column */
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} .product-categories-grid-container {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 20px;
+    }
+
+    #shopify-section-{{ section.id }} .product-category-item {
+      max-width: 100%;
+    }
+  }
+
+  /* Small Mobile */
+  @media screen and (max-width: 480px) {
+    #shopify-section-{{ section.id }} .product-categories-grid-container {
+      gap: 15px;
+      padding: 0 15px;
+    }
+  }
+
+  /* Tablet - 2 columns */
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .product-categories-grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    #shopify-section-{{ section.id }} .product-category-item {
+      max-width: 350px;
+    }
+  }
+
+  /* Large screens - maintain 3 columns with proper spacing */
+  @media screen and (min-width: 1200px) {
+    #shopify-section-{{ section.id }} .product-categories-grid-container {
+      gap: 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  /* Remove the border line that appears above this section */
+  #shopify-section-{{ section.id }}::before {
+    display: none !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Product Categories Grid",
+  "max_blocks": 24,
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "default-style",
+          "label": "Default"
+        },
+        {
+          "value": "accent-style",
+          "label": "Accent"
+        },
+        {
+          "value": "contrast-style",
+          "label": "Contrast"
+        }
+      ],
+      "default": "default-style"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Shop by Category"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category image",
+          "info": "373 x 373px recommended"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Category text",
+          "placeholder": "Enter category name"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link URL"
+        },
+        {
+          "type": "header",
+          "content": "Text Styling"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "text_position",
+          "label": "Text position",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "top-left",
+              "label": "Top Left"
+            },
+            {
+              "value": "top-center",
+              "label": "Top Center"
+            },
+            {
+              "value": "top-right",
+              "label": "Top Right"
+            },
+            {
+              "value": "bottom-left",
+              "label": "Bottom Left"
+            },
+            {
+              "value": "bottom-center",
+              "label": "Bottom Center"
+            },
+            {
+              "value": "bottom-right",
+              "label": "Bottom Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Font size",
+          "min": 14,
+          "max": 48,
+          "step": 2,
+          "default": 24,
+          "unit": "px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Image",
+      "name": "Product Categories Grid",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "text": "Center Pull Roll Paper"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "text": "Hardwound Roll Paper"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "text": "Jumbo Toilet Tissue"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "text": "Standard Toilet Tissue"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "text": "Household Paper Towels"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "text": "White Dinner Napkins"
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index",
+      "product",
+      "page"
+    ]
+  }
+}
+
+{% endschema %}

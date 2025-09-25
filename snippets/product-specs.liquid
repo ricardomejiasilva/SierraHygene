@@ -1,0 +1,57 @@
+{% comment %}
+  Product Specifications Snippet
+  Displays product specifications from metafields in a table format
+  
+  Metafields expected under 'custom' namespace:
+  - custom.color
+  - custom.size  
+  - custom.unit
+  - custom.material
+  - custom.brand
+  - custom.ply
+{% endcomment %}
+
+{% assign spec_items = 'color,size,unit,material,brand,ply' | split: ',' %}
+{% assign spec_labels = 'Color,Size,Unit Count,Material,Brand,Ply' | split: ',' %}
+{% assign spec_count = 0 %}
+
+{% for spec_item in spec_items %}
+  {% assign spec_value = product.metafields.custom[spec_item] %}
+  {% if spec_value != blank %}
+    {% assign spec_count = spec_count | plus: 1 %}
+  {% endif %}
+{% endfor %}
+
+{% if spec_count > 0 %}
+  <div class="product-specs">
+    <h3 class="product-specs__title">{{ block.settings.title | default: 'Specifications' }}</h3>
+    
+    <div class="product-specs__table-wrapper">
+      <div class="product-specs__table" role="table">
+        {% for spec_item in spec_items %}
+          {% assign spec_value = product.metafields.custom[spec_item] %}
+          {% if spec_value != blank %}
+            {% assign spec_index = forloop.index0 %}
+            {% assign spec_label = spec_labels[spec_index] %}
+            {% assign row_class = 'product-specs__row' %}
+            {% if forloop.index == 1 %}
+              {% assign row_class = row_class | append: ' product-specs__row--first' %}
+            {% endif %}
+            {% unless forloop.last %}
+              {% assign row_class = row_class | append: ' product-specs__row--border' %}
+            {% endunless %}
+            
+            <div class="{{ row_class }}" role="row">
+              <div class="product-specs__label" role="cell">
+                {{ spec_label }}
+              </div>
+              <div class="product-specs__value" role="cell">
+                {{ spec_value }}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endif %}

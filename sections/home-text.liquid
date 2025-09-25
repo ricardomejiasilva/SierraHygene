@@ -5,19 +5,34 @@
 
   <div class="module-inner">
     {% for block in section.blocks %}
-      <div class="home-text-feature">
+      <div class="home-text-feature" {{ block.shopify_attributes }}>
         {% if block.settings.title != blank %}
-          <h2 class="feature-title">{{ block.settings.title | escape }}</h2>
+          <h2 class="feature-title" 
+              style="color: {{ block.settings.title_color }}; 
+                     font-size: {{ block.settings.title_font_size }}px; 
+                     font-style: {% if block.settings.title_italic %}italic{% else %}normal{% endif %};">
+            {{ block.settings.title | escape }}
+          </h2>
         {% endif %}
 
         {% if block.type == 'rich_text' and block.settings.content != blank %}
-          <div class="rte home-text-content">{{ block.settings.content }}</div>
+          <div class="rte home-text-content" 
+               style="color: {{ block.settings.content_color }}; 
+                      font-size: {{ block.settings.content_font_size }}px; 
+                      font-style: {% if block.settings.content_italic %}italic{% else %}normal{% endif %};">
+            {{ block.settings.content }}
+          </div>
         {% endif %}
 
         {% if block.type == 'page' and block.settings.page != blank %}
           {% assign page_content = pages[block.settings.page].content %}
           {% if page_content != blank %}
-            <div class="rte">{{ pages[block.settings.page].content }}</div>
+            <div class="rte" 
+                 style="color: {{ block.settings.content_color }}; 
+                        font-size: {{ block.settings.content_font_size }}px; 
+                        font-style: {% if block.settings.content_italic %}italic{% else %}normal{% endif %};">
+              {{ pages[block.settings.page].content }}
+            </div>
           {% endif %}
         {% endif %}
       </div>
@@ -119,6 +134,58 @@
           "id": "content",
           "label": "Text",
           "default": "<p>Lorem ipsum dolor sit amet consectetur. Commodo imperdiet nunc eget sed mi nisl id. Massa tincidunt phasellus sem pellentesque velit amet eget faucibus. Varius aenean ut aliquam tortor. Fusce lorem cursibus ut dignissim quis. Sit ut tellus egestas risus aliquiet placerat. Mauris malesuada volutpat et ultricies a elit. Adipiscing congue facilisi mauris ipsum at condimentum arcu consectetur.</p>"
+        },
+        {
+          "type": "header",
+          "content": "Heading Styling"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Heading font size",
+          "min": 14,
+          "max": 60,
+          "step": 2,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "title_italic",
+          "label": "Italic heading",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Text Styling"
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "content_font_size",
+          "label": "Text font size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "content_italic",
+          "label": "Italic text",
+          "default": false
         }
       ]
     },
@@ -136,6 +203,58 @@
           "type": "page",
           "id": "page",
           "label": "Text"
+        },
+        {
+          "type": "header",
+          "content": "Heading Styling"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Heading color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "title_font_size",
+          "label": "Heading font size",
+          "min": 14,
+          "max": 60,
+          "step": 2,
+          "default": 24,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "title_italic",
+          "label": "Italic heading",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Text Styling"
+        },
+        {
+          "type": "color",
+          "id": "content_color",
+          "label": "Text color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "content_font_size",
+          "label": "Text font size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "checkbox",
+          "id": "content_italic",
+          "label": "Italic text",
+          "default": false
         }
       ]
     }

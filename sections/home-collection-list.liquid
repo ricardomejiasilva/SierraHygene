@@ -12,13 +12,18 @@
   assign cta_link = section.settings.button_link
   assign cta_classes = section.settings.button_style
 
-  assign grid_size = 4
-  if section.blocks.size <= 2
-    assign grid_size = section.blocks.size
-  elsif section.blocks.size == 3
-    assign grid_size = 3
+  assign grid_size = section.settings.grid_layout | default: 'auto'
+  
+  if grid_size == 'auto'
+    if section.blocks.size <= 2
+      assign grid_size = section.blocks.size
+    elsif section.blocks.size == 3
+      assign grid_size = 3
+    else
+      assign grid_size = 4
+    endif
   else
-    assign grid_size = 4
+    assign grid_size = grid_size | plus: 0
   endif
 %}
 
@@ -139,11 +144,26 @@
   "
   {{ section_attributes }}
   aria-label="{{ section_heading }}"
+  style="
+    {%- if section.settings.margin_top -%}margin-top: {{ section.settings.margin_top }}px;{%- endif -%}
+    {%- if section.settings.margin_bottom -%}margin-bottom: {{ section.settings.margin_bottom }}px;{%- endif -%}
+  "
 >
+  <div class="collection-list-container" 
+       style="
+         max-width: 1200px; 
+         margin: 0 auto; 
+         {%- if section.settings.show_border -%}border: 2px solid #000000; border-radius: 0;{%- endif -%}
+       ">
   {%- if section_heading != blank or section_subheading != blank -%}
     <div class="section__header collection-list__section-header">
       {%- if section_heading != blank -%}
-        <h2 class="section__heading collection-list__section-heading">
+        <h2 class="section__heading collection-list__section-heading" 
+            style="
+              {%- if section.settings.heading_font_size -%}font-size: {{ section.settings.heading_font_size }}px;{%- endif -%}
+              {%- if section.settings.heading_color -%}color: {{ section.settings.heading_color }};{%- endif -%}
+              {%- if section.settings.heading_italic -%}font-style: italic;{%- endif -%}
+            ">
           {{ section_heading | escape }}
         </h2>
       {%- endif -%}
@@ -233,6 +253,7 @@
       {% endif %}
     </a>
   {% endif %}
+  </div>
 </section>
 {% comment %}Inject @pixelunion/pxs-collection-list/collection-list end{% endcomment %}
 
@@ -272,6 +293,82 @@
       "type": "checkbox",
       "id": "show_product_count",
       "label": "Show product count",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "grid_layout",
+      "label": "Grid layout",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (based on number of collections)"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Heading Style"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_italic",
+      "label": "Italic heading",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show border around section",
       "default": false
     },
     {

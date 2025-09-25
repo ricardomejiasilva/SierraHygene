@@ -21,7 +21,7 @@
           {%
             render 'rimg',
             img: logo,
-            size: '280x164',
+            size: '570x333',
             lazy: true,
             focal_point: logo.presentation.focal_point,
           %}
@@ -41,6 +41,13 @@
 
   </div>
 </section>
+
+<style>
+  /* Remove the border line that appears above this section */
+  #shopify-section-{{ section.id }}::before {
+    display: none !important;
+  }
+</style>
 
 {% schema %}
 {

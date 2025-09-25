@@ -11,7 +11,16 @@
   "sections": {
     "main": {
       "type": "template-contact",
-      "settings": {}
+      "custom_css": [
+        ".contact-form {padding-bottom: 24px;}"
+      ],
+      "settings": {
+        "reason_option_1": "Placing a Direct Order",
+        "reason_option_2": "Ask a Question",
+        "reason_option_3": "",
+        "reason_option_4": "",
+        "reason_option_5": ""
+      }
     }
   },
   "order": [

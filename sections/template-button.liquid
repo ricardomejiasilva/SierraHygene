@@ -1,0 +1,179 @@
+<section
+  class="button-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="template-button"
+  style="
+    {%- if section.settings.margin_top -%}margin-top: {{ section.settings.margin_top }}px;{%- endif -%}
+    {%- if section.settings.margin_bottom -%}margin-bottom: {{ section.settings.margin_bottom }}px;{%- endif -%}
+  "
+>
+  <div class="button-container" 
+       style="
+         max-width: 1200px; 
+         margin: 0 auto; 
+         text-align: {{ section.settings.button_alignment }};
+         {%- if section.settings.show_border -%}border: 1px solid #000000; border-radius: 0;{%- endif -%}
+         padding: 20px;
+       ">
+    {% if section.settings.show_button and section.settings.button_text != blank %}
+      <a
+        class="button-section__cta button {{ section.settings.button_style }}"
+        href="{{ section.settings.button_link }}"
+        {% if section.settings.button_link == blank %}onclick="return false;" style="cursor: default;"{% endif %}
+      >
+        {{ section.settings.button_text | escape }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .button-section {
+    width: 100%;
+  }
+  
+  .button-container {
+    display: block;
+  }
+  
+  .button-section__cta {
+    margin: 0;
+    border-radius: 0px !important;
+    font-weight: 700 !important;
+    display: inline-block;
+  }
+
+  .button-section__cta.button.primary {
+    color: {{ settings.primary-button-color }};
+    background: {{ settings.accent-color }};
+    border: 1px solid {{ settings.accent-color }};
+  }
+
+  .button-section__cta.button.primary:hover,
+  .button-section__cta.button.primary:focus {
+    background: {{ settings.accent-color | color_darken: 10 }};
+    border-color: {{ settings.accent-color | color_darken: 10 }};
+  }
+
+  .button-section__cta.button.secondary {
+    color: {{ settings.accent-color }};
+    background: transparent;
+    border: 1px solid {{ settings.accent-color }};
+  }
+
+  .button-section__cta.button.secondary:hover,
+  .button-section__cta.button.secondary:focus {
+    color: {{ settings.primary-button-color }};
+    background: {{ settings.accent-color }};
+    border-color: {{ settings.accent-color }};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Button",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Click Me"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary (Filled)"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary (Outlined)"
+        }
+      ],
+      "default": "primary"
+    },
+    {
+      "type": "select",
+      "id": "button_alignment",
+      "label": "Button alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show border around section",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Button",
+      "category": "Custom"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index",
+      "product",
+      "page",
+      "collection",
+      "blog",
+      "article"
+    ]
+  }
+}
+{% endschema %}
+
+
