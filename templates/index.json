@@ -27,7 +27,7 @@
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
         "button_text": "SEE OUR PRODUCTS",
-        "button_link": "",
+        "button_link": "shopify://collections",
         "heading_font_size": "56",
         "text_font_size": "30",
         "full_width": false
@@ -183,7 +183,7 @@
       "settings": {
         "show_button": true,
         "button_text": "Shop All Products",
-        "button_link": "",
+        "button_link": "shopify://collections",
         "button_style": "secondary",
         "button_alignment": "center",
         "margin_top": 0,
@@ -204,7 +204,7 @@
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
         "button_text": "LEARN MORE",
-        "button_link": "",
+        "button_link": "shopify://pages/about",
         "heading_font_size": "40",
         "text_font_size": "20",
         "full_width": false

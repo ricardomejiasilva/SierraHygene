@@ -9475,6 +9475,7 @@ input[type=button].cart-shipping-calculate {
   margin-top: 50px;
 }
 
+
 :root {
   --color-body-text: {{ settings.body-text-color }};
   --color-body: {{ settings.background-color | color_to_hex }};
@@ -13470,16 +13471,9 @@ h1, h2, h3, h4, h5, h6,
 
 /* Product Specifications Styles */
 .product-specs {
-  margin: 2rem 0;
+  margin: 0;
 }
 
-.product-specs__title {
-  font-family: "Museo Sans", sans-serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #333;
-}
 
 .product-specs__table-wrapper {
   overflow-x: auto;
@@ -13493,21 +13487,23 @@ h1, h2, h3, h4, h5, h6,
 
 .product-specs__row {
   display: flex;
-  min-height: 3rem;
-  align-items: center;
+  align-items: start;
+  background-color: #F0F0F0;
+  margin-bottom: 8px;
 }
 
 .product-specs__row:nth-child(even) {
-  background-color: #f5f5f5;
+  /* background-color: #f5f5f5; */
 }
 
 .product-specs__row--border {
-  border-bottom: 1px solid #e0e0e0;
+  /* border-bottom: 1px solid #e0e0e0; */
 }
 
 .product-specs__label,
 .product-specs__value {
-  padding: 0.75rem 1rem;
+  font-size: 15px;
+  padding: 0px 8px;
   flex: 1;
 }
 

@@ -8,136 +8,138 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "main": {
-            "type": "module-product",
-            "blocks": {
-                "title": {
-                    "type": "title",
-                    "settings": {
-                        "position": "right"
-                    }
-                },
-                "price": {
-                    "type": "price",
-                    "settings": {
-                        "position": "right"
-                    }
-                },
-                "gallery": {
-                    "type": "gallery",
-                    "settings": {
-                        "position": "left"
-                    }
-                },
-                "form": {
-                    "type": "form",
-                    "settings": {
-                        "position": "right",
-                        "show_gift_card_recipient_form": false
-                    }
-                },
-                "description": {
-                    "type": "description",
-                    "settings": {
-                        "position": "right"
-                    }
-                },
-                "specifications": {
-                    "type": "specifications",
-                    "settings": {
-                        "position": "right",
-                        "title": "Specifications"
-                    }
-                }
-            },
-            "block_order": [
-                "title",
-                "price",
-                "gallery",
-                "form",
-                "description",
-                "specifications"
-            ],
-            "settings": {
-                "enable_zoom": true,
-                "gallery_enable_video_autoplay": true,
-                "gallery_enable_video_looping": true
-            }
+  "sections": {
+    "main": {
+      "type": "module-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "position": "right"
+          }
         },
-        "product-reviews": {
-            "type": "static-product-reviews",
-            "settings": {}
+        "price": {
+          "type": "price",
+          "settings": {
+            "position": "right"
+          }
         },
-        "horizontal_divider_kbL89f": {
-            "type": "horizontal-divider",
-            "custom_css": [
-                ".horizontal-divider-container {width: 95%; margin: 0 auto;}"
-            ],
-            "name": "Horizontal Divider",
-            "settings": {
-                "divider_color": "#262626",
-                "divider_style": "solid",
-                "top_spacing": 100,
-                "bottom_spacing": 20
-            }
+        "gallery": {
+          "type": "gallery",
+          "settings": {
+            "position": "left"
+          }
         },
-        "product-recommendations": {
-            "type": "static-product-recommendations",
-            "settings": {
-                "show_product_recommendations": false,
-                "product_recommendations_heading": "You may also like",
-                "product_limit": 2
-            }
+        "form": {
+          "type": "form",
+          "settings": {
+            "position": "right",
+            "show_gift_card_recipient_form": false
+          }
         },
-        "home_featured_collection_cwXQMP": {
-            "type": "home-featured-collection",
-            "custom_css": ["h2 {font-size: 20px;}"],
-            "name": "Featured collection",
-            "settings": {
-                "style": "default-style",
-                "title": "Other products you may be interested in...",
-                "button": "",
-                "link": "",
-                "collection": "home-featured",
-                "products_in_rows": 3,
-                "number_of_rows": 1,
-                "enable_filters": false,
-                "enable_product_type_filter": true,
-                "default_product_type": "",
-                "enable_color_filter": true,
-                "default_color": "",
-                "enable_featured_filter": true,
-                "default_sort": "featured"
-            }
+        "specifications": {
+          "type": "specifications",
+          "settings": {
+            "title": "Specifications",
+            "position": "right"
+          }
         },
-        "home_image_with_text_overlay_JeMGrf": {
-            "type": "home-image-with-text-overlay",
-            "custom_css": [],
-            "name": "Image with text overlay",
-            "settings": {
-                "image": "shopify://shop_images/f1d1ae6ba3c7682ee98d5c6c7bf65e1ddcb2324c_1.jpg",
-                "image_height_desktop": "large",
-                "image_height_mobile": "original",
-                "title": "The Sierra Hygiene Mission",
-                "caption": "<p>We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers</p>",
-                "overlay_opacity": 35,
-                "overlay_color": "#000000",
-                "overlay_text_color": "#ffffff",
-                "button_text": "LEARN MORE",
-                "button_link": "",
-                "heading_font_size": "40",
-                "text_font_size": "20",
-                "full_width": true
-            }
+        "description": {
+          "type": "description",
+          "settings": {
+            "position": "right"
+          }
         }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "gallery",
+        "form",
+        "specifications",
+        "description"
+      ],
+      "settings": {
+        "enable_zoom": true,
+        "gallery_enable_video_autoplay": true,
+        "gallery_enable_video_looping": true
+      }
     },
-    "order": [
-        "main",
-        "product-reviews",
-        "horizontal_divider_kbL89f",
-        "product-recommendations",
-        "home_featured_collection_cwXQMP",
-        "home_image_with_text_overlay_JeMGrf"
-    ]
+    "product-reviews": {
+      "type": "static-product-reviews",
+      "settings": {}
+    },
+    "horizontal_divider_kbL89f": {
+      "type": "horizontal-divider",
+      "custom_css": [
+        ".horizontal-divider-container {width: 95%; margin: 0 auto;}"
+      ],
+      "name": "Horizontal Divider",
+      "settings": {
+        "divider_color": "#262626",
+        "divider_style": "solid",
+        "top_spacing": 100,
+        "bottom_spacing": 20
+      }
+    },
+    "product-recommendations": {
+      "type": "static-product-recommendations",
+      "settings": {
+        "show_product_recommendations": false,
+        "product_recommendations_heading": "You may also like",
+        "product_limit": 2
+      }
+    },
+    "home_featured_collection_cwXQMP": {
+      "type": "home-featured-collection",
+      "custom_css": [
+        "h2 {font-size: 20px;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "style": "default-style",
+        "title": "Other products you may be interested in...",
+        "button": "",
+        "link": "",
+        "collection": "home-featured",
+        "products_in_rows": 3,
+        "number_of_rows": 1,
+        "enable_filters": false,
+        "enable_product_type_filter": true,
+        "default_product_type": "",
+        "enable_color_filter": true,
+        "default_color": "",
+        "enable_featured_filter": true,
+        "default_sort": "featured"
+      }
+    },
+    "home_image_with_text_overlay_JeMGrf": {
+      "type": "home-image-with-text-overlay",
+      "custom_css": [],
+      "name": "Image with text overlay",
+      "settings": {
+        "image": "shopify://shop_images/f1d1ae6ba3c7682ee98d5c6c7bf65e1ddcb2324c_1.jpg",
+        "image_height_desktop": "large",
+        "image_height_mobile": "original",
+        "title": "The Sierra Hygiene Mission",
+        "caption": "<p>We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers</p>",
+        "overlay_opacity": 35,
+        "overlay_color": "#000000",
+        "overlay_text_color": "#ffffff",
+        "button_text": "LEARN MORE",
+        "button_link": "",
+        "heading_font_size": "40",
+        "text_font_size": "20",
+        "full_width": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-reviews",
+    "horizontal_divider_kbL89f",
+    "product-recommendations",
+    "home_featured_collection_cwXQMP",
+    "home_image_with_text_overlay_JeMGrf"
+  ]
 }

@@ -24,8 +24,6 @@
 
 {% if spec_count > 0 %}
   <div class="product-specs">
-    <h3 class="product-specs__title">{{ block.settings.title | default: 'Specifications' }}</h3>
-    
     <div class="product-specs__table-wrapper">
       <div class="product-specs__table" role="table">
         {% for spec_item in spec_items %}
