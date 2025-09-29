@@ -16,7 +16,7 @@
         "show_description": true,
         "enable_filtering": false,
         "enable_sorting": false,
-        "products_in_rows": 2,
+        "products_in_rows": 4,
         "numbers_of_rows": 5
       }
     }
