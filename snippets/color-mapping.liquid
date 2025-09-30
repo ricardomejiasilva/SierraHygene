@@ -1,0 +1,83 @@
+{% comment %}
+  Color Mapping Snippet
+  Maps common color names to hex values for display in color swatches
+  
+  Usage:
+  {% render 'color-mapping', color_name: 'Red' %}
+  Returns the hex value or the original color name if no mapping found
+{% endcomment %}
+
+{% liquid
+  assign color_name_lower = color_name | downcase | strip
+  assign hex_color = ''
+  
+  case color_name_lower
+    when 'white'
+      assign hex_color = '#ffffff'
+    when 'black'
+      assign hex_color = '#000000'
+    when 'red'
+      assign hex_color = '#ff0000'
+    when 'gray' or 'grey'
+      assign hex_color = '#808080'
+    when 'hunter green'
+      assign hex_color = '#355e3b'
+    when 'yellow'
+      assign hex_color = '#ffff00'
+    when 'green'
+      assign hex_color = '#008000'
+    when 'navy blue'
+      assign hex_color = '#000080'
+    when 'purple'
+      assign hex_color = '#800080'
+    when 'teal'
+      assign hex_color = '#008080'
+    when 'pink'
+      assign hex_color = '#ffc0cb'
+    when 'orange'
+      assign hex_color = '#ffa500'
+    when 'burgundy'
+      assign hex_color = '#800020'
+    when 'red gringham' or 'red gingham'
+      assign hex_color = '#dc143c'
+    when 'blue'
+      assign hex_color = '#0000ff'
+    when 'brown'
+      assign hex_color = '#8b4513'
+    when 'tan'
+      assign hex_color = '#d2b48c'
+    when 'beige'
+      assign hex_color = '#f5f5dc'
+    when 'cream'
+      assign hex_color = '#fffdd0'
+    when 'ivory'
+      assign hex_color = '#fffff0'
+    when 'silver'
+      assign hex_color = '#c0c0c0'
+    when 'gold'
+      assign hex_color = '#ffd700'
+    when 'maroon'
+      assign hex_color = '#800000'
+    when 'navy'
+      assign hex_color = '#000080'
+    when 'olive'
+      assign hex_color = '#808000'
+    when 'lime'
+      assign hex_color = '#00ff00'
+    when 'aqua'
+      assign hex_color = '#00ffff'
+    when 'fuchsia'
+      assign hex_color = '#ff00ff'
+    when 'sage'
+      assign hex_color = '#9caf88'
+    else
+      # Check if it's already a hex color
+      if color_name contains '#'
+        assign hex_color = color_name
+      else
+        assign hex_color = ''
+      endif
+  endcase
+%}
+
+{{ hex_color }}

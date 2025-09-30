@@ -424,7 +424,7 @@
             "cart_link": "cart",
             "continue_link": "continue shopping",
             "checkout_link": "check out",
-            "success_html": "** product ** has been successfully added to your {{ cart_link }}. Feel free to {{ continue_link }} or {{ checkout_link }}.",
+            "success_html": "Item has been successfully added to your {{ cart_link }}. Feel free to {{ continue_link }} or {{ checkout_link }}.",
             "unavailable": "Unavailable",
             "no_image_available": "No image available",
             "unit_price_html": "{{ total_quantity }} | {{ unit_price }} / {{ unit_measure }}",

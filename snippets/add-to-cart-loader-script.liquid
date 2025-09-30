@@ -1,0 +1,71 @@
+{% comment %}
+  Add to Cart Loader Script
+  Handles the loading state for add to cart buttons
+{% endcomment %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Handle add to cart button loading states
+  const addToCartButtons = document.querySelectorAll('.add-to-cart__button');
+  
+  addToCartButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      // Don't show loading if button is disabled
+      if (this.disabled || this.classList.contains('disabled')) {
+        return;
+      }
+      
+      // Add loading class to show loader and hide text
+      this.classList.add('loading');
+      
+      // Find the form this button belongs to
+      const form = this.closest('form');
+      if (!form) return;
+      
+      // Handle form submission completion
+      const handleFormComplete = () => {
+        // Remove loading class to restore original text
+        this.classList.remove('loading');
+      };
+      
+      // Set up timeout as fallback (in case AJAX doesn't trigger events)
+      const fallbackTimeout = setTimeout(() => {
+        handleFormComplete();
+      }, 5000); // 5 second fallback
+      
+      // Listen for successful cart addition
+      document.addEventListener('cart:item-added', function cartAdded() {
+        clearTimeout(fallbackTimeout);
+        handleFormComplete();
+        document.removeEventListener('cart:item-added', cartAdded);
+      });
+      
+      // Listen for cart errors
+      document.addEventListener('cart:error', function cartError() {
+        clearTimeout(fallbackTimeout);
+        handleFormComplete();
+        document.removeEventListener('cart:error', cartError);
+      });
+      
+      // Also listen for the existing theme's loading class removal
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            const addToCartContainer = document.querySelector('.add-to-cart');
+            if (addToCartContainer && !addToCartContainer.classList.contains('loading')) {
+              clearTimeout(fallbackTimeout);
+              handleFormComplete();
+              observer.disconnect();
+            }
+          }
+        });
+      });
+      
+      const addToCartContainer = document.querySelector('.add-to-cart');
+      if (addToCartContainer) {
+        observer.observe(addToCartContainer, { attributes: true });
+      }
+    });
+  });
+});
+</script>

@@ -11,8 +11,8 @@
   - custom.ply
 {% endcomment %}
 
-{% assign spec_items = 'color,size,unit,material,brand,ply' | split: ',' %}
-{% assign spec_labels = 'Color,Size,Unit Count,Material,Brand,Ply' | split: ',' %}
+{% assign spec_items = 'ply,color,size,material,brand,unit' | split: ',' %}
+{% assign spec_labels = 'Ply,Color,Size,Material,Brand,Unit Count' | split: ',' %}
 {% assign spec_count = 0 %}
 
 {% for spec_item in spec_items %}

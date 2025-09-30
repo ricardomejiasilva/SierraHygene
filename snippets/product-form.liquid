@@ -733,15 +733,23 @@
 
           {% if product.available %}
             <div class="product-form-submit-wrap">
-              <input
+              <button
                 class="
                   add-to-cart__button
                   button
                 "
                 type="submit"
-                value="{{ 'products.product.add_to_cart' | t }}"
               >
-              <div class="add-to-cart-loader"></div>
+                <span class="add-to-cart__text">{{ 'products.product.add_to_cart' | t }}</span>
+                <span class="add-to-cart-loader" style="display: none;">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="62.83" stroke-dashoffset="62.83">
+                      <animate attributeName="stroke-dasharray" dur="1.5s" values="0 62.83;31.415 31.415;0 62.83;0 62.83" repeatCount="indefinite"/>
+                      <animate attributeName="stroke-dashoffset" dur="1.5s" values="0;-31.415;-62.83;-62.83" repeatCount="indefinite"/>
+                    </circle>
+                  </svg>
+                </span>
+              </button>
             </div>
 
             {% if show_spb %}
@@ -767,3 +775,5 @@
     <div class="surface-pick-up" data-surface-pick-up></div>
   {% endif %}
 </div>
+
+{% render 'add-to-cart-loader-script' %}

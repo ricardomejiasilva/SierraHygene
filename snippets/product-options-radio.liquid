@@ -11,12 +11,84 @@
     >
       <span class="input-field-title">{{ option.name }}:</span>
 
+      {% comment %} Sort option values: available first, unavailable last {% endcomment %}
+      {% assign available_values = '' %}
+      {% assign unavailable_values = '' %}
+      
       {% for value in option.values %}
+        {% assign value_available = false %}
+        {% for variant in product.variants %}
+          {% assign variant_option_value = variant.options[option_index] %}
+          {% if variant_option_value == value and variant.available %}
+            {% assign value_available = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        
+        {% if value_available %}
+          {% if available_values == '' %}
+            {% assign available_values = value %}
+          {% else %}
+            {% assign available_values = available_values | append: '|' | append: value %}
+          {% endif %}
+        {% else %}
+          {% if unavailable_values == '' %}
+            {% assign unavailable_values = value %}
+          {% else %}
+            {% assign unavailable_values = unavailable_values | append: '|' | append: value %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      
+      {% comment %} Combine available and unavailable values {% endcomment %}
+      {% assign sorted_values = available_values %}
+      {% if unavailable_values != '' %}
+        {% if sorted_values != '' %}
+          {% assign sorted_values = sorted_values | append: '|' | append: unavailable_values %}
+        {% else %}
+          {% assign sorted_values = unavailable_values %}
+        {% endif %}
+      {% endif %}
+      {% assign sorted_values_array = sorted_values | split: '|' %}
+      
+      {% for value in sorted_values_array %}
+        {% assign value_index = 0 %}
+        {% for original_value in option.values %}
+          {% if original_value == value %}
+            {% break %}
+          {% endif %}
+          {% assign value_index = value_index | plus: 1 %}
+        {% endfor %}
+        
         {%- capture option_id -%}
-          single-option-{{ form_id }}-{{ option_index }}-{{ forloop.index0 }}
+          single-option-{{ form_id }}-{{ option_index }}-{{ value_index }}
         {%- endcapture -%}
+        
+        {% comment %} Check if this value is available {% endcomment %}
+        {% assign is_value_available = false %}
+        {% for variant in product.variants %}
+          {% assign variant_option_value = variant.options[option_index] %}
+          {% if variant_option_value == value and variant.available %}
+            {% assign is_value_available = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        
+        {% comment %} Check if this is a color option {% endcomment %}
+        {% assign is_color_option = false %}
+        {% if option.name contains 'Color' or option.name contains 'color' or option.name contains 'Colour' or option.name contains 'colour' %}
+          {% assign is_color_option = true %}
+        {% endif %}
+        
+        {% comment %} Get hex color if this is a color option {% endcomment %}
+        {% assign hex_color = '' %}
+        {% if is_color_option %}
+          {% capture hex_color %}{% render 'color-mapping', color_name: value %}{% endcapture %}
+          {% assign hex_color = hex_color | strip %}
+        {% endif %}
+        
         <label
-          class="input-checkbox-wrapper"
+          class="input-checkbox-wrapper{% if is_color_option and hex_color != '' %} input-checkbox-wrapper--color{% endif %}{% unless is_value_available %} input-checkbox-wrapper--unavailable{% endunless %}"
           for="{{ option_id }}">
 
           <input
@@ -24,12 +96,20 @@
             type="radio"
             value="{{ value | escape }}"
             {% if option.selected_value == value %}checked{% endif %}
+            {% unless is_value_available %}disabled{% endunless %}
             name="option-{{ option_index }}"
             id="{{ option_id }}"
             data-option-index="{{ option_index }}"
             data-option-input="{{ form_id }}">
 
-          <span class="input-checkbox-title">{{ value }}</span>
+          {% if is_color_option and hex_color != '' %}
+            <span class="input-checkbox-title input-checkbox-title--color{% unless is_value_available %} input-checkbox-title--unavailable{% endunless %}">
+              <span class="input-checkbox-color-swatch" style="background-color: {{ hex_color }};"></span>
+              {{ value }}
+            </span>
+          {% else %}
+            <span class="input-checkbox-title{% unless is_value_available %} input-checkbox-title--unavailable{% endunless %}">{{ value }}</span>
+          {% endif %}
 
         </label>
       {% endfor %}
