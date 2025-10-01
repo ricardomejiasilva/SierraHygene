@@ -12,7 +12,12 @@
     "page_header": {
       "type": "about-us-title",
       "settings": {
-        "title": "Sierra Hygiene prides ourselves on producing high quality, American-Made products"
+        "title": "Sierra Hygiene prides ourselves on producing high quality, American-Made products",
+        "heading_font_size": 40,
+        "heading_color": "#1c3d37",
+        "heading_italic": false,
+        "padding_top": 15,
+        "padding_bottom": 10
       }
     },
     "about_hero_image": {

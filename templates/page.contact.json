@@ -12,6 +12,7 @@
     "main": {
       "type": "template-contact",
       "custom_css": [
+        "h1 {margin-top: 6px;}",
         ".contact-form {padding-bottom: 24px;}"
       ],
       "settings": {

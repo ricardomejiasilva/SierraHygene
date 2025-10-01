@@ -79,7 +79,7 @@
         "divider_color": "#262626",
         "divider_style": "solid",
         "top_spacing": 100,
-        "bottom_spacing": 20
+        "bottom_spacing": 0
       }
     },
     "product-recommendations": {
