@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Museo+Sans:wght@300;400;700;900&display=swap');
 {%- comment -%}font_heading{%- endcomment -%}
 
 {%- assign fonts_font_heading_display = "swap" | default: 'auto' -%}
@@ -34,7 +33,7 @@
 
   {%- comment -%}Normal{%- endcomment -%}
 
-  {%- assign fonts_font_body_family = '"Museo Sans", sans-serif' -%}
+  {%- assign fonts_font_body_family = '"museo sans", sans-serif' -%}
   {%- assign fonts_font_body_style = settings.font_body.style -%}
   {%- assign fonts_font_body_weight = settings.font_body.weight | times: 1 -%}
   {{ settings.font_body | font_face: font_display: fonts_font_body_display }}
@@ -62,7 +61,7 @@
 
   {%- comment -%}Normal{%- endcomment -%}
 
-  {%- assign fonts_font_button_family = '"Museo Sans", sans-serif' -%}
+  {%- assign fonts_font_button_family = '"museo sans", sans-serif' -%}
   {%- assign fonts_font_button_style = settings.font_button.style -%}
   {%- assign fonts_font_button_weight = settings.font_button.weight | times: 1 -%}
   {{ settings.font_button | font_face: font_display: fonts_font_button_display }}
@@ -79,7 +78,7 @@
 
   {%- comment -%}Normal{%- endcomment -%}
 
-  {%- assign fonts_font_logo_family = '"Museo Sans", sans-serif' -%}
+  {%- assign fonts_font_logo_family = '"museo sans", sans-serif' -%}
   {%- assign fonts_font_logo_style = settings.font_logo.style -%}
   {%- assign fonts_font_logo_weight = settings.font_logo.weight | times: 1 -%}
   {{ settings.font_logo | font_face: font_display: fonts_font_logo_display }}
@@ -4119,6 +4118,22 @@ body:not(.user-is-tabbing) .spr-summary .spr-icon:focus, body:not(.user-is-tabbi
     padding: 0 15px;
     margin-bottom: 25px;
   }
+}
+@media (min-width: 470px) {
+    .footer-menus-left {
+        width: 80% !important;
+    }
+}
+
+@media (min-width: 521px) {
+    .footer-menus-left {
+        width: 70% !important;
+    }
+}
+@media (min-width: 622px) {
+    .footer-menus-left {
+        width: 56% !important;
+    }
 }
 
 .footer-columns a:not(.disclosure-list__item),
@@ -8597,10 +8612,10 @@ input[type=button].cart-shipping-calculate {
 }
 @media (max-width: 719px) {
   .product-list-item {
-    padding: 0 !important;
     display: inline-block;
     width: auto !important;
     max-width: 300px;
+    padding: 0 32px ;
   }
 }
 
@@ -8640,8 +8655,8 @@ input[type=button].cart-shipping-calculate {
 .product-list-item-thumbnail .product-list-item-image {
   display: block;
   margin: 0 auto;
-  width: 300px;
-  height: 300px;
+  min-width: 300px;
+  min-height: 300px;
   object-fit: contain;
 }
 
@@ -11401,8 +11416,7 @@ input[type=text].search-input {
 
 @media (min-width: 720px) {
   .dynamic-featured-collection {
-    padding-right: 0;
-    padding-left: 0;
+    padding: 0 32px !important;
   }
 }
 .dynamic-featured-collection .collection-products {
@@ -11429,13 +11443,45 @@ input[type=text].search-input {
 .dynamic-featured-collection .product-list-item {
   margin-bottom: 0;
 }
+/* Override collection template constraints for featured collection */
+.dynamic-featured-collection .product-list-item {
+  max-width: none !important;
+}
+
+/* Desktop and tablet: maintain minimum width for proper layout */
+@media (min-width: 720px) {
+  .dynamic-featured-collection .product-list-item-thumbnail .product-list-item-image {
+    min-width: 300px;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Mobile: full width responsive images */
 @media (max-width: 719px) {
   .dynamic-featured-collection .product-list-item {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     margin-top: 50px;
+    display: block !important;
   }
   .dynamic-featured-collection .product-list-item:first-child {
     margin-top: 0;
+  }
+  .dynamic-featured-collection .product-list-item-thumbnail {
+    width: 100%;
+    max-width: 100%;
+  }
+  .dynamic-featured-collection .product-list-item-thumbnail a {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+  }
+  .dynamic-featured-collection .product-list-item-thumbnail .product-list-item-image {
+    width: 100%;
+    min-width: 0 !important;
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -11558,6 +11604,10 @@ input[type=text].search-input {
 
 .image-with-text-overlay__image-wrapper {
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .image-with-text-overlay__content {
@@ -11588,6 +11638,10 @@ input[type=text].search-input {
     width: 100% !important;
     font-weight: 700 !important;
   }
+
+  .image-with-text-overlay__container {
+    min-height: 408px !important;
+  }
 }
 
 .image-with-text-overlay__text {
@@ -11599,7 +11653,7 @@ input[type=text].search-input {
   .image-with-text-overlay__text {
     font-size: 20px !important;
     text-align: center !important;
-    margin: 0 auto 35px !important;
+    margin: 0 auto !important;
     width: 100% !important;
     line-height: 1.4 !important;
   }
@@ -11677,6 +11731,7 @@ input[type=text].search-input {
   overflow: hidden;
   font-size: 0;
   z-index: 10;
+  min-height: 400px;
 }
 
 /* Ensure image overlay section is not hidden by following sections */
@@ -11695,27 +11750,46 @@ input[type=text].search-input {
 .image-with-text-overlay__image {
   object-fit: cover;
   width: 100%;
+  height: 100%;
 }
 @media (max-width: 719px) {
+  .image-with-text-overlay__mobile-height-small .image-with-text-overlay__container {
+    min-height: 300px;
+  }
   .image-with-text-overlay__mobile-height-small .image-with-text-overlay__image {
-    height: 300px;
+    height: 100%;
+  }
+  .image-with-text-overlay__mobile-height-medium .image-with-text-overlay__container {
+    min-height: 40px;
   }
   .image-with-text-overlay__mobile-height-medium .image-with-text-overlay__image {
-    height: 400px;
+    height: 100%;
+  }
+  .image-with-text-overlay__mobile-height-large .image-with-text-overlay__container {
+    min-height: 500px;
   }
   .image-with-text-overlay__mobile-height-large .image-with-text-overlay__image {
-    height: 500px;
+    height: 100%;
   }
 }
 @media (min-width: 720px) {
+  .image-with-text-overlay__desktop-height-small .image-with-text-overlay__container {
+    min-height: 400px;
+  }
   .image-with-text-overlay__desktop-height-small .image-with-text-overlay__image {
-    height: 400px;
+    height: 100%;
+  }
+  .image-with-text-overlay__desktop-height-medium .image-with-text-overlay__container {
+    min-height: 500px;
   }
   .image-with-text-overlay__desktop-height-medium .image-with-text-overlay__image {
-    height: 500px;
+    height: 100%;
+  }
+  .image-with-text-overlay__desktop-height-large .image-with-text-overlay__container {
+    min-height: 600px;
   }
   .image-with-text-overlay__desktop-height-large .image-with-text-overlay__image {
-    height: 600px;
+    height: 100%;
   }
 }
 
@@ -11810,7 +11884,7 @@ input[type=text].search-input {
     text-align: center !important;
     font-size: 40px !important;
     line-height: 1.2 !important;
-    margin: 0 auto 25px !important;
+    margin: 0 auto 15px !important;
     font-weight: 700 !important;
   }
   
@@ -11820,7 +11894,7 @@ input[type=text].search-input {
     text-align: center !important;
     font-size: 20px !important;
     line-height: 1.4 !important;
-    margin: 0 auto 35px !important;
+    margin: 0 auto!important;
   }
 }
 
@@ -11902,6 +11976,9 @@ input[type=text].search-input {
 
   .dynamic-logo-list {
     margin: 0 32px !important;
+  }
+  .dynamic-logo-list-item img {
+    width: 100%;
   }
 }
 .dynamic-logo-list-item img {
@@ -13915,7 +13992,6 @@ h1, h2, h3, h4, h5, h6,
   max-width: 348px;
   border-collapse: collapse;
   font-family: "Museo Sans", sans-serif;
-  
 }
 
 .product-specs__row {
