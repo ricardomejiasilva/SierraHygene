@@ -1,0 +1,449 @@
+{% liquid
+  assign section = section
+  assign product_id = 'product'
+  assign section_heading = section.settings.title
+  assign show_collection_names = true
+  assign show_product_count = section.settings.show_product_count
+
+  assign section_style = section.settings.style
+
+  assign show_cta = section.settings.show_button
+  assign cta_content = section.settings.button_text
+  assign cta_link = section.settings.button_link
+  assign cta_classes = section.settings.button_style
+
+  assign grid_size = section.settings.grid_layout | default: 'auto'
+  
+  if grid_size == 'auto'
+    if section.blocks.size <= 2
+      assign grid_size = section.blocks.size
+    elsif section.blocks.size == 3
+      assign grid_size = 3
+    else
+      assign grid_size = 4
+    endif
+  else
+    assign grid_size = grid_size | plus: 0
+  endif
+%}
+
+{%- capture section_classes -%}
+  {{ section_style }}
+  row-of-{{ grid_size }}
+{%- endcapture -%}
+
+{%- capture section_attributes -%}
+  data-section-id="{{ section.id }}"
+  data-section-type="dynamic-product-list"
+{%- endcapture -%}
+
+{% comment %}Inject @pixelunion/pxs-product-list/product-list begin{% endcomment %}
+{%- comment -%}
+  @param section {Object} REQUIRED
+    The section object with all section data.
+
+  @param product_id {String} REQUIRED
+    The setting name for the product field in the block object
+
+  @param section_heading {String} Optional
+    Section heading
+
+  @param section_subheading {String} Optional
+    Section subheading
+
+  @param show_collection_names {Boolean}
+    Will show the collection title if true. Default false.
+
+  @param show_descriptions {Boolean}
+    Will show the product description on the product cards. Default false.
+
+  @param custom_description_id {String}
+    The setting name for the custom description field on the section blocks
+
+  @param show_product_count {Boolean}
+    Adds the number of variants in the product to the card. Default false.
+
+  @param section_classes {String}
+    A space separated list of classnames to add to the product list section element.
+
+  @param section_attributes {String}
+    A space separated list of attributes to add to the section element
+
+  @param product_list_classes {String}
+    A space separated list of classnames to add to the product list's UL element.
+
+  @param product_list_attributes {String}
+    A space separated list of attributes to add to the UL element
+
+  @param product_card_classes {String}
+    A space separated list of classes to be added to each product list card.
+
+  @param product_card_attributes {String}
+    A space separated list of attributes to be added to each product list card.
+
+  @param product_image_id {String}
+    The setting name for a custom image in the product block
+
+  @param product_custom_title_id {String}
+    Setting name for the custom title to place under each product card (block setting)
+
+  @param product_custom_url_id {String}
+    Setting name for the custom URL to wrap product cards (block setting)
+
+  @param show_buttons {Boolean}
+    Include a button under each product card
+
+  @param show_cta {Boolean}
+    Show a call-to-action button under the products
+
+  @param cta_classes {String}
+    Classes applied to the CTA below the products
+
+  @param cta_content {String}
+  Text appearing on the CTA
+
+  @param cta_link {String}
+    Link applied to the CTA
+{%- endcomment -%}
+
+{% liquid
+  assign section_heading = section_heading | default: ''
+  assign section_subheading = section_subheading | default: ''
+  assign show_collection_names = show_collection_names | default: false
+  assign show_descriptions = show_descriptions | default: false
+  assign custom_description_id = custom_description_id | default: false
+  assign show_product_count = show_product_count | default: false
+  assign section_classes = section_classes | default: ''
+  assign section_attributes = section_attributes | default: ''
+  assign product_list_classes = product_list_classes | default: ''
+  assign product_list_attributes = product_list_attributes | default: ''
+  assign product_card_classes = product_card_classes | default: ''
+  assign product_card_attributes = product_card_attributes | default: ''
+  assign product_image_id = product_image_id | default: false
+  assign product_image_classes = product_image_classes | default: ''
+  assign product_image_attributes = product_image_attributes | default: ''
+  assign product_custom_title_id = product_custom_title_id | default: false
+  assign show_buttons = show_buttons | default: false
+  assign show_cta = show_cta | default: false
+  assign cta_classes = cta_classes | default: ''
+  assign cta_content = cta_content | default: ''
+  assign cta_link = cta_link | default: ''
+%}
+
+<script
+  type="application/json"
+  data-section-type="pxs-collection-list"
+  data-section-id="{{ section.id }}"
+>
+</script>
+
+<section
+  class="
+    collection-list
+    {{ section_classes }}
+  "
+  {{ section_attributes }}
+  aria-label="{{ section_heading }}"
+  style="
+    {%- if section.settings.margin_top -%}margin-top: {{ section.settings.margin_top }}px;{%- endif -%}
+    {%- if section.settings.margin_bottom -%}margin-bottom: {{ section.settings.margin_bottom }}px;{%- endif -%}
+  "
+>
+  <div class="collection-list-container" 
+       style="
+         max-width: 1200px; 
+         margin: 0 auto; 
+         {%- if section.settings.show_border -%}border: 2px solid #000000; border-radius: 0;{%- endif -%}
+       ">
+  {%- if section_heading != blank or section_subheading != blank -%}
+    <div class="section__header collection-list__section-header">
+      {%- if section_heading != blank -%}
+        <h2 class="section__heading collection-list__section-heading" 
+            style="
+              {%- if section.settings.heading_font_size -%}font-size: {{ section.settings.heading_font_size }}px;{%- endif -%}
+              {%- if section.settings.heading_color -%}color: {{ section.settings.heading_color }};{%- endif -%}
+              {%- if section.settings.heading_italic -%}font-style: italic;{%- endif -%}
+            ">
+          {{ section_heading | escape }}
+        </h2>
+      {%- endif -%}
+
+      {%- if section_subheading != blank -%}
+        <div class="section__subheading collection-list__section-subheading">
+          {{ section_subheading }}
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <ul
+    class="
+      collection-list__wrapper
+      {{ product_list_classes }}
+    "
+    {{ product_list_attributes }}
+    data-collection-list-wrapper
+  >
+    {%- for block in section.blocks -%}
+      {% assign product_handle = block.settings[product_id] %}
+      {% assign product = all_products[product_handle] %}
+
+      {% if custom_description_id %}
+        {% assign custom_description = block.settings[custom_description_id] %}
+      {% else %}
+        {% assign custom_description = '' %}
+      {% endif %}
+
+      {% if product_custom_title_id %}
+        {% assign custom_title = block.settings[product_custom_title_id] %}
+      {% else %}
+        {% assign custom_title = '' %}
+      {% endif %}
+
+
+      {% if product_custom_url_id %}
+        {% assign custom_url = block.settings[product_custom_url_id] %}
+      {% else %}
+        {% assign custom_url = '' %}
+      {% endif %}
+
+      {% assign featured_image = false %}
+      {% if product_image_id and block.settings[product_image_id] != blank %}
+        {% assign featured_image = block.settings[product_image_id] %}
+      {% elsif product != blank and product.featured_media %}
+        {% assign featured_image = product.featured_media.preview_image %}
+      {% endif %}
+
+      {%- capture placeholder_image_cycle -%}
+        {%- cycle '1', '2', '3', '4', '5', '6' -%}
+      {%- endcapture -%}
+
+      {%
+        render 'product-list-card',
+        block: block,
+        product: product,
+        custom_title: custom_title,
+        custom_url: custom_url,
+        featured_image: featured_image,
+        custom_description: custom_description,
+        collection_card_classes: product_card_classes,
+        collection_card_attributes: product_card_attributes,
+        collection_card_wrapper_attributes: block.shopify_attributes,
+        show_collection_names: show_collection_names,
+        show_descriptions: show_descriptions,
+        show_product_count: show_product_count,
+        show_buttons: show_buttons,
+        placeholder_image_cycle: placeholder_image_cycle,
+      %}
+
+    {%- endfor -%}
+  </ul>
+  {% if show_cta %}
+    <a
+      class="collection-list__cta button {{ cta_classes }}"
+      href="{{ cta_link }}"
+      data-collection-list-cta
+    >
+      {% if cta_content != blank %}
+        {{ cta_content | escape }}
+      {% else %}
+        {{ 'sections.product_list.cta_text' | t }}
+      {% endif %}
+    </a>
+  {% endif %}
+  </div>
+</section>
+{% comment %}Inject @pixelunion/pxs-product-list/product-list end{% endcomment %}
+
+
+{% schema %}
+{
+  "name": "Product list",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Style",
+      "options": [
+        {
+          "value": "default-style",
+          "label": "Default"
+        },
+        {
+          "value": "accent-style",
+          "label": "Accent"
+        },
+        {
+          "value": "contrast-style",
+          "label": "Contrast"
+        }
+      ],
+      "default": "default-style"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured Products"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "grid_layout",
+      "label": "Grid layout",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto (based on number of products)"
+        },
+        {
+          "value": "3",
+          "label": "3 columns"
+        },
+        {
+          "value": "4",
+          "label": "4 columns"
+        }
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "header",
+      "content": "Heading Style"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 16,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 40
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1C3D37"
+    },
+    {
+      "type": "checkbox",
+      "id": "heading_italic",
+      "label": "Italic heading",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Top margin",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Bottom margin",
+      "default": 50
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show border around section",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Shop All Products"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary (Filled)"
+        },
+        {
+          "value": "secondary",
+          "label": "Secondary (Outlined)"
+        }
+      ],
+      "default": "primary"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Product",
+      "name": "Product list",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index",
+      "product",
+      "page"
+    ]
+  }
+}
+
+{% endschema %}

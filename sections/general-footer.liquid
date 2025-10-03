@@ -49,10 +49,6 @@
     assign menu_class = menu_class | plus: 1
   endif
 
-  if menus[section.settings.menu_3].links.size > 0
-    assign menu_class = menu_class | plus: 1
-  endif
-
   assign country_selector = section.settings.show_currency_selector
   assign locale_selector = section.settings.show_locale_selector
   assign show_payment_icons = false
@@ -248,7 +244,7 @@
   <footer class="main-footer showing-{{ menu_class }}-lists">
     <div class="footer-columns">
       <div class="footer-menus-left">
-        {% for i in (1..3) %}
+        {% for i in (1..2) %}
           {% capture menu %}menu_{{ i }}{% endcapture %}
           {% if menus[section.settings[menu]].links.size > 0 %}
             {% capture menu %}{{ section.settings[menu] }}{% endcapture %}
@@ -401,12 +397,6 @@
       "type": "link_list",
       "id": "menu_2",
       "label": "Menu 2",
-      "info": "This menu won't show dropdown items"
-    },
-    {
-      "type": "link_list",
-      "id": "menu_3",
-      "label": "Menu 3",
       "info": "This menu won't show dropdown items"
     },
     {

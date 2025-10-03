@@ -21,19 +21,8 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image_34.png",
-            "text": "Center Pull Roll Paper",
+            "text": "Paper Towels",
             "url": "shopify://collections/center-pull-roll-paper",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_hpnHY8": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_35.png",
-            "text": "Hardwound Roll Paper",
-            "url": "shopify://collections/hardwound-roll-paper",
             "text_color": "#ffffff",
             "text_position": "center",
             "font_size": 24
@@ -43,30 +32,8 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image_36.png",
-            "text": "Jumbo Toilet Tissue",
-            "url": "shopify://collections/jumbo-toilet-tissue",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_xBFpHW": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_37.png",
-            "text": "Standard Toilet Tissue",
+            "text": "Toilet Tissue",
             "url": "shopify://collections/standard-toilet-tissue",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_thLX8J": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_38.png",
-            "text": "Household Paper Towels",
-            "url": "shopify://collections/household-paper-towels",
             "text_color": "#ffffff",
             "text_position": "center",
             "font_size": 24
@@ -76,52 +43,8 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image_39.png",
-            "text": "White Dinner Napkins",
+            "text": "Napkins",
             "url": "shopify://collections/white-dinner-napkins",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_BC8kA6": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_40.png",
-            "text": "Color Dinner Napkins",
-            "url": "shopify://collections/color-dinner-napkins",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_VxPGgn": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_41.png",
-            "text": "Linen Beverage Napkins",
-            "url": "shopify://collections/linen-dinner-napkins",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_KtpUfB": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_42.png",
-            "text": "Linen Dinner Napkins",
-            "url": "shopify://collections/linen-dinner-napkins",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_NaLirN": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_43.png",
-            "text": "Beverage Napkins",
-            "url": "shopify://collections/beverage-napkins",
             "text_color": "#ffffff",
             "text_position": "center",
             "font_size": 24
@@ -131,7 +54,7 @@
           "type": "category",
           "settings": {
             "image": "shopify://shop_images/image_44.png",
-            "text": "Coffee Cups",
+            "text": "Coffee Cups & Lids",
             "url": "shopify://collections/coffee-cups",
             "text_color": "#ffffff",
             "text_position": "center",
@@ -152,15 +75,8 @@
       },
       "block_order": [
         "category_CidQAp",
-        "category_hpnHY8",
         "category_e6Xgwq",
-        "category_xBFpHW",
-        "category_thLX8J",
         "category_W8CHPg",
-        "category_BC8kA6",
-        "category_VxPGgn",
-        "category_KtpUfB",
-        "category_NaLirN",
         "category_hxj4gp",
         "category_94n8gE"
       ],

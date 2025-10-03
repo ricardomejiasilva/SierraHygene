@@ -13,23 +13,23 @@
       "type": "home-image-with-text-overlay",
       "custom_css": [
         ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 1200px; margin: 0 auto;}",
-        "h2 {width: 600px; margin: 0 !important;}",
-        "p {width: 630px;}"
+        "h2 {width: 722px; margin: 0 !important; line-height: 84px;}",
+        "p {font-size: 20px; width: 722px;}"
       ],
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/hero_1.png",
+        "image": "shopify://shop_images/homepage_hero_1.png",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
-        "title": "Essentials For Every Operation",
-        "caption": "<p>We provide customers and distributors with innovative products and programs</p>",
+        "title": "Essentials For The Janitorial & Food Service Industries",
+        "caption": "<p>We produce high quality products with the most automated manufacturing systems in North America. We are here to serve the truckload buyer by utilizing primarily North American paper mills for nearly total Made in America product.</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
         "button_text": "SEE OUR PRODUCTS",
-        "button_link": "shopify://collections/all",
-        "heading_font_size": "56",
-        "text_font_size": "30",
+        "button_link": "shopify://pages/product-listing",
+        "heading_font_size": "40",
+        "text_font_size": "20",
         "full_width": false
       }
     },
@@ -45,136 +45,142 @@
         "padding_bottom": 0
       }
     },
-    "home_collection_list_Phdjby": {
-      "type": "home-collection-list",
+    "home_product_list_GkReB9": {
+      "type": "home-product-list",
       "blocks": {
-        "collection_TekjFE": {
-          "type": "collection",
+        "product_qb6gJK": {
+          "type": "product",
           "settings": {
-            "collection": "center-pull-roll-paper"
+            "product": "center-pull-roll-paper"
           }
         },
-        "collection_xxkE4P": {
-          "type": "collection",
+        "product_erpA9r": {
+          "type": "product",
           "settings": {
-            "collection": "hardwound-roll-paper"
+            "product": "hardwound-roll-paper"
           }
         },
-        "collection_m4EV4f": {
-          "type": "collection",
+        "product_YEzPJC": {
+          "type": "product",
           "settings": {
-            "collection": "jumbo-toilet-tissue"
+            "product": "jumbo-toilet-tissue"
           }
         },
-        "collection_fXPxaB": {
-          "type": "collection",
+        "product_awigpn": {
+          "type": "product",
           "settings": {
-            "collection": "center-pull-roll-paper"
+            "product": "standard-toilet-tissue"
           }
         },
-        "collection_EnaxXg": {
-          "type": "collection",
+        "product_ekdfWN": {
+          "type": "product",
           "settings": {
-            "collection": "household-paper-towels"
+            "product": "household-paper-towels"
           }
         }
       },
       "block_order": [
-        "collection_TekjFE",
-        "collection_xxkE4P",
-        "collection_m4EV4f",
-        "collection_fXPxaB",
-        "collection_EnaxXg"
+        "product_qb6gJK",
+        "product_erpA9r",
+        "product_YEzPJC",
+        "product_awigpn",
+        "product_ekdfWN"
       ],
-      "name": "Collection list",
+      "custom_css": [
+        "h2 {color: #1c3d37 !important;}"
+      ],
+      "name": "Product list",
       "settings": {
         "style": "default-style",
         "title": "Janitorial",
         "show_product_count": false,
         "grid_layout": "3",
         "heading_font_size": 32,
-        "heading_color": "#1c3d37",
+        "heading_color": "#000000",
         "heading_italic": false,
-        "margin_top": 25,
-        "margin_bottom": 15,
-        "show_border": false,
-        "show_button": false,
-        "button_text": "Shop All Products",
-        "button_link": "",
-        "button_style": "secondary"
-      }
-    },
-    "home_collection_list_FUUaFK": {
-      "type": "home-collection-list",
-      "blocks": {
-        "collection_mAL3hE": {
-          "type": "collection",
-          "settings": {
-            "collection": "white-dinner-napkins"
-          }
-        },
-        "collection_H3HD9p": {
-          "type": "collection",
-          "settings": {
-            "collection": "color-dinner-napkins"
-          }
-        },
-        "collection_NJRRq8": {
-          "type": "collection",
-          "settings": {
-            "collection": "linen-beverage-napkins"
-          }
-        },
-        "collection_GamCXn": {
-          "type": "collection",
-          "settings": {
-            "collection": "household-paper-towels"
-          }
-        },
-        "collection_RaYqaQ": {
-          "type": "collection",
-          "settings": {
-            "collection": "linen-dinner-napkins"
-          }
-        },
-        "collection_jKzamc": {
-          "type": "collection",
-          "settings": {
-            "collection": "beverage-napkins"
-          }
-        },
-        "collection_rd9Wfx": {
-          "type": "collection",
-          "settings": {
-            "collection": "coffee-cups"
-          }
-        }
-      },
-      "block_order": [
-        "collection_mAL3hE",
-        "collection_H3HD9p",
-        "collection_NJRRq8",
-        "collection_GamCXn",
-        "collection_RaYqaQ",
-        "collection_jKzamc",
-        "collection_rd9Wfx"
-      ],
-      "name": "Collection list",
-      "settings": {
-        "style": "default-style",
-        "title": "Food Service",
-        "show_product_count": false,
-        "grid_layout": "3",
-        "heading_font_size": 32,
-        "heading_color": "#1c3d37",
-        "heading_italic": true,
         "margin_top": 0,
         "margin_bottom": 0,
         "show_border": false,
         "show_button": false,
         "button_text": "Shop All Products",
         "button_link": "",
-        "button_style": "secondary"
+        "button_style": "primary"
+      }
+    },
+    "home_product_list_7WnhCJ": {
+      "type": "home-product-list",
+      "blocks": {
+        "product_md7FLg": {
+          "type": "product",
+          "settings": {
+            "product": "household-paper-towels"
+          }
+        },
+        "product_VVifNW": {
+          "type": "product",
+          "settings": {
+            "product": "white-dinner-napkins"
+          }
+        },
+        "product_JRrViC": {
+          "type": "product",
+          "settings": {
+            "product": "color-dinner-napkins"
+          }
+        },
+        "product_mUPLmE": {
+          "type": "product",
+          "settings": {
+            "product": "linen-beverage-napkins"
+          }
+        },
+        "product_W6ctqm": {
+          "type": "product",
+          "settings": {
+            "product": "linen-dinner-napkins"
+          }
+        },
+        "product_UW6Byr": {
+          "type": "product",
+          "settings": {
+            "product": "beverage-napkins"
+          }
+        },
+        "product_QfnQfe": {
+          "type": "product",
+          "settings": {
+            "product": "sierra-white-paper-hot-cup-8-16-oz-1000-count-copy"
+          }
+        }
+      },
+      "block_order": [
+        "product_md7FLg",
+        "product_VVifNW",
+        "product_JRrViC",
+        "product_mUPLmE",
+        "product_W6ctqm",
+        "product_UW6Byr",
+        "product_QfnQfe"
+      ],
+      "custom_css": [
+        "h2 {color: #1c3d37 !important;}"
+      ],
+      "name": "Product list",
+      "settings": {
+        "style": "default-style",
+        "title": "Food Service",
+        "show_product_count": false,
+        "grid_layout": "3",
+        "heading_font_size": 32,
+        "heading_color": "#000000",
+        "heading_italic": false,
+        "margin_top": 50,
+        "margin_bottom": 0,
+        "show_border": false,
+        "show_button": false,
+        "button_text": "Shop All Products",
+        "button_link": "",
+        "button_style": "primary"
       }
     },
     "template_button_VBQmwx": {
@@ -183,7 +189,7 @@
       "settings": {
         "show_button": true,
         "button_text": "Shop All Products",
-        "button_link": "shopify://collections/all",
+        "button_link": "shopify://pages/product-listing",
         "button_style": "secondary",
         "button_alignment": "center",
         "margin_top": 0,
@@ -199,7 +205,7 @@
         "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "The Sierra Hygiene Mission",
-        "caption": "<p>We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers</p>",
+        "caption": "<p>Bringing manufacturing and paper converting back to the North American continent through automation and efficiencies.    </p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
@@ -235,6 +241,9 @@
     },
     "horizontal_divider_qrWM7C": {
       "type": "horizontal-divider",
+      "custom_css": [
+        ".horizontal-divider-section {padding-left: 24px !important; padding-right: 24px !important;}"
+      ],
       "name": "Horizontal Divider",
       "settings": {
         "divider_color": "#262626",
@@ -282,7 +291,7 @@
         "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "Profitable Partnerships",
-        "caption": "<p>We create mutually profitable partnerships with our distributors by providing them with innovative products and programs that solve their customers’ problems.</p>",
+        "caption": "<p>We create mutually profitable partnerships with our distributors and end users by having the most efficient and  automated systems and the quickest on-time deliveries.  That’s what makes a profitable partnership.</p>",
         "overlay_opacity": 35,
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
@@ -297,8 +306,8 @@
   "order": [
     "home_image_with_text_overlay_gadgxw",
     "about_us_title_VPgREP",
-    "home_collection_list_Phdjby",
-    "home_collection_list_FUUaFK",
+    "home_product_list_GkReB9",
+    "home_product_list_7WnhCJ",
     "template_button_VBQmwx",
     "home_image_with_text_overlay_XXrVYC",
     "home_featured_collection_rwUXtg",
