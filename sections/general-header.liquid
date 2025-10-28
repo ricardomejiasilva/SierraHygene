@@ -487,37 +487,66 @@
 <nav class="drawer-nav" data-drawer-nav tabindex="-1" aria-label="{{ 'components.drawer-nav.drawer-menu' | t }}">
   <div class="drawer-nav__overlay" data-drawer-overlay></div>
   <div class="drawer-nav__flyout" data-drawer-main-flyout>
-    <div class="drawer-nav__flyout-header">
-      <div class="drawer-nav__account">
-        {% if shop.customer_accounts_enabled %}
-          {% if customer %}
-            <a href="{{ routes.account_url }}" class="drawer-nav__account-link">
-              {% if show_customer_name %}
-                {{ customer.name }}
-              {% else %}
-                {{ 'components.drawer-nav.account' | t }}
-              {% endif %}
-            </a>
-            {% if show_logout_link %}
-              <a href="{{ routes.account_logout_url }}" class="drawer-nav__account-link">
-                {{ 'components.drawer-nav.logout' | t }}
-              </a>
-            {% endif %}
-          {% else %}
-            <a href="{{ routes.account_login_url }}" class="drawer-nav__account-link">
-              {{ 'components.drawer-nav.login' | t }}
-            </a>
-          {% endif %}
-        {% endif %}
-      </div>
+    <div class="drawer-nav__mobile-header">
       <button
         class="drawer-nav__close-button"
         data-drawer-nav-close
       >
         <span>{{ 'components.drawer-nav.close' | t }}</span>
       </button>
+      <div class="drawer-nav__logo">
+        <img src="{{ 'logo-green.svg' | asset_url }}" alt="{{ shop.name }}" width="130" height="43" />
+      </div>
+      <a href="{{ routes.cart_url }}" class="drawer-nav__cart-icon">
+        <span class="drawer-nav__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </a>
     </div>
+    
+    <div class="drawer-nav__search-container">
+      <button
+        type="button"
+        class="drawer-nav__search-button"
+        data-search-button
+        aria-label="{{ 'sections.header.search' | t }}"
+      >
+        <span class="visually-hidden">{{ 'sections.header.search' | t }}</span>
+      </button>
+    </div>
+    
+    <div class="drawer-nav__actions">
+      <div class="drawer-nav__action-links">
+        {% if about_us_page != blank %}
+          <a href="{{ about_us_page.url }}" class="drawer-nav__action-link">About Us</a>
+        {% endif %}
+        <a href="{{ pages.contact.url | default: '/pages/contact' }}" class="drawer-nav__action-link">Contact</a>
+      </div>
+      <div class="drawer-nav__action-icons">
+        {% if shop.customer_accounts_enabled %}
+          <a href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}" class="drawer-nav__action-icon drawer-nav__action-icon--account">
+            <span class="visually-hidden">{{ 'sections.header.account' | t }}</span>
+          </a>
+        {% endif %}
+        <a href="{{ routes.cart_url }}" class="drawer-nav__action-icon drawer-nav__action-icon--cart">
+          <span class="drawer-nav__action-cart-count" data-cart-count>{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+    
     <ul class="drawer-menu__tier-1-menu">
+      {% if products_menu != blank %}
+        {% for link in linklists[products_menu].links %}
+          <li class="drawer-menu__tier-1-item">
+            <a
+              href="{{ link.url }}"
+              class="drawer-menu__tier-1-link"
+              data-drawer-link-tier-1
+            >
+              {{ link.title | escape }}
+            </a>
+          </li>
+        {% endfor %}
+      {% endif %}
+      
       {% for link_tier_1 in linklists[menu].links %}
         {% assign has_tier_2 = false %}
         {% if link_tier_1.links.size > 0 %}
