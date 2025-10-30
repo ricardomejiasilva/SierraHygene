@@ -30,7 +30,8 @@
         "button_link": "shopify://pages/product-listing",
         "heading_font_size": "40",
         "text_font_size": "20",
-        "full_width": false
+        "full_width": false,
+        "hero_mode": true
       }
     },
     "about_us_title_VPgREP": {
@@ -213,7 +214,8 @@
         "button_link": "shopify://pages/about",
         "heading_font_size": "40",
         "text_font_size": "20",
-        "full_width": false
+        "full_width": false,
+        "hero_mode": false
       }
     },
     "home_featured_collection_rwUXtg": {
@@ -302,7 +304,8 @@
         "button_link": "shopify://pages/about",
         "heading_font_size": "40",
         "text_font_size": "20",
-        "full_width": false
+        "full_width": false,
+        "hero_mode": false
       }
     }
   },

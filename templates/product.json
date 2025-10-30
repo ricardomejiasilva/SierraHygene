@@ -113,6 +113,13 @@
         "default_sort": "featured"
       }
     },
+    "spacer_g8k6Uj": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "60"
+      }
+    },
     "home_image_with_text_overlay_JeMGrf": {
       "type": "home-image-with-text-overlay",
       "custom_css": [],
@@ -140,6 +147,7 @@
     "horizontal_divider_kbL89f",
     "product-recommendations",
     "home_featured_collection_cwXQMP",
+    "spacer_g8k6Uj",
     "home_image_with_text_overlay_JeMGrf"
   ]
 }

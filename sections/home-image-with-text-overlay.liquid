@@ -16,6 +16,7 @@
   image-with-text-overlay__desktop-height-{{ section.settings.image_height_desktop }}
   image-with-text-overlay__mobile-height-{{ section.settings.image_height_mobile }}
   {% if section.settings.full_width %}image-with-text-overlay--full-width{% endif %}
+  {% if section.settings.hero_mode %}image-with-text-overlay--hero-mode{% endif %}
 {%- endcapture -%}
 
 {% comment %}Inject @pixelunion/pxs-image-with-text/image-with-text begin{% endcomment %}
@@ -186,7 +187,7 @@
       {%- endif -%}
     </div>
     <div
-      class="{{ base_name }}__content"
+      class="{{ base_name }}__content {{ base_name }}__content--overlay"
       {% if overlay_color or text_color %}
         style="
           {% if overlay_color %}background-color: {{ overlay_color }};{% endif %}
@@ -219,6 +220,31 @@
       {%- endif -%}
     </div>
   </div>
+  
+  {%- comment -%} Mobile content below image {%- endcomment -%}
+  {%-
+    if heading != blank
+    or subheading != blank
+    or button_label != blank
+    or button_link != blank
+  -%}
+  <div class="{{ base_name }}__mobile-content">
+    {%- if heading != blank -%}
+      <h2 class="{{ base_name }}__mobile-heading">{{ heading | escape }}</h2>
+    {%- endif -%}
+    {%- if subheading -%}
+      <div class="{{ base_name }}__mobile-text">{{ subheading }}</div>
+    {%- endif -%}
+    {%- if button_label != blank -%}
+      <a
+        class="{{ base_name }}__mobile-button button primary"
+        href="{{ button_link | default: '#' }}"
+      >
+        {{ button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
 </section>
 {% comment %}Inject @pixelunion/pxs-image-with-text/image-with-text end{% endcomment %}
 
@@ -385,6 +411,13 @@
       "type": "checkbox",
       "id": "full_width",
       "label": "Make image full width",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hero_mode",
+      "label": "Enable Hero mode (mobile responsive layout)",
+      "info": "When enabled, on mobile the text will appear below the image instead of overlaid",
       "default": false
     }
   ],
