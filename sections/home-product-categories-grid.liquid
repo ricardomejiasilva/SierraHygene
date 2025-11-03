@@ -17,7 +17,7 @@
         {%- assign text_position = block.settings.text_position -%}
         {%- assign font_size = block.settings.font_size -%}
 
-        <div class="product-category-item" {{ block.shopify_attributes }}>
+        <div class="product-category-item{% if block.settings.hover_image != blank %} has-hover-image{% endif %}" {{ block.shopify_attributes }}>
           {% if url != blank %}
             <a href="{{ url }}" class="product-category-link">
           {% endif %}
@@ -30,8 +30,18 @@
                 size: '373x373',
                 lazy: true,
                 focal_point: image.presentation.focal_point,
-                class: 'product-category-image'
+                class: 'product-category-image default-image'
               %}
+              {% if block.settings.hover_image != blank %}
+                {%
+                  render 'rimg',
+                  img: block.settings.hover_image,
+                  size: '373x373',
+                  lazy: true,
+                  focal_point: block.settings.hover_image.presentation.focal_point,
+                  class: 'product-category-image hover-image'
+                %}
+              {% endif %}
             {% else %}
               {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-category-image' }}
             {% endif %}
@@ -81,11 +91,6 @@
     width: 100%;
     height: 100%;
     text-decoration: none;
-    transition: transform 0.3s ease;
-  }
-
-  #shopify-section-{{ section.id }} .product-category-link:hover {
-    transform: scale(1.02);
   }
 
   #shopify-section-{{ section.id }} .product-category-image-container {
@@ -99,6 +104,41 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-item:hover .product-category-image {
+    transform: scale(1.10);
+  }
+
+  /* Hover image crossfade for items that explicitly have a hover image */
+  #shopify-section-{{ section.id }} .product-category-item.has-hover-image .product-category-image {
+    transition: opacity 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-item.has-hover-image .product-category-image.default-image {
+    opacity: 1;
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-item.has-hover-image .product-category-image.hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-item.has-hover-image:hover .product-category-image.default-image {
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .product-category-item.has-hover-image:hover .product-category-image.hover-image {
+    opacity: 1;
+  }
+
+  /* Disable zoom on items with a hover image to prefer crossfade */
+  #shopify-section-{{ section.id }} .product-category-item.has-hover-image:hover .product-category-image {
+    transform: none;
   }
 
   #shopify-section-{{ section.id }} .product-category-text-overlay {
@@ -247,6 +287,12 @@
           "id": "image",
           "label": "Category image",
           "info": "373 x 373px recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover image (optional)",
+          "info": "373 x 373px recommended. Used for hover on home page."
         },
         {
           "type": "text",

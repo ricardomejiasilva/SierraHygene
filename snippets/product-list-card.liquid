@@ -68,7 +68,7 @@
   data-collection-card
   {{ collection_card_attributes }}
 >
-  <div class="collection-card__wrapper" {{ collection_card_wrapper_attributes }}>
+  <div class="collection-card__wrapper{% if block and block.settings.hover_image != blank %} has-hover-image{% endif %}" {{ collection_card_wrapper_attributes }}>
     <a
       href="{{ collection_url }}"
       class="collection-card__image-link"
@@ -78,12 +78,24 @@
           render 'rimg',
           img: featured_image,
           alt: collection_title,
-          class: 'collection-card__image',
+          class: 'collection-card__image default-image',
           size: '1400x',
           crop: crop_images,
           lazy: true,
           canvas: true,
         %}
+        {% if block and block.settings.hover_image != blank %}
+          {%
+            render 'rimg',
+            img: block.settings.hover_image,
+            alt: collection_title,
+            class: 'collection-card__image hover-image',
+            size: '1400x',
+            crop: crop_images,
+            lazy: true,
+            canvas: true,
+          %}
+        {% endif %}
       {% else %}
         {{ 'collection-' | append: placeholder_image_cycle | placeholder_svg_tag: 'collection-card__image collection-card__placeholder placeholder--image placeholder-svg' }}
       {% endif %}

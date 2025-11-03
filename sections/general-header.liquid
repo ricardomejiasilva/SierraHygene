@@ -503,14 +503,38 @@
     </div>
     
     <div class="drawer-nav__search-container">
-      <button
-        type="button"
-        class="drawer-nav__search-button"
-        data-search-button
-        aria-label="{{ 'sections.header.search' | t }}"
+      <form
+        class="drawer-nav__search-form"
+        action="{{ routes.search_url }}"
+        method="get"
       >
-        <span class="visually-hidden">{{ 'sections.header.search' | t }}</span>
-      </button>
+        <div class="drawer-nav__search-wrapper">
+          <input
+            type="text"
+            name="q"
+            class="drawer-nav__search-input"
+            placeholder="{{ 'general.general.search_placeholder' | t }}"
+            aria-label="{{ 'sections.header.search' | t }}"
+            autocomplete="off"
+            data-drawer-search-input
+          >
+          <button
+            type="submit"
+            class="drawer-nav__search-submit"
+            aria-label="{{ 'general.general.submit' | t }}"
+          >
+            <span class="visually-hidden">{{ 'general.general.submit' | t }}</span>
+          </button>
+        </div>
+        {%- if enable_predictive_search -%}
+          <div
+            class="drawer-nav__predictive-search-container"
+            data-drawer-predictive-search-container
+          >
+            <div data-drawer-predictive-search-results></div>
+          </div>
+        {%- endif -%}
+      </form>
     </div>
     
     <div class="drawer-nav__actions">
@@ -846,7 +870,167 @@
 </nav>
 {% comment %}Inject @pixelunion/pxs-drawer-nav-standard/drawer-nav-standard end{% endcomment %}
 
+<script>
+  // Drawer navigation predictive search
+  (function() {
+    const drawerSearchInput = document.querySelector('[data-drawer-search-input]');
+    const drawerPredictiveSearchContainer = document.querySelector('[data-drawer-predictive-search-container]');
+    const drawerPredictiveSearchResults = document.querySelector('[data-drawer-predictive-search-results]');
+    
+    if (!drawerSearchInput || !drawerPredictiveSearchContainer || !drawerPredictiveSearchResults) {
+      return;
+    }
+    
+    let searchTimeout;
+    const cachedResults = new Map();
+    
+    drawerSearchInput.addEventListener('input', function() {
+      clearTimeout(searchTimeout);
+      const searchTerm = this.value.trim();
+      
+      console.log('Search input:', searchTerm, 'Length:', searchTerm.length);
+      
+      if (searchTerm.length < 2) {
+        drawerPredictiveSearchContainer.style.display = 'none';
+        drawerPredictiveSearchResults.innerHTML = '';
+        return;
+      }
+      
+      searchTimeout = setTimeout(function() {
+        fetchSearchResults(searchTerm);
+      }, 300);
+    });
+    
+    function fetchSearchResults(searchTerm) {
+      console.log('Fetching results for:', searchTerm);
+      
+      // Check cache first
+      if (cachedResults.has(searchTerm)) {
+        console.log('Using cached results');
+        displayResults(cachedResults.get(searchTerm));
+        return;
+      }
+      
+      // Show loading text
+      drawerPredictiveSearchResults.innerHTML = '<p style="padding: 1rem; text-align: center; color: #666;">Searching...</p>';
+      drawerPredictiveSearchContainer.style.display = 'block';
+      console.log('Container display set to block, visible:', drawerPredictiveSearchContainer.style.display);
+      
+      // Use the predictive search HTML endpoint - only fetch products
+      const url = `{{ routes.predictive_search_url }}?q=${encodeURIComponent(searchTerm)}&resources[type]=product&resources[limit]=8&section_id=predictive-search`;
+      console.log('Fetching URL:', url);
+      
+      fetch(url)
+        .then(response => {
+          console.log('Response received:', response.status);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then(html => {
+          console.log('HTML received, length:', html.length);
+          if (!html || html.trim() === '') {
+            console.log('Empty results');
+            drawerPredictiveSearchResults.innerHTML = '<p class="drawer-search-no-results">No results found</p>';
+            drawerPredictiveSearchContainer.style.display = 'block';
+            return;
+          }
+          cachedResults.set(searchTerm, html);
+          displayResults(html);
+        })
+        .catch(error => {
+          console.error('Search error:', error);
+          drawerPredictiveSearchResults.innerHTML = '<p class="drawer-search-no-results">Error loading results</p>';
+          drawerPredictiveSearchContainer.style.display = 'block';
+        });
+    }
+    
+    function displayResults(html) {
+      console.log('Displaying results');
+      drawerPredictiveSearchResults.innerHTML = html;
+      
+      // Hide suggestions/queries/collections sections, only show products
+      const container = drawerPredictiveSearchResults.querySelector('.predictive-search-results');
+      if (container) {
+        console.log('Found predictive-search-results container');
+        const suggestions = container.querySelector('.predictive-search__queries-collections');
+        const pages = container.querySelector('.predictive-search__pages-posts');
+        if (suggestions) {
+          console.log('Removing suggestions');
+          suggestions.remove();
+        }
+        if (pages) {
+          console.log('Removing pages');
+          pages.remove();
+        }
+      } else {
+        console.log('No predictive-search-results container found');
+      }
+      
+      // Initialize images with the theme's image library
+      setTimeout(function() {
+        // Trigger theme's rimg library to watch new images
+        if (typeof window.theme !== 'undefined' && window.theme.images && window.theme.images.watch) {
+          console.log('Initializing images with theme.images.watch');
+          window.theme.images.watch(drawerPredictiveSearchResults);
+        }
+        
+        // Also trigger custom event that theme listens for
+        const lazyImages = drawerPredictiveSearchResults.querySelectorAll('[data-rimg="lazy"]');
+        lazyImages.forEach(function(img) {
+          const event = new CustomEvent('theme:rimg:watch', { bubbles: true });
+          img.dispatchEvent(event);
+        });
+        
+        // Fallback: Force load images directly if they haven't loaded after a brief delay
+        setTimeout(function() {
+          const allImages = drawerPredictiveSearchResults.querySelectorAll('img');
+          allImages.forEach(function(img) {
+            // If image still doesn't have a src, try to load it from data-src or data-rimg-template
+            if (!img.src || img.src === '') {
+              if (img.dataset.src) {
+                img.src = img.dataset.src;
+              } else if (img.dataset.rimgTemplate) {
+                // Build image URL from template
+                const template = img.dataset.rimgTemplate;
+                const size = '200x200'; // Small size for search results
+                img.src = template.replace('{size}', size);
+              }
+            }
+            // Force visibility
+            img.style.opacity = '1';
+            img.style.visibility = 'visible';
+          });
+          console.log('Fallback: Processed', allImages.length, 'images');
+        }, 200);
+        
+        console.log('Processed', lazyImages.length, 'lazy images');
+      }, 50);
+      
+      // Make sure container is visible
+      drawerPredictiveSearchContainer.style.display = 'block';
+      console.log('Final container display:', drawerPredictiveSearchContainer.style.display);
+    }
+    
+    // Close results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!drawerSearchInput.contains(e.target) && !drawerPredictiveSearchContainer.contains(e.target)) {
+        drawerPredictiveSearchContainer.style.display = 'none';
+      }
+    });
+    
+    // Submit form when clicking on a result
+    drawerPredictiveSearchResults.addEventListener('click', function(e) {
+      const link = e.target.closest('a');
+      if (link) {
+        drawerPredictiveSearchContainer.style.display = 'none';
+      }
+    });
+  })();
+</script>
 
+{% comment %} ------- sarch results  ------ {% endcomment %}
 <div
   class="header-search-container"
   data-header-search

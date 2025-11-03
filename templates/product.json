@@ -134,10 +134,11 @@
         "overlay_color": "#000000",
         "overlay_text_color": "#ffffff",
         "button_text": "LEARN MORE",
-        "button_link": "",
+        "button_link": "shopify://pages/about",
         "heading_font_size": "40",
         "text_font_size": "20",
-        "full_width": true
+        "full_width": true,
+        "hero_mode": false
       }
     }
   },

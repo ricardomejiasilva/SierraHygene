@@ -256,6 +256,43 @@
 {% comment %}Inject @pixelunion/pxs-product-list/product-list end{% endcomment %}
 
 
+<style>
+  /* Scope hover image behavior to this section only */
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image .collection-card__image-link {
+    position: relative;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image .collection-card__image {
+    transition: opacity 0.3s ease;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image .collection-card__image.default-image {
+    opacity: 1;
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image .collection-card__image.hover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image:hover .collection-card__image.default-image {
+    opacity: 0;
+  }
+
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image:hover .collection-card__image.hover-image {
+    opacity: 1;
+  }
+
+  /* If theme applies zoom on hover elsewhere, neutralize it when crossfading */
+  #shopify-section-{{ section.id }} .collection-card__wrapper.has-hover-image:hover .collection-card__image {
+    transform: none;
+  }
+</style>
+
 {% schema %}
 {
   "name": "Product list",
@@ -416,6 +453,12 @@
           "id": "product",
           "type": "product",
           "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "hover_image",
+          "label": "Hover image (optional)",
+          "info": "Upload to enable hover image swap for this product card"
         }
       ]
     }

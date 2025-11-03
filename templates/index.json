@@ -52,31 +52,36 @@
         "product_qb6gJK": {
           "type": "product",
           "settings": {
-            "product": "center-pull-roll-paper"
+            "product": "center-pull-roll-paper",
+            "hover_image": "shopify://shop_images/image_48_1.png"
           }
         },
         "product_erpA9r": {
           "type": "product",
           "settings": {
-            "product": "hardwound-roll-paper"
+            "product": "hardwound-roll-paper",
+            "hover_image": "shopify://shop_images/image_49_1.png"
           }
         },
         "product_YEzPJC": {
           "type": "product",
           "settings": {
-            "product": "jumbo-toilet-tissue"
+            "product": "jumbo-toilet-tissue",
+            "hover_image": "shopify://shop_images/image_50_1.png"
           }
         },
         "product_awigpn": {
           "type": "product",
           "settings": {
-            "product": "standard-toilet-tissue"
+            "product": "standard-toilet-tissue",
+            "hover_image": "shopify://shop_images/image_51_1.png"
           }
         },
         "product_ekdfWN": {
           "type": "product",
           "settings": {
-            "product": "household-paper-towels"
+            "product": "household-paper-towels",
+            "hover_image": "shopify://shop_images/image_52_1.png"
           }
         }
       },
@@ -114,43 +119,50 @@
         "product_md7FLg": {
           "type": "product",
           "settings": {
-            "product": "household-paper-towels"
+            "product": "household-paper-towels",
+            "hover_image": "shopify://shop_images/image_52_1.png"
           }
         },
         "product_VVifNW": {
           "type": "product",
           "settings": {
-            "product": "white-dinner-napkins"
+            "product": "white-dinner-napkins",
+            "hover_image": "shopify://shop_images/image_53_1.png"
           }
         },
         "product_JRrViC": {
           "type": "product",
           "settings": {
-            "product": "color-dinner-napkins"
+            "product": "color-dinner-napkins",
+            "hover_image": "shopify://shop_images/image_54_1.png"
           }
         },
         "product_mUPLmE": {
           "type": "product",
           "settings": {
-            "product": "linen-beverage-napkins"
+            "product": "linen-beverage-napkins",
+            "hover_image": "shopify://shop_images/image_59_1.png"
           }
         },
         "product_W6ctqm": {
           "type": "product",
           "settings": {
-            "product": "linen-dinner-napkins"
+            "product": "linen-dinner-napkins",
+            "hover_image": "shopify://shop_images/image_56_1.png"
           }
         },
         "product_UW6Byr": {
           "type": "product",
           "settings": {
-            "product": "beverage-napkins"
+            "product": "beverage-napkins",
+            "hover_image": "shopify://shop_images/image_57_1.png"
           }
         },
         "product_QfnQfe": {
           "type": "product",
           "settings": {
-            "product": "sierra-white-paper-hot-cup-8-16-oz-1000-count-copy"
+            "product": "sierra-white-paper-hot-cup-8-16-oz-1000-count-copy",
+            "hover_image": "shopify://shop_images/image_58_1.png"
           }
         }
       },
