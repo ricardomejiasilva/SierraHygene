@@ -11,30 +11,49 @@
     {% for block in section.blocks %}
       {%- assign logo = block.settings.logo -%}
       {%- assign url = block.settings.url -%}
+      {%- assign collection = block.settings.collection -%}
+      
+      {%- if collection != blank -%}
+        {%- assign link_url = collection.url -%}
+      {%- else -%}
+        {%- assign link_url = url -%}
+      {%- endif -%}
 
       <div class="module-inline-item dynamic-logo-list-item" {{ block.shopify_attributes }}>
-        {% if url != blank %}
-          <a href="{{ url }}" target="_blank">
-        {% endif %}
-
-        {% if block.settings.logo != blank %}
-          {%
-            render 'rimg',
-            img: logo,
-            size: '570x333',
-            lazy: true,
-            focal_point: logo.presentation.focal_point,
-          %}
+        {% if link_url != blank %}
+          <a href="{{ link_url }}"{% unless collection != blank %} target="_blank"{% endunless %} class="dynamic-logo-list-link">
+            {% if block.settings.logo != blank %}
+              {%
+                render 'rimg',
+                img: logo,
+                size: '570x333',
+                lazy: true,
+                focal_point: logo.presentation.focal_point,
+              %}
+            {% else %}
+              {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+            
+            {% if block.settings.title != blank %}
+              <p class="dynamic-logo-list-title">{{ block.settings.title | escape }}</p>
+            {% endif %}
+          </a>
         {% else %}
-          {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
-        {% endif %}
-
-        {% if url != blank %}
-            </a>
-        {% endif %}
-        
-        {% if block.settings.title != blank %}
-          <p class="dynamic-logo-list-title">{{ block.settings.title | escape }}</p>
+          {% if block.settings.logo != blank %}
+            {%
+              render 'rimg',
+              img: logo,
+              size: '570x333',
+              lazy: true,
+              focal_point: logo.presentation.focal_point,
+            %}
+          {% else %}
+            {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          
+          {% if block.settings.title != blank %}
+            <p class="dynamic-logo-list-title">{{ block.settings.title | escape }}</p>
+          {% endif %}
         {% endif %}
       </div>
     {% endfor %}
@@ -96,9 +115,15 @@
       "name": "Logo",
       "settings": [
         {
+          "type": "collection",
+          "id": "collection",
+          "label": "Link to collection"
+        },
+        {
           "type": "url",
           "id": "url",
-          "label": "Link URL"
+          "label": "Link URL",
+          "info": "Used if no collection is selected"
         },
         {
           "type": "image_picker",

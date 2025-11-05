@@ -1435,7 +1435,7 @@ h6 {
 
 :not(.template-section) .faq, .image-with-text-overlay, .collection-list, .module-container {
   margin: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .newsletter-form, .faq__section-header,
@@ -11866,9 +11866,26 @@ input[type=text].search-input {
   font-size: 32px;
   font-weight: 700;
   margin: 15px 0 0 0;
+  padding: 16px;
   text-align: center;
   text-shadow: none !important;
   color: {{ settings.heading-color }};
+  transition: color 0.3s ease;
+}
+
+.dynamic-logo-list-link {
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect when hovering over entire logo list item */
+.dynamic-logo-list-item:hover .dynamic-logo-list-link {
+  background-color: #0E6360;
+}
+
+.dynamic-logo-list-item:hover .dynamic-logo-list-title {
+  color: white !important;
 }
 
 .product-list-item-details {
@@ -12303,6 +12320,7 @@ input[type=text].search-input {
 .image-with-text-overlay__heading {
   margin: 0;
   color: inherit;
+  overflow: hidden;
 }
 @media (max-width: 719px) {
   .image-with-text-overlay__heading {

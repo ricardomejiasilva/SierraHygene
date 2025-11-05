@@ -162,7 +162,7 @@
           "type": "product",
           "settings": {
             "product": "sierra-white-paper-hot-cup-8-16-oz-1000-count-copy",
-            "hover_image": "shopify://shop_images/image_58_1.png"
+            "hover_image": "shopify://shop_images/image_44.png"
           }
         }
       },
@@ -272,6 +272,7 @@
         "logo_w4Fn4G": {
           "type": "logo",
           "settings": {
+            "collection": "janitorial",
             "url": "",
             "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
             "title": "Janitorial"
@@ -280,6 +281,7 @@
         "logo_EnYjhM": {
           "type": "logo",
           "settings": {
+            "collection": "food-service",
             "url": "",
             "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
             "title": "Food Service"
