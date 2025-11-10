@@ -1,4 +1,78 @@
 @charset "UTF-8";
+
+/* Museo Sans Font Faces */
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_300.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_300_Italic.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 300;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_500.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 500;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_500_Italic.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 500;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_700.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_700_Italic.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 700;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_900.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: "Museo Sans";
+  src: url("{{ 'fonnts.com-Museo_Sans_900_Italic.otf' | asset_url }}") format("opentype");
+  font-display: swap;
+  font-style: italic;
+  font-weight: 900;
+  font-stretch: normal;
+}
+
 {%- comment -%}font_heading{%- endcomment -%}
 
 {%- assign fonts_font_heading_display = "swap" | default: 'auto' -%}
@@ -12361,7 +12435,7 @@ input[type=text].search-input {
 .image-with-text-overlay__button {
   font-family: {{ fonts_font_button_family }};
   font-style: {{ fonts_font_button_style }};
-  font-weight: 700;
+  font-weight: 900;
   display: inline-block;
   padding: 12px 30px;
   font-size: 16px;

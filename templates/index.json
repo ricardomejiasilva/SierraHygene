@@ -18,7 +18,7 @@
       ],
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/homepage_hero_1.png",
+        "image": "shopify://shop_images/sierra-hero_1.jpg",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "Essentials For The Janitorial & Food Service Industries",
@@ -38,7 +38,7 @@
       "type": "about-us-title",
       "name": "Page Title",
       "settings": {
-        "title": "Shop Our Prouducts",
+        "title": "Shop Our Products",
         "heading_font_size": 40,
         "heading_color": "#1c3d37",
         "heading_italic": false,
@@ -116,13 +116,6 @@
     "home_product_list_7WnhCJ": {
       "type": "home-product-list",
       "blocks": {
-        "product_md7FLg": {
-          "type": "product",
-          "settings": {
-            "product": "household-paper-towels",
-            "hover_image": "shopify://shop_images/image_52_1.png"
-          }
-        },
         "product_VVifNW": {
           "type": "product",
           "settings": {
@@ -167,7 +160,6 @@
         }
       },
       "block_order": [
-        "product_md7FLg",
         "product_VVifNW",
         "product_JRrViC",
         "product_mUPLmE",
