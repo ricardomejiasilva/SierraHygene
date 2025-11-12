@@ -147,6 +147,12 @@
   style="
     {%- if section.settings.margin_top -%}margin-top: {{ section.settings.margin_top }}px;{%- endif -%}
     {%- if section.settings.margin_bottom -%}margin-bottom: {{ section.settings.margin_bottom }}px;{%- endif -%}
+    {%- if section.settings.background_image -%}
+      background-image: url('{{ section.settings.background_image | img_url: '2000x' }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {%- endif -%}
   "
 >
   <div class="collection-list-container" 
@@ -187,6 +193,8 @@
     {%- for block in section.blocks -%}
       {% assign product_handle = block.settings[product_id] %}
       {% assign product = all_products[product_handle] %}
+      {% assign collection_handle = block.settings.collection %}
+      {% assign collection = collections[collection_handle] %}
 
       {% if custom_description_id %}
         {% assign custom_description = block.settings[custom_description_id] %}
@@ -210,6 +218,8 @@
       {% assign featured_image = false %}
       {% if product_image_id and block.settings[product_image_id] != blank %}
         {% assign featured_image = block.settings[product_image_id] %}
+      {% elsif collection != blank and collection.featured_image %}
+        {% assign featured_image = collection.featured_image %}
       {% elsif product != blank and product.featured_media %}
         {% assign featured_image = product.featured_media.preview_image %}
       {% endif %}
@@ -222,6 +232,7 @@
         render 'product-list-card',
         block: block,
         product: product,
+        collection: collection,
         custom_title: custom_title,
         custom_url: custom_url,
         featured_image: featured_image,
@@ -408,6 +419,16 @@
     },
     {
       "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (optional)",
+      "info": "Upload a background image for the product list section"
+    },
+    {
+      "type": "header",
       "content": "Button"
     },
     {
@@ -453,6 +474,12 @@
           "id": "product",
           "type": "product",
           "label": "Product"
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "Collection (optional)",
+          "info": "If selected, this will be used instead of the product"
         },
         {
           "type": "image_picker",

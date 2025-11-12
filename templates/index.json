@@ -34,16 +34,40 @@
         "hero_mode": true
       }
     },
-    "about_us_title_VPgREP": {
-      "type": "about-us-title",
-      "name": "Page Title",
+    "home_logo_list_ehHUHp": {
+      "type": "home-logo-list",
+      "blocks": {
+        "logo_w4Fn4G": {
+          "type": "logo",
+          "settings": {
+            "collection": "janitorial",
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
+            "title": "Janitorial"
+          }
+        },
+        "logo_EnYjhM": {
+          "type": "logo",
+          "settings": {
+            "collection": "food-service",
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
+            "title": "Food Service"
+          }
+        }
+      },
+      "block_order": [
+        "logo_w4Fn4G",
+        "logo_EnYjhM"
+      ],
+      "custom_css": [
+        "@media (max-width: 719px) {.dynamic-logo-list {margin: 0 32px !important; }}"
+      ],
+      "name": "Logo list",
       "settings": {
-        "title": "Shop Our Products",
-        "heading_font_size": 40,
-        "heading_color": "#1c3d37",
-        "heading_italic": false,
-        "padding_top": 50,
-        "padding_bottom": 0
+        "style": "default-style",
+        "title": "Markets We  Serve",
+        "logos_in_rows": 4
       }
     },
     "home_product_list_GkReB9": {
@@ -52,36 +76,33 @@
         "product_qb6gJK": {
           "type": "product",
           "settings": {
-            "product": "center-pull-roll-paper",
+            "product": "",
+            "collection": "center-pull-roll-paper",
             "hover_image": "shopify://shop_images/image_48_1.png"
           }
         },
         "product_erpA9r": {
           "type": "product",
           "settings": {
-            "product": "hardwound-roll-paper",
+            "product": "",
+            "collection": "standard-toilet-tissue",
             "hover_image": "shopify://shop_images/image_49_1.png"
           }
         },
         "product_YEzPJC": {
           "type": "product",
           "settings": {
-            "product": "jumbo-toilet-tissue",
+            "product": "",
+            "collection": "white-dinner-napkins",
             "hover_image": "shopify://shop_images/image_50_1.png"
           }
         },
         "product_awigpn": {
           "type": "product",
           "settings": {
-            "product": "standard-toilet-tissue",
+            "product": "",
+            "collection": "coffee-cups",
             "hover_image": "shopify://shop_images/image_51_1.png"
-          }
-        },
-        "product_ekdfWN": {
-          "type": "product",
-          "settings": {
-            "product": "household-paper-towels",
-            "hover_image": "shopify://shop_images/image_52_1.png"
           }
         }
       },
@@ -89,117 +110,35 @@
         "product_qb6gJK",
         "product_erpA9r",
         "product_YEzPJC",
-        "product_awigpn",
-        "product_ekdfWN"
+        "product_awigpn"
       ],
       "custom_css": [
-        "h2 {color: #1c3d37 !important;}"
+        "h2 {color: #1c3d37 !important; font-size: 40px !important;}"
       ],
       "name": "Product list",
       "settings": {
         "style": "default-style",
-        "title": "Janitorial",
+        "title": "Shop Our Products",
         "show_product_count": false,
-        "grid_layout": "3",
+        "grid_layout": "4",
         "heading_font_size": 32,
         "heading_color": "#000000",
         "heading_italic": false,
         "margin_top": 0,
         "margin_bottom": 0,
         "show_border": false,
-        "show_button": false,
-        "button_text": "Shop All Products",
-        "button_link": "",
-        "button_style": "primary"
-      }
-    },
-    "home_product_list_7WnhCJ": {
-      "type": "home-product-list",
-      "blocks": {
-        "product_VVifNW": {
-          "type": "product",
-          "settings": {
-            "product": "white-dinner-napkins",
-            "hover_image": "shopify://shop_images/image_53_1.png"
-          }
-        },
-        "product_JRrViC": {
-          "type": "product",
-          "settings": {
-            "product": "color-dinner-napkins",
-            "hover_image": "shopify://shop_images/image_54_1.png"
-          }
-        },
-        "product_mUPLmE": {
-          "type": "product",
-          "settings": {
-            "product": "linen-beverage-napkins",
-            "hover_image": "shopify://shop_images/image_59_1.png"
-          }
-        },
-        "product_W6ctqm": {
-          "type": "product",
-          "settings": {
-            "product": "linen-dinner-napkins",
-            "hover_image": "shopify://shop_images/image_56_1.png"
-          }
-        },
-        "product_UW6Byr": {
-          "type": "product",
-          "settings": {
-            "product": "beverage-napkins",
-            "hover_image": "shopify://shop_images/image_57_1.png"
-          }
-        },
-        "product_QfnQfe": {
-          "type": "product",
-          "settings": {
-            "product": "sierra-white-paper-hot-cup-8-16-oz-1000-count-copy",
-            "hover_image": "shopify://shop_images/image_44.png"
-          }
-        }
-      },
-      "block_order": [
-        "product_VVifNW",
-        "product_JRrViC",
-        "product_mUPLmE",
-        "product_W6ctqm",
-        "product_UW6Byr",
-        "product_QfnQfe"
-      ],
-      "custom_css": [
-        "h2 {color: #1c3d37 !important;}"
-      ],
-      "name": "Product list",
-      "settings": {
-        "style": "default-style",
-        "title": "Food Service",
-        "show_product_count": false,
-        "grid_layout": "3",
-        "heading_font_size": 32,
-        "heading_color": "#000000",
-        "heading_italic": false,
-        "margin_top": 50,
-        "margin_bottom": 0,
-        "show_border": false,
-        "show_button": false,
-        "button_text": "Shop All Products",
-        "button_link": "",
-        "button_style": "primary"
-      }
-    },
-    "template_button_VBQmwx": {
-      "type": "template-button",
-      "name": "Button",
-      "settings": {
+        "background_image": "shopify://shop_images/pattern_1.png",
         "show_button": true,
         "button_text": "Shop All Products",
-        "button_link": "shopify://pages/product-listing",
-        "button_style": "secondary",
-        "button_alignment": "center",
-        "margin_top": 0,
-        "margin_bottom": 25,
-        "show_border": false
+        "button_link": "",
+        "button_style": "primary"
+      }
+    },
+    "spacer_Y8XKHB": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "20"
       }
     },
     "home_image_with_text_overlay_XXrVYC": {
@@ -245,53 +184,11 @@
         "default_sort": "price-low-high"
       }
     },
-    "horizontal_divider_qrWM7C": {
-      "type": "horizontal-divider",
-      "custom_css": [
-        ".horizontal-divider-section {padding-left: 24px !important; padding-right: 24px !important;}"
-      ],
-      "name": "Horizontal Divider",
+    "spacer_CBhK9T": {
+      "type": "spacer",
+      "name": "Spacer",
       "settings": {
-        "divider_color": "#262626",
-        "divider_style": "solid",
-        "top_spacing": 40,
-        "bottom_spacing": 20
-      }
-    },
-    "home_logo_list_ehHUHp": {
-      "type": "home-logo-list",
-      "blocks": {
-        "logo_w4Fn4G": {
-          "type": "logo",
-          "settings": {
-            "collection": "janitorial",
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
-            "title": "Janitorial"
-          }
-        },
-        "logo_EnYjhM": {
-          "type": "logo",
-          "settings": {
-            "collection": "food-service",
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
-            "title": "Food Service"
-          }
-        }
-      },
-      "block_order": [
-        "logo_w4Fn4G",
-        "logo_EnYjhM"
-      ],
-      "custom_css": [
-        "@media (max-width: 719px) {.dynamic-logo-list {margin: 0 32px !important; }}"
-      ],
-      "name": "Logo list",
-      "settings": {
-        "style": "default-style",
-        "title": "Markets We  Serve",
-        "logos_in_rows": 4
+        "spacing_height": "60"
       }
     },
     "home_image_with_text_overlay_wMw9Qz": {
@@ -313,18 +210,25 @@
         "full_width": false,
         "hero_mode": false
       }
+    },
+    "spacer_FHY6eG": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "200",
+        "background_image": "shopify://shop_images/sierra-collage_1_1_1.png"
+      }
     }
   },
   "order": [
     "home_image_with_text_overlay_gadgxw",
-    "about_us_title_VPgREP",
+    "home_logo_list_ehHUHp",
     "home_product_list_GkReB9",
-    "home_product_list_7WnhCJ",
-    "template_button_VBQmwx",
+    "spacer_Y8XKHB",
     "home_image_with_text_overlay_XXrVYC",
     "home_featured_collection_rwUXtg",
-    "horizontal_divider_qrWM7C",
-    "home_logo_list_ehHUHp",
-    "home_image_with_text_overlay_wMw9Qz"
+    "spacer_CBhK9T",
+    "home_image_with_text_overlay_wMw9Qz",
+    "spacer_FHY6eG"
   ]
 }

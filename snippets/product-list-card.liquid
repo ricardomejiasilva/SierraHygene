@@ -2,6 +2,9 @@
   @param product {Object}
     Product object
 
+  @param collection {Object}
+    Collection object (optional, takes priority over product if provided)
+
   @param collection_card_classes
     A space separated list of classes to be added to each collection list card.
 
@@ -45,12 +48,16 @@
     Makes the collection description click-able.
 {% endcomment %}
 
-{% if product == blank or product.empty? %}
-  {% assign collection_title = 'sections.collection_list.title' | t  %}
-  {% assign collection_url = '#' %}
-{% else %}
+{% comment %} Prioritize collection over product if both are provided {% endcomment %}
+{% if collection != blank and collection != empty %}
+  {% assign collection_title = collection.title | escape %}
+  {% assign collection_url = collection.url %}
+{% elsif product != blank and product.empty? == false %}
   {% assign collection_title = product.title | escape %}
   {% assign collection_url = product.url %}
+{% else %}
+  {% assign collection_title = 'sections.collection_list.title' | t  %}
+  {% assign collection_url = '#' %}
 {% endif %}
 
 {% if custom_title != blank %}
@@ -119,6 +126,8 @@
 
           {% if custom_description != blank %}
             {{ custom_description }}
+          {% elsif collection != blank and collection != empty and collection.description != blank %}
+            {{ collection.description }}
           {% elsif product.description != blank %}
             {{ product.description }}
           {% endif %}
@@ -129,10 +138,16 @@
         </div>
       {% endif %}
 
-      {% if show_product_count and product != empty and product.variants.size > 0 %}
-        <span class="collection-card__product-count">
-          {{ 'sections.collection_list.product_count' | t: count: product.variants.size }}
-        </span>
+      {% if show_product_count %}
+        {% if collection != blank and collection != empty and collection.products_count > 0 %}
+          <span class="collection-card__product-count">
+            {{ 'sections.collection_list.product_count' | t: count: collection.products_count }}
+          </span>
+        {% elsif product != empty and product.variants.size > 0 %}
+          <span class="collection-card__product-count">
+            {{ 'sections.collection_list.product_count' | t: count: product.variants.size }}
+          </span>
+        {% endif %}
       {% endif %}
 
       {% if show_buttons %}

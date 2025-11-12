@@ -4,7 +4,16 @@
 
 <section 
   class="spacer-section"
-  style="height: {{ spacing_height }}px; display: block;"
+  style="
+    height: {{ spacing_height }}px; 
+    display: block;
+    {%- if section.settings.background_image -%}
+      background-image: url('{{ section.settings.background_image | img_url: '2000x' }}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    {%- endif -%}
+  "
   data-section-id="{{ section.id }}"
 >
 </section>
@@ -42,9 +51,23 @@
         {
           "value": "120",
           "label": "XXXL (120px)"
+        },
+        {
+          "value": "200",
+          "label": "XXXXL (200px)"
         }
       ],
       "default": "60"
+    },
+    {
+      "type": "header",
+      "content": "Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (optional)",
+      "info": "Upload a background image for the spacer section"
     }
   ],
   "presets": [
