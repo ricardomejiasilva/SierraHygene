@@ -2,6 +2,12 @@
   assign menu = section.settings.menu
   assign products_menu = section.settings.products_menu
   assign about_us_page = section.settings.about_us_page
+  if about_us_page == blank
+    assign about_us_page = pages['our-story']
+    if about_us_page == blank
+      assign about_us_page = pages['about-us']
+    endif
+  endif
   assign support_page = section.settings.support_page
   assign amazon_url = section.settings.amazon_url
   assign bulk_ordering_url = section.settings.bulk_ordering_url

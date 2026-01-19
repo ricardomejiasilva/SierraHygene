@@ -33,7 +33,7 @@
         "enable_predictive_search": true,
         "menu": "",
         "products_menu": "nav-products",
-        "about_us_page": "contact-us",
+        "about_us_page": "about-us",
         "support_page": "contact",
         "amazon_url": "https://www.amazon.com/",
         "bulk_ordering_url": "/pages/bulk-ordering",

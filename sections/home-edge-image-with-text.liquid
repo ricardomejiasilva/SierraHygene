@@ -1,0 +1,275 @@
+{% assign image = section.settings.image %}
+
+<section
+  class="edge-image-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="edge-image-with-text"
+>
+  <div class="edge-image-section__container">
+    <div class="edge-image-section__image-wrapper">
+      {% if image != blank %}
+        {%
+          render 'rimg',
+          img: image,
+          size: '800x600',
+          class: 'edge-image-section__image',
+          lazy: true,
+          crop: 'center',
+          focal_point: image.presentation.focal_point,
+        %}
+      {% else %}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg edge-image-section__image' }}
+      {% endif %}
+    </div>
+
+    <div class="edge-image-section__content">
+      {% if section.settings.heading != blank %}
+        <h2 class="edge-image-section__heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="edge-image-section__description rte">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="edge-image-section__button button">
+          {{ section.settings.button_text | escape }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 0;
+    align-items: center;
+    max-width: none;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__content {
+    padding: 60px 60px 60px 80px;
+    max-width: 600px;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__heading {
+    font-size: {{ section.settings.heading_size }}px;
+    font-style: italic;
+    font-weight: 500;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 24px;
+    line-height: 1.2;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__description {
+    font-size: {{ section.settings.text_size }}px;
+    color: {{ section.settings.text_color }};
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__button {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border: none;
+    transition: opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .edge-image-section__button:hover {
+    opacity: 0.85;
+  }
+
+  @media screen and (max-width: 900px) {
+    #shopify-section-{{ section.id }} .edge-image-section__container {
+      grid-template-columns: 1fr;
+    }
+
+    #shopify-section-{{ section.id }} .edge-image-section__image-wrapper {
+      min-height: 300px;
+    }
+
+    #shopify-section-{{ section.id }} .edge-image-section__content {
+      padding: 40px 20px;
+      max-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .edge-image-section__heading {
+      font-size: {{ section.settings.heading_size | minus: 8 }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Edge Image with Text",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Heading Here"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Add your description text here. This section features an image that extends to the edge of the page with content on the right side.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Learn More"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#4a4a4a"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#2d6a5d"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 24,
+      "max": 72,
+      "step": 2,
+      "default": 42,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Edge Image with Text",
+      "category": "Image"
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index",
+      "product",
+      "page"
+    ]
+  }
+}
+{% endschema %}

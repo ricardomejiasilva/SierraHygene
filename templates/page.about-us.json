@@ -9,58 +9,24 @@
  */
 {
   "sections": {
-    "page_header": {
-      "type": "about-us-title",
+    "home_edge_image_with_text_ctLD66": {
+      "type": "home-edge-image-with-text",
+      "name": "Edge Image with Text",
       "settings": {
-        "title": "Sierra Hygiene prides ourselves on producing high quality, American-Made products",
-        "heading_font_size": 40,
-        "heading_color": "#1c3d37",
-        "heading_italic": false,
-        "padding_top": 15,
-        "padding_bottom": 10
-      }
-    },
-    "about_hero_image": {
-      "type": "home-image-with-text",
-      "settings": {
-        "style": "default-style",
-        "title": "",
-        "caption": "",
-        "button_text": "",
-        "button_link": "",
         "image": "shopify://shop_images/support_3_1.png",
-        "media_layout": "highlight",
-        "title_color": "#000000",
-        "title_font_size": 32,
-        "title_italic": false,
-        "caption_color": "#000000",
-        "caption_font_size": 16,
-        "caption_italic": false
-      }
-    },
-    "about_content_sections": {
-      "type": "home-text",
-      "blocks": {
-        "rich_text_zfbNpd": {
-          "type": "rich_text",
-          "settings": {
-            "title": "Who We Are",
-            "content": "<p>Sierra Hygiene Products is a paper converting manufacturer that was formed in 2002 and is located in Frostburg, Maryland. Our 100,000 square foot facility located in scenic western Maryland operates with highly trained professionals who are experts in their field. Our goal is to continue to expand our manufacturing capabilities and product offering to our customers.</p>",
-            "title_color": "#000000",
-            "title_font_size": 24,
-            "title_italic": false,
-            "content_color": "#000000",
-            "content_font_size": 16,
-            "content_italic": false
-          }
-        }
-      },
-      "block_order": [
-        "rich_text_zfbNpd"
-      ],
-      "settings": {
-        "style": "default-style",
-        "show_borders": false
+        "heading": "Sierra Hygiene prides ourselves on producing high quality, American-Made products",
+        "description": "<p>Sierra Hygiene Products is a paper converting manufacturer that was formed in 2002 and is located in Frostburg, Maryland. Our 100,000 square foot facility located in scenic western Maryland operates with highly trained professionals who are experts in their field. Our goal is to continue to expand our manufacturing capabilities and product offering to our customers.</p>",
+        "button_text": "Contact Us",
+        "button_link": "shopify://pages/contact-us-1",
+        "background_color": "#ffffff",
+        "heading_color": "#1c3d37",
+        "text_color": "#262626",
+        "button_background": "#2d6a5d",
+        "button_text_color": "#ffffff",
+        "heading_size": 42,
+        "text_size": 16,
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     },
     "home_logo_list_NGyTVm": {
@@ -69,6 +35,7 @@
         "logo_y3XLBM": {
           "type": "logo",
           "settings": {
+            "collection": "",
             "url": "",
             "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
             "title": "Janitorial"
@@ -77,6 +44,7 @@
         "logo_xqgmyX": {
           "type": "logo",
           "settings": {
+            "collection": "",
             "url": "",
             "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
             "title": "Food Service"
@@ -101,9 +69,7 @@
     }
   },
   "order": [
-    "page_header",
-    "about_hero_image",
-    "about_content_sections",
+    "home_edge_image_with_text_ctLD66",
     "home_logo_list_NGyTVm"
   ]
 }
