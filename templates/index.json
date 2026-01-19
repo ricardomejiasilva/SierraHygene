@@ -14,11 +14,11 @@
       "custom_css": [
         ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 1200px; margin: 0 auto;}",
         "h2 {width: 722px; line-height: 84px;}",
-        "p {font-size: 20px; width: 722px;}"
+        "p {font-size: 20px; width: 722px; margin-bottom: 16px;}"
       ],
       "name": "Image with text overlay",
       "settings": {
-        "image": "shopify://shop_images/sierra-hero_1.jpg",
+        "image": "shopify://shop_images/SierraHero_11-11-25_2.gif",
         "image_height_desktop": "large",
         "image_height_mobile": "original",
         "title": "Essentials For The Janitorial & Food Service Industries",
@@ -51,7 +51,7 @@
           "settings": {
             "collection": "food-service",
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3.png",
             "title": "Food Service"
           }
         }
@@ -124,13 +124,13 @@
         "heading_font_size": 32,
         "heading_color": "#000000",
         "heading_italic": false,
-        "margin_top": 0,
-        "margin_bottom": 0,
+        "margin_top": 10,
+        "margin_bottom": 10,
         "show_border": false,
         "background_image": "shopify://shop_images/pattern_1.png",
         "show_button": true,
         "button_text": "Shop All Products",
-        "button_link": "",
+        "button_link": "shopify://collections/all",
         "button_style": "primary"
       }
     },

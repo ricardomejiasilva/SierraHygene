@@ -2,6 +2,9 @@
   assign menu = section.settings.menu
   assign products_menu = section.settings.products_menu
   assign about_us_page = section.settings.about_us_page
+  assign support_page = section.settings.support_page
+  assign amazon_url = section.settings.amazon_url
+  assign bulk_ordering_url = section.settings.bulk_ordering_url
   assign logo = section.settings.header_logo
   assign logo_transparent = section.settings.header_logo_alternate
   assign logo_width = section.settings.logo_width
@@ -286,8 +289,7 @@
 <header
   class="
     site-header
-    site-header--nav-position-{{ nav_position }}
-    site-header--desktop-nav-{{ desktop_nav_style }}
+    site-header--two-row
     site-header--mobile-nav-{{ mobile_nav_style }}
     {% if mobile_logo_center %}site-header--mobile-logo-center{% endif %}
     {{ section_classes }}
@@ -297,170 +299,126 @@
   data-mobile-nav="{{ mobile_nav_style }}"
   {{ section_attributes }}
 >
-  <div
-    class="
-      site-header__wrapper
-      {{ wrapper_classes }}
-    "
-    data-site-header-wrapper
-  >
-    <div
-      class="site-header__controls site-header__controls--first"
-      data-header-controls
-    >
-      <button
-        class="site-header__menu-button site-header__menu-button--first site-header__menu-button--mobile-only"
-        data-menu-button
-        aria-haspopup="true"
-      >
-        <span class="site-header__menu-text">{{ 'sections.header.menu' | t }}</span>
-      </button>
-      {% if show_search %}
-        <a
-          href="{{ routes.search_url }}"
-          class="site-header__search-button site-header__search-button--first"
-          data-search-button
+  <!-- Top Row: Logo | Search | Account | Cart -->
+  <div class="site-header__top-row">
+    <div class="site-header__wrapper">
+      <div class="site-header__controls site-header__controls--first" data-header-controls>
+        <button
+          class="site-header__menu-button site-header__menu-button--first site-header__menu-button--mobile-only"
+          data-menu-button
+          aria-haspopup="true"
         >
-          <span class="site-header__search-text">{{ 'sections.header.search' | t }}</span>
-        </a>
+          <span class="site-header__menu-text">{{ 'sections.header.menu' | t }}</span>
+        </button>
+      </div>
+
+      {% comment %} Only the home page should use an <h1> for the logo. All other pages should use an <h2>{% endcomment %}
+      {% if template contains 'index' %}
+        <h1 class="site-header__title">
+      {% else %}
+        <h2 class="site-header__title">
       {% endif %}
-    </div>
+        <a
+          href="{{ routes.root_url }}"
+          class="site-header__logo site-header__logo--has-image"
+          style="--logo-width: {{ logo_width }}px; --logo-width-mobile: {{ logo_width_mobile }}px;"
+          aria-label="{{ shop.name }}"
+          data-header-logo
+        >
+          <div class="site-header__logo-image" data-logo-image>
+            <img src="{{ 'logo-green.svg' | asset_url }}" alt="{{ shop.name }}" width="{{ logo_width }}" height="{{ logo_width | divided_by: 3 | round }}" style="width: 100%; height: auto;" />
+          </div>
+          <span class="site-header__site-name">{{ shop.name }}</span>
+        </a>
+      {% if template contains 'index' %}
+        </h1>
+      {% else %}
+        </h2>
+      {% endif %}
 
-    {% if nav_position == 'left' %}
-      {%
-        render 'header-nav',
-        menu: menu,
-        products_menu: products_menu,
-        about_us_page: about_us_page,
-        section: section
-      %}
-    {% endif %}
-
-    {% comment %} Only the home page should use an <h1> for the logo. All other pages should use an <h2>{% endcomment %}
-    {% if template contains 'index' %}
-      <h1 class="site-header__title">
-    {% else %}
-      <h2 class="site-header__title">
-    {% endif %}
-      <a
-        href="{{ routes.root_url }}"
-        class="
-          site-header__logo
-          site-header__logo--has-image
-        "
-        style="
-          --logo-width: {{ logo_width }}px;
-          --logo-width-mobile: {{ logo_width_mobile }}px;
-        "
-        aria-label="{{ shop.name }}"
-        data-header-logo
-      >
-        <div class="site-header__logo-image" data-logo-image>
-          <img src="{{ 'logo-green.svg' | asset_url }}" alt="{{ shop.name }}" width="{{ logo_width }}" height="{{ logo_width | divided_by: 3 | round }}" style="width: 100%; height: auto;" />
+      {% if show_search %}
+        <div class="site-header__search-bar">
+          <form class="site-header__search-form" action="{{ routes.search_url }}" method="get">
+            <div class="site-header__search-input-wrapper">
+              <span class="site-header__search-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <input
+                type="text"
+                name="q"
+                class="site-header__search-input"
+                placeholder="Search for..."
+                aria-label="{{ 'sections.header.search' | t }}"
+                autocomplete="off"
+              >
+            </div>
+          </form>
         </div>
-
-        <span class="site-header__site-name">{{ shop.name }}</span>
-      </a>
-    {% if template contains 'index' %}
-      </h1>
-    {% else %}
-      </h2>
-    {% endif %}
-
-    {% if nav_position == 'center' %}
-      {%
-        render 'header-nav',
-        menu: menu,
-        products_menu: products_menu,
-        about_us_page: about_us_page,
-        section: section,
-        nav_classes: 'header-nav--desktop-only'
-      %}
-    {% endif %}
-    {% if nav_position == 'left' %}
-      {%
-        render 'header-nav',
-        menu: menu,
-        products_menu: products_menu,
-        about_us_page: about_us_page,
-        section: section,
-        nav_classes: 'header-nav--desktop-only header-nav--position-left'
-      %}
-    {% endif %}
-
-    {% comment %} When JS is disabled, set standard header with logo left, menu right {% endcomment %}
-    <noscript>
-      {%
-        render 'header-nav',
-        menu: menu,
-        products_menu: products_menu,
-        about_us_page: about_us_page,
-        section: section,
-        nav_classes: 'header-nav--js-disabled',
-        nav_position: nav_position
-      %}
-    </noscript>
-
-    <div
-      class="site-header__controls site-header__controls--last"
-      data-header-controls
-    >
-      {% if show_search %}
-        <a
-          href="{{ routes.search_url }}"
-          class="site-header__search-button site-header__search-button--last"
-          data-search-button
-        >
-          <span class="site-header__search-text">{{ 'sections.header.search' | t }}</span>
-        </a>
       {% endif %}
-      {% if show_account and shop.customer_accounts_enabled %}
-        <a
-          href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-          class="site-header__account-button"
-          data-account-button
-        >
-          <span class="site-header__account-text">{{ 'sections.header.account' | t }}</span>
-        </a>
-      {% endif %}
-      {% if show_cart %}
-        <a
-          href="{{ routes.cart_url }}"
-          class="site-header__cart-button"
-          data-cart-button
-        >
-          <span class="site-header__cart-text">{{ 'sections.header.cart' | t }}</span>
-          <span class="site-header__cart-count" data-cart-count>{{ cart.item_count }}</span>
-        </a>
-      {% endif %}
+
+      <div class="site-header__controls site-header__controls--last" data-header-controls>
+        {% if show_account and shop.customer_accounts_enabled %}
+          <a
+            href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+            class="site-header__account-button site-header__account-button--with-text"
+            data-account-button
+          >
+            <span class="site-header__account-text">Account</span>
+          </a>
+        {% endif %}
+        {% if show_cart %}
+          <a
+            href="{{ routes.cart_url }}"
+            class="site-header__cart-button site-header__cart-button--styled"
+            data-cart-button
+          >
+            <span class="site-header__cart-text">{{ 'sections.header.cart' | t }}</span>
+            <span class="site-header__cart-total" data-cart-total>{{ cart.total_price | money }}</span>
+            <span class="site-header__cart-count-styled" data-cart-count>({{ cart.item_count }})</span>
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
 
-  {% if nav_position == 'below' %}
+  <!-- Divider Line -->
+  <div class="site-header__divider"></div>
+
+  <!-- Bottom Row: Navigation -->
+  <div class="site-header__nav-row">
+    <div class="site-header__wrapper">
+      {%
+        render 'header-nav',
+        menu: menu,
+        products_menu: products_menu,
+        about_us_page: about_us_page,
+        support_page: support_page,
+        amazon_url: amazon_url,
+        bulk_ordering_url: bulk_ordering_url,
+        section: section,
+        nav_classes: 'header-nav--desktop-only header-nav--two-row'
+      %}
+    </div>
+  </div>
+
+  {% comment %} When JS is disabled, set standard header with logo left, menu right {% endcomment %}
+  <noscript>
     {%
       render 'header-nav',
       menu: menu,
       products_menu: products_menu,
       about_us_page: about_us_page,
+      support_page: support_page,
+      amazon_url: amazon_url,
+      bulk_ordering_url: bulk_ordering_url,
       section: section,
-      nav_classes: 'header-nav--desktop-only header-nav--below-header'
+      nav_classes: 'header-nav--js-disabled',
+      nav_position: nav_position
     %}
-  {% endif %}
-  
-  {% if nav_position == 'below-left' %}
-    <div class="site-header__nav-row">
-      <div class="site-header__wrapper">
-        {%
-          render 'header-nav',
-          menu: menu,
-          products_menu: products_menu,
-          about_us_page: about_us_page,
-          section: section,
-          nav_classes: 'header-nav--desktop-only header-nav--below-left'
-        %}
-      </div>
-    </div>
-  {% endif %}
+  </noscript>
 </header>
 
 <div data-header-scroll-observer></div>
@@ -540,9 +498,11 @@
     <div class="drawer-nav__actions">
       <div class="drawer-nav__action-links">
         {% if about_us_page != blank %}
-          <a href="{{ about_us_page.url }}" class="drawer-nav__action-link">About Us</a>
+          <a href="{{ about_us_page.url }}" class="drawer-nav__action-link">Our Story</a>
         {% endif %}
-        <a href="{{ pages.contact.url | default: '/pages/contact' }}" class="drawer-nav__action-link">Contact</a>
+        {% if support_page != blank %}
+          <a href="{{ support_page.url }}" class="drawer-nav__action-link">Support</a>
+        {% endif %}
       </div>
       <div class="drawer-nav__action-icons">
         {% if shop.customer_accounts_enabled %}
@@ -1167,8 +1127,26 @@
     {
       "type": "page",
       "id": "about_us_page",
-      "label": "About Us page",
-      "info": "Select the page to link for About Us"
+      "label": "Our Story page",
+      "info": "Select the page to link for Our Story"
+    },
+    {
+      "type": "page",
+      "id": "support_page",
+      "label": "Support page",
+      "info": "Select the page to link for Support"
+    },
+    {
+      "type": "url",
+      "id": "amazon_url",
+      "label": "Amazon Storefront URL",
+      "info": "Enter the URL for Amazon Storefront link"
+    },
+    {
+      "type": "url",
+      "id": "bulk_ordering_url",
+      "label": "Explore Bulk Ordering URL",
+      "info": "Enter the URL for the Bulk Ordering page"
     },
     {
       "type": "select",

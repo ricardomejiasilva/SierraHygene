@@ -6,7 +6,16 @@
     The menu to use for the Products dropdown.
 
   @param about_us_page {Page}
-    The page to link for About Us.
+    The page to link for About Us (displayed as "Our Story").
+
+  @param support_page {Page}
+    The page to link for Support.
+
+  @param amazon_url {String}
+    The URL for Amazon Storefront link.
+
+  @param bulk_ordering_url {String}
+    The URL for Explore Bulk Ordering link.
 
   @param section {Section}
     The section object for accessing settings.
@@ -51,7 +60,15 @@
     {% if about_us_page != blank %}
       <li class="header-nav__tier-1-item">
         <a href="{{ about_us_page.url }}" class="header-nav__tier-1-link" data-header-nav-link>
-          <span>About Us</span>
+          <span>Our Story</span>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if support_page != blank %}
+      <li class="header-nav__tier-1-item">
+        <a href="{{ support_page.url }}" class="header-nav__tier-1-link" data-header-nav-link>
+          <span>Support</span>
         </a>
       </li>
     {% endif %}
@@ -176,5 +193,27 @@
         {% endif %}
       </li>
     {% endfor %}
+
+    {% if amazon_url != blank or bulk_ordering_url != blank %}
+      <li class="header-nav__tier-1-item header-nav__spacer"></li>
+      
+      {% if amazon_url != blank %}
+        <li class="header-nav__tier-1-item header-nav__tier-1-item--right">
+          <a href="{{ amazon_url }}" class="header-nav__tier-1-link header-nav__tier-1-link--icon" data-header-nav-link target="_blank" rel="noopener">
+            <img class="header-nav__link-icon" src="{{ 'amazon.svg' | asset_url }}" alt="" width="20" height="20">
+            <span>Amazon Storefront</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {% if bulk_ordering_url != blank %}
+        <li class="header-nav__tier-1-item header-nav__tier-1-item--right">
+          <a href="{{ bulk_ordering_url }}" class="header-nav__tier-1-link header-nav__tier-1-link--icon" data-header-nav-link>
+            <img class="header-nav__link-icon" src="{{ 'bulk-order.svg' | asset_url }}" alt="" width="20" height="20">
+            <span>Explore Bulk Ordering</span>
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
   </ul>
 </nav>

@@ -12,83 +12,108 @@
     "main": {
       "type": "template-page",
       "disabled": true,
+      "custom_css": [
+        "main .main-content {max-width: 100% !important; padding: 0 !important;}"
+      ],
       "settings": {}
     },
-    "home_product_categories_grid_84n3ep": {
-      "type": "home-product-categories-grid",
+    "home_logo_list_PR4AEf": {
+      "type": "home-logo-list",
       "blocks": {
-        "category_CidQAp": {
-          "type": "category",
+        "logo_4JkMHt": {
+          "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/image_34.png",
-            "text": "Paper Towels",
-            "url": "shopify://collections/center-pull-roll-paper",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
+            "collection": "",
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_5.png",
+            "title": "Janitorial"
           }
         },
-        "category_e6Xgwq": {
-          "type": "category",
+        "logo_JTCnT6": {
+          "type": "logo",
           "settings": {
-            "image": "shopify://shop_images/image_36.png",
-            "text": "Toilet Tissue",
-            "url": "shopify://collections/standard-toilet-tissue",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_W8CHPg": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_39.png",
-            "text": "Napkins",
-            "url": "shopify://collections/white-dinner-napkins",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_hxj4gp": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/image_44.png",
-            "text": "Coffee Cups & Lids",
-            "url": "shopify://collections/coffee-cups",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
-          }
-        },
-        "category_94n8gE": {
-          "type": "category",
-          "settings": {
-            "image": "shopify://shop_images/f1d1ae6ba3c7682ee98d5c6c7bf65e1ddcb2324c_1.jpg",
-            "text": "Shop All Products",
-            "url": "shopify://collections/all",
-            "text_color": "#ffffff",
-            "text_position": "center",
-            "font_size": 24
+            "collection": "food-service",
+            "url": "",
+            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3.png",
+            "title": "Food Service"
           }
         }
       },
       "block_order": [
-        "category_CidQAp",
-        "category_e6Xgwq",
-        "category_W8CHPg",
-        "category_hxj4gp",
-        "category_94n8gE"
+        "logo_4JkMHt",
+        "logo_JTCnT6"
       ],
-      "name": "Product Categories Grid",
+      "custom_css": [
+        "main .main-content {max-width: 100% !important; padding: 0 !important;}"
+      ],
+      "name": "Logo list",
       "settings": {
         "style": "default-style",
-        "title": "Shop by Category"
+        "title": "Markets We Serve",
+        "logos_in_rows": 4
+      }
+    },
+    "home_product_list_qxBV9Y": {
+      "type": "home-product-list",
+      "blocks": {
+        "product_nnmGkk": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "collection": "center-pull-roll-paper"
+          }
+        },
+        "product_eVWWpr": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "collection": "standard-toilet-tissue"
+          }
+        },
+        "product_fLUXjA": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "collection": "white-dinner-napkins"
+          }
+        },
+        "product_YKt3ME": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "collection": "coffee-cups"
+          }
+        }
+      },
+      "block_order": [
+        "product_nnmGkk",
+        "product_eVWWpr",
+        "product_fLUXjA",
+        "product_YKt3ME"
+      ],
+      "name": "Product list",
+      "settings": {
+        "style": "default-style",
+        "title": "Shop Our Products",
+        "show_product_count": false,
+        "grid_layout": "auto",
+        "heading_font_size": 40,
+        "heading_color": "#1c3d37",
+        "heading_italic": false,
+        "margin_top": 50,
+        "margin_bottom": 50,
+        "show_border": false,
+        "background_image": "shopify://shop_images/pattern_1.png",
+        "show_button": true,
+        "button_text": "Shop All Products",
+        "button_link": "shopify://collections/all",
+        "button_style": "primary"
       }
     }
   },
   "order": [
     "main",
-    "home_product_categories_grid_84n3ep"
+    "home_logo_list_PR4AEf",
+    "home_product_list_qxBV9Y"
   ]
 }
