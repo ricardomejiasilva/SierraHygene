@@ -14,10 +14,10 @@
       "settings": {
         "show_featured_image": false,
         "show_description": true,
-        "enable_filtering": false,
-        "enable_sorting": false,
-        "products_in_rows": 4,
-        "numbers_of_rows": 5
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "products_in_rows": 3,
+        "numbers_of_rows": 6
       }
     }
   },

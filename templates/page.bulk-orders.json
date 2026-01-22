@@ -1,0 +1,141 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "template-page",
+      "disabled": true,
+      "custom_css": [
+        "main .main-content {max-width: 100% !important; padding: 0 !important;}"
+      ],
+      "settings": {}
+    },
+    "spacer_AGPEmP": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "40"
+      }
+    },
+    "home_image_with_text_99JKFh": {
+      "type": "home-image-with-text",
+      "name": "Image with text",
+      "settings": {
+        "style": "default-style",
+        "title": "",
+        "caption": "",
+        "button_text": "",
+        "button_link": "",
+        "image": "shopify://shop_images/support_4_1.png",
+        "media_layout": "regular",
+        "title_color": "#000000",
+        "title_font_size": 32,
+        "title_italic": false,
+        "caption_color": "#000000",
+        "caption_font_size": 16,
+        "caption_italic": false
+      }
+    },
+    "faq_with_contact_form_FTkAPU": {
+      "type": "faq-with-contact-form",
+      "blocks": {
+        "faq_item_DJBAeV": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Praesent lacus.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi. Volutpat tempor maecenas eros nam. Tincidunt."
+          }
+        },
+        "faq_item_VmLHNH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Dis facilisis.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        },
+        "faq_item_JN6WJP": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. At viverra.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        },
+        "faq_item_9ibUUa": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Nulla risus.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_DJBAeV",
+        "faq_item_VmLHNH",
+        "faq_item_JN6WJP",
+        "faq_item_9ibUUa"
+      ],
+      "name": "FAQ with Contact Form",
+      "settings": {
+        "main_title": "Bulk Ordering",
+        "main_title_size": 32,
+        "form_title": "Please fill out form to begin your bulk order.",
+        "form_title_size": 22,
+        "name_placeholder": "Name",
+        "email_placeholder": "Email",
+        "reason_placeholder": "",
+        "message_placeholder": "Message",
+        "button_text": "Submit",
+        "show_reason_dropdown": false,
+        "reason_1": "Placing a Direct Order",
+        "reason_2": "Asking a Question",
+        "reason_3": "",
+        "reason_4": "",
+        "reason_5": "",
+        "heading_color": "#1c3d37",
+        "text_color": "#333333",
+        "border_color": "#121212",
+        "button_color": "#2d6a5d",
+        "button_text_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "home_featured_collection_4UpNUA": {
+      "type": "home-featured-collection",
+      "custom_css": [
+        "h2 {margin-top: 16px;}"
+      ],
+      "name": "Featured collection",
+      "settings": {
+        "style": "default-style",
+        "title": "Our Best Sellers",
+        "button": "View all best sellers",
+        "link": "shopify://collections/home-best-sellers",
+        "collection": "home-best-sellers",
+        "products_in_rows": 3,
+        "number_of_rows": 1,
+        "enable_filters": false,
+        "enable_product_type_filter": true,
+        "default_product_type": "",
+        "enable_color_filter": true,
+        "default_color": "",
+        "enable_featured_filter": true,
+        "default_sort": "featured"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "spacer_AGPEmP",
+    "home_image_with_text_99JKFh",
+    "faq_with_contact_form_FTkAPU",
+    "home_featured_collection_4UpNUA"
+  ]
+}

@@ -79,13 +79,47 @@
 
 <style>
   #shopify-section-{{ section.id }} .feature-image {
-    margin-top: 30px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 0;
     margin-bottom: 0;
+    object-fit: cover;
   }
   
   #shopify-section-{{ section.id }} .module-inner.home-full-width-feature-content {
     margin-top: 0;
     margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #shopify-section-{{ section.id }} .home-full-width-feature {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    #shopify-section-{{ section.id }} {
+      overflow-x: hidden;
+    }
+    
+    #shopify-section-{{ section.id }} .feature-image {
+      width: calc(100% + 30px);
+      max-width: none;
+      margin-left: -15px;
+      margin-right: -15px;
+      object-fit: cover;
+    }
+    
+    #shopify-section-{{ section.id }} .module-inner.home-full-width-feature-content {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 </style>
 

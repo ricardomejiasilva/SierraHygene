@@ -22,9 +22,9 @@
     {% endif %}
   >
     <div class="collection-header">
-      <h1 class="page-title">
+      <h1 class="page-title" data-collection-title>
         {% if collection.handle == 'all' %}
-          {{ 'collections.collection.all_products' | t }}
+          All Products
         {% else %}
           {{ collection.title }}
         {% endif %}
@@ -40,104 +40,813 @@
 
   {% assign products_per_page = section.settings.products_in_rows | times: section.settings.numbers_of_rows %}
   {% paginate collection.products by products_per_page %}
-    {% if enable_filters or enable_sorting %}
-      <div class="collection__action-wrapper products-per-row-{{ section.settings.products_in_rows }}">
-        {% if enable_filters %}
-          <div class="collection-filter-wrapper" data-faceted-filter>
-
-            {%
-              render 'faceted-filters',
-              filters: collection.filters,
-              class_prefix: 'collection'
-            %}
-
+    
+    <div class="collection-layout-wrapper products-per-row-{{ section.settings.products_in_rows }}">
+      
+      {% if enable_filters or enable_sorting %}
+        
+        {%- comment -%} Mobile Controls (only visible on mobile) {%- endcomment -%}
+        <div class="collection-mobile-controls">
+          {%- comment -%} Product count {%- endcomment -%}
+          <div class="collection-mobile-controls__count" data-mobile-product-count>
+            {% assign first_item = paginate.current_offset | plus: 1 %}
+            {% assign last_item = paginate.current_offset | plus: paginate.page_size %}
+            {% if last_item > paginate.items %}
+              {% assign last_item = paginate.items %}
+            {% endif %}
+            <span data-mobile-count-text>{{ first_item }} - {{ last_item }} of {{ paginate.items }} products</span>
           </div>
-        {% endif %}
-
-        {% if enable_sorting %}
-          {% assign current_sort = collection.sort_by | default: collection.default_sort_by %}
-          {%- for option in collection.sort_options -%}
-            {%- if option.value == current_sort -%}
-              {% assign option_name = option.name %}
-              {% break %}
-            {%- endif -%}
-          {%- endfor -%}
-          <div class="collection-sort">
-            <div class="select-wrapper collection-sort__wrapper">
-              <label
-                class="select-text collection-sort__label"
-                for="sortby"
-                data-select-text
-              >
-                <strong>Sort by:</strong><span class="collection-sort__selected">{{ option_name }}</span>
-              </label>
-              <select
-                id="sortby"
-                class="
-                  {% if collection.current_vendor %}vendor-collection{% endif %}
-                  collection-sort
-                  single-option-selector
-                "
-                data-collection-sort
-              >
-                {%- for option in collection.sort_options -%}
-                  <option
-                    value="{{ option.value }}"
-                    {%- if option.value == current_sort -%}
-                      selected
-                    {%- endif -%}
-                  >
-                    {{ option.name }}
-                  </option>
-                {%-  endfor -%}
-              </select>
+          
+          {%- comment -%} Selected filter tags {%- endcomment -%}
+          <div class="collection-mobile-controls__tags" data-mobile-filter-tags style="display: none;">
+            {%- comment -%} Tags will be inserted here by JavaScript {%- endcomment -%}
+          </div>
+          
+          {%- comment -%} Show Filters button {%- endcomment -%}
+          <button type="button" class="collection-mobile-controls__show-filters" data-open-mobile-filters>
+            Show Filters
+          </button>
+          
+          {%- comment -%} Sort dropdown {%- endcomment -%}
+          {% if enable_sorting %}
+            {% assign current_sort = collection.sort_by | default: collection.default_sort_by %}
+            {%- for option in collection.sort_options -%}
+              {%- if option.value == current_sort -%}
+                {% assign option_name = option.name %}
+                {% break %}
+              {%- endif -%}
+            {%- endfor -%}
+            <div class="collection-mobile-controls__sort">
+              <div class="collection-sidebar__sort-wrapper">
+                <label class="collection-sidebar__sort-label" for="mobile-sortby">
+                  <span class="collection-sidebar__sort-text">Sort by:</span>
+                  <span class="collection-sidebar__sort-selected">{{ option_name }}</span>
+                </label>
+                <select id="mobile-sortby" class="collection-sidebar__sort-select" data-collection-sort>
+                  {%- for option in collection.sort_options -%}
+                    <option value="{{ option.value }}" {% if option.value == current_sort %}selected{% endif %}>
+                      {{ option.name }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+                <span class="collection-sidebar__sort-arrow">
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
             </div>
+          {% endif %}
+        </div>
+        
+        {%- comment -%} Mobile Filter Modal {%- endcomment -%}
+        <div class="collection-mobile-modal" data-mobile-filter-modal>
+          <div class="collection-mobile-modal__overlay" data-close-mobile-filters></div>
+          <div class="collection-mobile-modal__content">
+            <div class="collection-mobile-modal__top">
+              <button type="button" class="collection-mobile-modal__close" data-close-mobile-filters aria-label="Close filters">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+            
+            {%- comment -%} Modal header with tags {%- endcomment -%}
+            <div class="collection-mobile-modal__header">
+              <div class="collection-mobile-modal__tags" data-modal-filter-tags>
+                {%- comment -%} Tags will be inserted here by JavaScript {%- endcomment -%}
+              </div>
+            </div>
+            
+            {%- comment -%} Filter content {%- endcomment -%}
+            <div class="collection-mobile-modal__filters">
+              {%- comment -%} Collections filter (always open, not collapsible) {%- endcomment -%}
+              <div class="collection-mobile-modal__collections">
+                <div class="collection-mobile-modal__collections-title">Collections</div>
+                <div class="collection-sidebar__filter-content">
+                  <ul class="collection-sidebar__filter-list">
+                    {%- for coll in collections -%}
+                      {%- if coll.products_count > 0 and coll.handle != 'all' -%}
+                        <li class="collection-sidebar__filter-item">
+                          <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                            <input 
+                              type="checkbox" 
+                              class="collection-sidebar__filter-input visually-hidden"
+                              data-modal-collection-checkbox
+                              data-collection-handle="{{ coll.handle }}"
+                              data-collection-title="{{ coll.title }}"
+                            >
+                            <span class="collection-sidebar__checkbox" data-checkbox-visual>
+                              <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                            <span class="collection-sidebar__filter-label">
+                              {{ coll.title }} ({{ coll.products_count }})
+                            </span>
+                          </label>
+                        </li>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+              
+              {%- comment -%} Other filters {%- endcomment -%}
+              {%- for filter in collection.filters -%}
+                {%- assign filter_label_downcase = filter.label | downcase -%}
+                {%- if filter.type == 'price_range' or filter_label_downcase == 'availability' or filter_label_downcase contains 'availability' -%}
+                  {%- continue -%}
+                {%- endif -%}
+                
+                <div class="collection-sidebar__filter-group">
+                  <details class="collection-sidebar__filter-details">
+                    <summary class="collection-sidebar__filter-summary">
+                      <span class="collection-sidebar__filter-title">{{ filter.label }}</span>
+                      <span class="collection-sidebar__filter-toggle">
+                        <svg class="collection-sidebar__filter-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </summary>
+                    <div class="collection-sidebar__filter-content">
+                      {% if filter.type == 'boolean' or filter.type == 'list' %}
+                        <ul class="collection-sidebar__filter-list">
+                          {%- for value in filter.values -%}
+                            <li class="collection-sidebar__filter-item {% if value.active %}collection-sidebar__filter-item--active{% endif %}">
+                              <a
+                                class="collection-sidebar__filter-link"
+                                {% if value.active %}href="{{ value.url_to_remove | replace: '%2C', ',' }}"{% else %}href="{{ value.url_to_add | replace: '%2C', ',' }}"{% endif %}
+                                {% if value.count == 0 and value.active == false %}data-disabled{% endif %}
+                              >
+                                <span class="collection-sidebar__checkbox {% if value.active %}collection-sidebar__checkbox--checked{% endif %}">
+                                  {% if value.active %}
+                                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                  {% endif %}
+                                </span>
+                                <span class="collection-sidebar__filter-label">
+                                  {{ value.label | escape }} ({{ value.count }})
+                                </span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      {% endif %}
+                    </div>
+                  </details>
+                </div>
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+        
+        {%- comment -%} Desktop Sidebar (hidden on mobile) {%- endcomment -%}
+        <aside class="collection-sidebar collection-sidebar--desktop">
+          
+          {%- comment -%} Product count {%- endcomment -%}
+          <div class="collection-sidebar__count" data-product-count>
+            {% assign first_item = paginate.current_offset | plus: 1 %}
+            {% assign last_item = paginate.current_offset | plus: paginate.page_size %}
+            {% if last_item > paginate.items %}
+              {% assign last_item = paginate.items %}
+            {% endif %}
+            <span data-count-text>{{ first_item }} - {{ last_item }} of {{ paginate.items }} products</span>
+          </div>
+
+          {%- comment -%} Sort dropdown {%- endcomment -%}
+          {% if enable_sorting %}
+            {% assign current_sort = collection.sort_by | default: collection.default_sort_by %}
+            {%- for option in collection.sort_options -%}
+              {%- if option.value == current_sort -%}
+                {% assign option_name = option.name %}
+                {% break %}
+              {%- endif -%}
+            {%- endfor -%}
+            <div class="collection-sidebar__sort">
+              <div class="collection-sidebar__sort-wrapper">
+                <label
+                  class="collection-sidebar__sort-label"
+                  for="sortby"
+                  data-select-text
+                >
+                  <span class="collection-sidebar__sort-text">Sort by:</span>
+                  <span class="collection-sidebar__sort-selected">{{ option_name }}</span>
+                </label>
+                <select
+                  id="sortby"
+                  class="collection-sidebar__sort-select"
+                  data-collection-sort
+                >
+                  {%- for option in collection.sort_options -%}
+                    <option
+                      value="{{ option.value }}"
+                      {%- if option.value == current_sort -%}
+                        selected
+                      {%- endif -%}
+                    >
+                      {{ option.name }}
+                    </option>
+                  {%-  endfor -%}
+                </select>
+                <span class="collection-sidebar__sort-arrow">
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          {% endif %}
+
+          {%- comment -%} Filter groups {%- endcomment -%}
+          {% if enable_filters %}
+            <div class="collection-sidebar__filters" data-faceted-filter>
+              
+              {%- comment -%} Collections filter (multi-select) {%- endcomment -%}
+              <div class="collection-sidebar__filter-group">
+                <details class="collection-sidebar__filter-details" data-collections-filter>
+                  <summary class="collection-sidebar__filter-summary">
+                    <span class="collection-sidebar__filter-title">Collections</span>
+                    <span class="collection-sidebar__filter-toggle">
+                      <svg class="collection-sidebar__filter-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </span>
+                  </summary>
+                  
+                  <div class="collection-sidebar__filter-content">
+                    <ul class="collection-sidebar__filter-list" data-collection-filter-list>
+                      {%- comment -%} Individual collections as checkboxes {%- endcomment -%}
+                      {%- for coll in collections -%}
+                        {%- if coll.products_count > 0 and coll.handle != 'all' -%}
+                          <li class="collection-sidebar__filter-item">
+                            <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                              <input 
+                                type="checkbox" 
+                                class="collection-sidebar__filter-input visually-hidden"
+                                data-collection-checkbox
+                                data-collection-handle="{{ coll.handle }}"
+                                data-collection-title="{{ coll.title }}"
+                                data-collection-url="{{ coll.url }}"
+                              >
+                              <span class="collection-sidebar__checkbox" data-checkbox-visual>
+                                <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                              <span class="collection-sidebar__filter-label">
+                                {{ coll.title }} ({{ coll.products_count }})
+                              </span>
+                            </label>
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                </details>
+              </div>
+              
+              {%- comment -%} Other filters (excluding price and availability) {%- endcomment -%}
+              {%- for filter in collection.filters -%}
+                {%- comment -%} Skip price_range filters and availability filters {%- endcomment -%}
+                {%- assign filter_label_downcase = filter.label | downcase -%}
+                {%- if filter.type == 'price_range' or filter_label_downcase == 'availability' or filter_label_downcase contains 'availability' -%}
+                  {%- continue -%}
+                {%- endif -%}
+                
+                <div class="collection-sidebar__filter-group">
+                  <details class="collection-sidebar__filter-details">
+                    <summary class="collection-sidebar__filter-summary">
+                      <span class="collection-sidebar__filter-title">{{ filter.label }}</span>
+                      <span class="collection-sidebar__filter-toggle">
+                        <svg class="collection-sidebar__filter-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </summary>
+                    
+                    <div class="collection-sidebar__filter-content">
+                      {% if filter.type == 'boolean' or filter.type == 'list' %}
+                        <ul class="collection-sidebar__filter-list">
+                          {%- for value in filter.values -%}
+                            <li class="collection-sidebar__filter-item {% if value.active %}collection-sidebar__filter-item--active{% endif %}">
+                              <a
+                                class="collection-sidebar__filter-link"
+                                {% if value.active -%}
+                                  href="{{ value.url_to_remove | replace: '%2C', ',' }}"
+                                  data-filter-active
+                                {% else %}
+                                  href="{{ value.url_to_add | replace: '%2C', ',' }}"
+                                {%- endif %}
+                                {% if value.count == 0 and value.active == false -%}
+                                  data-disabled
+                                {%- endif %}
+                              >
+                                <span class="collection-sidebar__checkbox {% if value.active %}collection-sidebar__checkbox--checked{% endif %}">
+                                  {% if value.active %}
+                                    <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                  {% endif %}
+                                </span>
+                                <span class="collection-sidebar__filter-label">
+                                  {{ value.label | escape }} ({{ value.count }})
+                                </span>
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      {% endif %}
+                    </div>
+                  </details>
+                </div>
+              {%- endfor -%}
+            </div>
+            
+            {%- comment -%} Active collection filters {%- endcomment -%}
+            <div class="collection-sidebar__active-filters" data-active-collection-filters style="display: none;">
+              <div class="collection-active-filters">
+                <a href="#" class="collection-active-filters__clear" data-clear-collection-filters>Clear all</a>
+              </div>
+            </div>
+            
+            {%- comment -%} Active filters (excluding price and availability) {%- endcomment -%}
+            {% for filter in collection.filters %}
+              {%- assign filter_label_downcase = filter.label | downcase -%}
+              {%- if filter.type == 'price_range' or filter_label_downcase == 'availability' or filter_label_downcase contains 'availability' -%}
+                {%- continue -%}
+              {%- endif -%}
+              {% if filter.active_values.size > 0 %}
+                <div class="collection-sidebar__active-filters">
+                  {%-
+                    render 'faceted-filters-active',
+                    filters: collection.filters,
+                    class_prefix: 'collection',
+                    clear_url: collection.url
+                  -%}
+                </div>
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          
+        </aside>
+      {% endif %}
+      
+      {%- comment -%} Products grid {%- endcomment -%}
+      <div class="collection-main {% if enable_filters or enable_sorting %}collection-main--with-sidebar{% endif %}">
+        <div class="collection-products products-per-row-{{ section.settings.products_in_rows }}" data-products-grid>
+          {%- comment -%} Loading indicator {%- endcomment -%}
+          <div class="collection-products__loading" data-loading-indicator style="display: none;">
+            <div class="collection-products__spinner"></div>
+          </div>
+          {% for product in collection.products %}
+            {%
+              render 'product-list-item',
+              product: product
+            %}
+          {% else %}
+            <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
+          {% endfor %}
+        </div>
+
+        {% if paginate.previous or paginate.next %}
+          <div data-pagination-wrapper>
+            {%
+              render 'pagination',
+              paginate: paginate
+            %}
           </div>
         {% endif %}
       </div>
-    {% endif %}
-
-
-    {% for filter in collection.filters %}
-      {% if filter.active_values.size > 0 or filter.min_value.value or filter.max_value.value %}
-        <div 
-          class="
-            collection-page__filters-active
-            products-per-row-{{ section.settings.products_in_rows }}
-          "
-        >
-          {%-
-            render 'faceted-filters-active',
-            filters: collection.filters,
-            class_prefix: 'collection',
-            clear_url: collection.url
-          -%}
-        </div>
-        {% break %}
-      {% endif %}
-    {% endfor %}
-
-    <div class="collection-products products-per-row-{{ section.settings.products_in_rows }}">
-      {% for product in collection.products %}
-        {%
-          render 'product-list-item',
-          product: product
-        %}
-      {% else %}
-        <p class="empty">{{ 'collections.collection.no_products' | t }}</p>
-      {% endfor %}
+      
     </div>
-
-
-    {% if paginate.previous or paginate.next %}
-      {%
-        render 'pagination',
-        paginate: paginate
-      %}
-    {% endif %}
 
   {% endpaginate %}
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Desktop elements
+  const collectionCheckboxes = document.querySelectorAll('[data-collection-checkbox]');
+  const productsGrid = document.querySelector('[data-products-grid]');
+  const loadingIndicator = document.querySelector('[data-loading-indicator]');
+  const productCountEl = document.querySelector('[data-count-text]');
+  const mobileCountEl = document.querySelector('[data-mobile-count-text]');
+  const titleEl = document.querySelector('[data-collection-title]');
+  const activeFiltersEl = document.querySelector('[data-active-collection-filters]');
+  const clearFiltersBtn = document.querySelector('[data-clear-collection-filters]');
+  const paginationWrapper = document.querySelector('[data-pagination-wrapper]');
+  
+  // Mobile elements
+  const mobileModal = document.querySelector('[data-mobile-filter-modal]');
+  const openModalBtn = document.querySelector('[data-open-mobile-filters]');
+  const closeModalElements = document.querySelectorAll('[data-close-mobile-filters]');
+  const mobileFilterTags = document.querySelector('[data-mobile-filter-tags]');
+  const modalFilterTags = document.querySelector('[data-modal-filter-tags]');
+  const modalCheckboxes = document.querySelectorAll('[data-modal-collection-checkbox]');
+  
+  let selectedCollections = [];
+  let allProductsCache = null;
+  
+  // Open filter dropdowns only on desktop
+  function handleFilterDropdowns() {
+    const isDesktop = window.innerWidth >= 960;
+    const collectionsFilter = document.querySelector('[data-collections-filter]');
+    
+    if (collectionsFilter) {
+      if (isDesktop) {
+        collectionsFilter.setAttribute('open', '');
+      } else {
+        collectionsFilter.removeAttribute('open');
+      }
+    }
+  }
+  
+  // Run on page load
+  handleFilterDropdowns();
+  
+  // Mobile Modal Functions
+  function openMobileModal() {
+    if (mobileModal) {
+      mobileModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  
+  function closeMobileModal() {
+    if (mobileModal) {
+      mobileModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  }
+  
+  // Sync checkboxes between desktop and mobile
+  function syncCheckboxes(sourceCheckbox) {
+    const handle = sourceCheckbox.dataset.collectionHandle;
+    const isChecked = sourceCheckbox.checked;
+    
+    // Sync desktop checkboxes
+    collectionCheckboxes.forEach(cb => {
+      if (cb.dataset.collectionHandle === handle) {
+        cb.checked = isChecked;
+        updateCheckboxVisual(cb);
+      }
+    });
+    
+    // Sync modal checkboxes
+    modalCheckboxes.forEach(cb => {
+      if (cb.dataset.collectionHandle === handle) {
+        cb.checked = isChecked;
+        updateCheckboxVisual(cb);
+      }
+    });
+  }
+  
+  // Update filter tags display
+  function updateFilterTags() {
+    const selectedItems = [];
+    
+    // Get selected collections from desktop checkboxes
+    collectionCheckboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        selectedItems.push({
+          handle: checkbox.dataset.collectionHandle,
+          title: checkbox.dataset.collectionTitle
+        });
+      }
+    });
+    
+    selectedCollections = selectedItems.map(item => item.handle);
+    
+    // Generate tags HTML
+    let tagsHTML = '';
+    if (selectedItems.length > 0) {
+      selectedItems.forEach(item => {
+        tagsHTML += `
+          <span class="filter-tag" data-filter-tag data-tag-handle="${item.handle}">
+            ${item.title}
+            <button type="button" class="filter-tag__remove" data-remove-tag="${item.handle}">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </span>
+        `;
+      });
+      
+      // Add Clear All button
+      tagsHTML += `
+        <button type="button" class="filter-tag filter-tag--clear" data-clear-all-tags>
+          Clear All (${selectedItems.length})
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      `;
+    }
+    
+    // Update mobile tags
+    if (mobileFilterTags) {
+      mobileFilterTags.innerHTML = tagsHTML;
+      mobileFilterTags.style.display = selectedItems.length > 0 ? 'flex' : 'none';
+    }
+    
+    // Update modal tags
+    if (modalFilterTags) {
+      modalFilterTags.innerHTML = tagsHTML;
+      modalFilterTags.style.display = selectedItems.length > 0 ? 'flex' : 'none';
+    }
+    
+    // Add event listeners to remove buttons
+    document.querySelectorAll('[data-remove-tag]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const handle = this.dataset.removeTag;
+        removeFilter(handle);
+      });
+    });
+    
+    // Add event listeners to clear all buttons
+    document.querySelectorAll('[data-clear-all-tags]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        clearAllFilters();
+      });
+    });
+  }
+  
+  // Remove a single filter
+  function removeFilter(handle) {
+    // Uncheck desktop checkboxes
+    collectionCheckboxes.forEach(checkbox => {
+      if (checkbox.dataset.collectionHandle === handle) {
+        checkbox.checked = false;
+        updateCheckboxVisual(checkbox);
+      }
+    });
+    
+    // Uncheck modal checkboxes
+    modalCheckboxes.forEach(checkbox => {
+      if (checkbox.dataset.collectionHandle === handle) {
+        checkbox.checked = false;
+        updateCheckboxVisual(checkbox);
+      }
+    });
+    
+    // Update tags and trigger filter change
+    updateFilterTags();
+    handleFilterChange();
+  }
+  
+  // Update checkbox visual state
+  function updateCheckboxVisual(checkbox) {
+    const visual = checkbox.parentElement.querySelector('[data-checkbox-visual]');
+    if (visual) {
+      if (checkbox.checked) {
+        visual.classList.add('collection-sidebar__checkbox--checked');
+      } else {
+        visual.classList.remove('collection-sidebar__checkbox--checked');
+      }
+    }
+  }
+  
+  // Update product count display
+  function updateProductCount(count) {
+    const text = count === 0 ? '0 products' : `1 - ${count} of ${count} products`;
+    if (productCountEl) productCountEl.textContent = text;
+    if (mobileCountEl) mobileCountEl.textContent = text;
+  }
+  
+  // Update page title
+  function updateTitle(collections) {
+    if (!titleEl) return;
+    
+    if (collections.length === 0) {
+      titleEl.textContent = 'All Products';
+    } else if (collections.length === 1) {
+      const checkbox = document.querySelector(`[data-collection-handle="${collections[0]}"]`);
+      titleEl.textContent = checkbox ? checkbox.dataset.collectionTitle : 'Products';
+    } else {
+      titleEl.textContent = `${collections.length} Collections Selected`;
+    }
+  }
+  
+  // Show/hide active filters section
+  function updateActiveFilters(collections) {
+    if (!activeFiltersEl) return;
+    
+    if (collections.length > 0) {
+      activeFiltersEl.style.display = 'block';
+    } else {
+      activeFiltersEl.style.display = 'none';
+    }
+  }
+  
+  // Fetch products from a collection
+  async function fetchCollectionProducts(handle) {
+    try {
+      const response = await fetch(`/collections/${handle}/products.json?limit=250`);
+      const data = await response.json();
+      return data.products || [];
+    } catch (error) {
+      console.error('Error fetching collection:', error);
+      return [];
+    }
+  }
+  
+  // Fetch all products
+  async function fetchAllProducts() {
+    if (allProductsCache) return allProductsCache;
+    
+    try {
+      const response = await fetch('/collections/all/products.json?limit=250');
+      const data = await response.json();
+      allProductsCache = data.products || [];
+      return allProductsCache;
+    } catch (error) {
+      console.error('Error fetching all products:', error);
+      return [];
+    }
+  }
+  
+  // Render products
+  function renderProducts(products) {
+    if (!productsGrid) return;
+    
+    // Hide loading
+    if (loadingIndicator) loadingIndicator.style.display = 'none';
+    
+    // Clear existing products (keep loading indicator)
+    const existingProducts = productsGrid.querySelectorAll('.product-list-item');
+    existingProducts.forEach(el => el.remove());
+    
+    // Remove empty message if exists
+    const emptyMsg = productsGrid.querySelector('.empty');
+    if (emptyMsg) emptyMsg.remove();
+    
+    if (products.length === 0) {
+      const emptyEl = document.createElement('p');
+      emptyEl.className = 'empty';
+      emptyEl.textContent = 'No products found';
+      productsGrid.appendChild(emptyEl);
+      updateProductCount(0);
+      return;
+    }
+    
+    // Render products
+    products.forEach(product => {
+      const productEl = createProductElement(product);
+      productsGrid.appendChild(productEl);
+    });
+    
+    updateProductCount(products.length);
+    
+    // Hide pagination when filtering
+    if (paginationWrapper) {
+      paginationWrapper.style.display = selectedCollections.length > 0 ? 'none' : 'block';
+    }
+  }
+  
+  // Create product HTML element (matches product-list-item.liquid structure)
+  function createProductElement(product) {
+    const article = document.createElement('article');
+    article.className = 'product-list-item';
+    article.id = `product-list-item-${product.id}`;
+    
+    const image = product.images && product.images[0] ? product.images[0].src : '';
+    // Shopify JSON API returns price as a string in dollars (e.g., "28.99")
+    const price = product.variants && product.variants[0] ? parseFloat(product.variants[0].price).toFixed(2) : '0.00';
+    const comparePrice = product.variants && product.variants[0] && product.variants[0].compare_at_price 
+      ? parseFloat(product.variants[0].compare_at_price).toFixed(2) 
+      : null;
+    
+    // Escape HTML in title
+    const escapedTitle = product.title.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    
+    article.innerHTML = `
+      <figure class="product-list-item-thumbnail">
+        <a href="/products/${product.handle}">
+          ${image ? `<img src="${image}" alt="${escapedTitle}" class="product-list-item-image" loading="lazy">` : ''}
+        </a>
+      </figure>
+      <div class="product-list-item-details">
+        <div class="product-list-item-title">
+          <a href="/products/${product.handle}">${escapedTitle}</a>
+        </div>
+        <p class="product-list-item-price">
+          <span class="price">
+            <span class="money">$${price}</span>
+            ${comparePrice ? `<span class="original money">$${comparePrice}</span>` : ''}
+          </span>
+        </p>
+      </div>
+    `;
+    
+    return article;
+  }
+  
+  // Handle collection filter changes
+  async function handleFilterChange() {
+    // Get selected collections
+    selectedCollections = [];
+    collectionCheckboxes.forEach(checkbox => {
+      if (checkbox.checked) {
+        selectedCollections.push(checkbox.dataset.collectionHandle);
+      }
+    });
+    
+    // Update UI
+    updateTitle(selectedCollections);
+    updateActiveFilters(selectedCollections);
+    updateFilterTags();
+    
+    // Show loading
+    if (loadingIndicator) loadingIndicator.style.display = 'flex';
+    
+    if (selectedCollections.length === 0) {
+      // No filters selected - show all products (reload page for proper pagination)
+      window.location.href = '/collections/all';
+      return;
+    }
+    
+    // Fetch products from selected collections
+    const productPromises = selectedCollections.map(handle => fetchCollectionProducts(handle));
+    const productArrays = await Promise.all(productPromises);
+    
+    // Merge and deduplicate products
+    const productMap = new Map();
+    productArrays.flat().forEach(product => {
+      if (!productMap.has(product.id)) {
+        productMap.set(product.id, product);
+      }
+    });
+    
+    const products = Array.from(productMap.values());
+    
+    // Render products
+    renderProducts(products);
+  }
+  
+  // Clear all filters
+  function clearAllFilters() {
+    collectionCheckboxes.forEach(checkbox => {
+      checkbox.checked = false;
+      updateCheckboxVisual(checkbox);
+    });
+    modalCheckboxes.forEach(checkbox => {
+      checkbox.checked = false;
+      updateCheckboxVisual(checkbox);
+    });
+    selectedCollections = [];
+    updateFilterTags();
+    window.location.href = '/collections/all';
+  }
+  
+  // Event Listeners
+  
+  // Desktop checkbox changes
+  collectionCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      syncCheckboxes(this);
+      handleFilterChange();
+    });
+  });
+  
+  // Modal checkbox changes
+  modalCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      syncCheckboxes(this);
+      handleFilterChange();
+    });
+  });
+  
+  // Open mobile modal
+  if (openModalBtn) {
+    openModalBtn.addEventListener('click', openMobileModal);
+  }
+  
+  // Close mobile modal (handles both overlay and X button)
+  closeModalElements.forEach(el => {
+    el.addEventListener('click', closeMobileModal);
+  });
+  
+  // Close modal on escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && mobileModal && mobileModal.classList.contains('is-open')) {
+      closeMobileModal();
+    }
+  });
+  
+  if (clearFiltersBtn) {
+    clearFiltersBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      clearAllFilters();
+    });
+  }
+});
+</script>
 
 {% schema %}
 {

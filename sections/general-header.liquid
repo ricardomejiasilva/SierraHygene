@@ -10,7 +10,7 @@
   endif
   assign support_page = section.settings.support_page
   assign amazon_url = section.settings.amazon_url
-  assign bulk_ordering_url = section.settings.bulk_ordering_url
+  assign bulk_ordering_page = section.settings.bulk_ordering_page
   assign logo = section.settings.header_logo
   assign logo_transparent = section.settings.header_logo_alternate
   assign logo_width = section.settings.logo_width
@@ -403,7 +403,7 @@
         about_us_page: about_us_page,
         support_page: support_page,
         amazon_url: amazon_url,
-        bulk_ordering_url: bulk_ordering_url,
+        bulk_ordering_page: bulk_ordering_page,
         section: section,
         nav_classes: 'header-nav--desktop-only header-nav--two-row'
       %}
@@ -1149,10 +1149,10 @@
       "info": "Enter the URL for Amazon Storefront link"
     },
     {
-      "type": "url",
-      "id": "bulk_ordering_url",
-      "label": "Explore Bulk Ordering URL",
-      "info": "Enter the URL for the Bulk Ordering page"
+      "type": "page",
+      "id": "bulk_ordering_page",
+      "label": "Explore Bulk Ordering page",
+      "info": "Select the page for the Bulk Ordering link"
     },
     {
       "type": "select",

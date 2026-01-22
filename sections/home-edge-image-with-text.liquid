@@ -14,8 +14,7 @@
           size: '800x600',
           class: 'edge-image-section__image',
           lazy: true,
-          crop: 'center',
-          focal_point: image.presentation.focal_point,
+          crop: 'bottom',
         %}
       {% else %}
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg edge-image-section__image' }}
@@ -63,7 +62,7 @@
     display: grid;
     grid-template-columns: 50% 50%;
     gap: 0;
-    align-items: center;
+    align-items: stretch;
     max-width: none;
     width: 100%;
   }
@@ -71,22 +70,26 @@
   #shopify-section-{{ section.id }} .edge-image-section__image-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
     min-height: 500px;
+    overflow: hidden;
   }
 
   #shopify-section-{{ section.id }} .edge-image-section__image {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    min-height: 100%;
+    max-height: none;
   }
 
   #shopify-section-{{ section.id }} .edge-image-section__content {
     padding: 60px 60px 60px 80px;
     max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #shopify-section-{{ section.id }} .edge-image-section__heading {
@@ -107,13 +110,14 @@
 
   #shopify-section-{{ section.id }} .edge-image-section__button {
     display: inline-block;
+    width: fit-content;
     padding: 14px 32px;
     background-color: {{ section.settings.button_background }};
     color: {{ section.settings.button_text_color }};
     text-decoration: none;
     text-transform: uppercase;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 800;
     letter-spacing: 1px;
     border: none;
     transition: opacity 0.2s ease;
@@ -133,12 +137,21 @@
     }
 
     #shopify-section-{{ section.id }} .edge-image-section__content {
-      padding: 40px 20px;
+      padding: 50px 30px 60px;
       max-width: none;
+      text-align: center;
     }
 
     #shopify-section-{{ section.id }} .edge-image-section__heading {
-      font-size: {{ section.settings.heading_size | minus: 8 }}px;
+      font-size: 32px;
+    }
+
+    #shopify-section-{{ section.id }} .edge-image-section__description {
+      font-size: 15px;
+    }
+
+    #shopify-section-{{ section.id }} .edge-image-section__button {
+      align-self: center;
     }
   }
 </style>

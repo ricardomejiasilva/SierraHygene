@@ -1,0 +1,560 @@
+<section
+  class="faq-contact-section"
+  data-section-id="{{ section.id }}"
+  data-section-type="faq-with-contact"
+>
+  {% if section.settings.main_title != blank %}
+    <h2 class="faq-contact-section__main-title">
+      {{ section.settings.main_title }}
+    </h2>
+  {% endif %}
+
+  <div class="faq-contact-section__container">
+    <!-- FAQ Column -->
+    <div class="faq-contact-section__faq">
+      {% for block in section.blocks %}
+        {% if block.type == 'faq_item' %}
+          <details class="faq-item" {{ block.shopify_attributes }}>
+            <summary class="faq-item__question">
+              <span>{{ block.settings.question }}</span>
+              <svg class="faq-item__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="faq-item__answer">
+              {{ block.settings.answer }}
+            </div>
+          </details>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Contact Form Column -->
+    <div class="faq-contact-section__form">
+      {% if section.settings.form_title != blank %}
+        <h3 class="faq-contact-section__form-title">
+          {{ section.settings.form_title }}
+        </h3>
+      {% endif %}
+
+      {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p class="form-success">{{ 'contact.general.success' | t }}</p>
+        {% endif %}
+
+        {% if form.errors %}
+          <p class="form-error">{{ 'contact.general.error' | t }}</p>
+        {% endif %}
+
+        {% unless form.posted_successfully? %}
+          <div class="form-field">
+            <input 
+              type="text" 
+              name="contact[name]" 
+              placeholder="{{ section.settings.name_placeholder | default: 'Name' }}"
+              class="form-input {% if form.errors contains 'name' %}error{% endif %}"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              placeholder="{{ section.settings.email_placeholder | default: 'Email' }}"
+              class="form-input {% if form.errors contains 'email' %}error{% endif %}"
+              required
+            >
+          </div>
+
+          {% if section.settings.show_reason_dropdown %}
+            <div class="form-field">
+              <select name="contact[reason]" class="form-input form-select" required>
+                <option value="">{{ section.settings.reason_placeholder | default: 'Select reason for contacting' }}</option>
+                {% if section.settings.reason_1 != blank %}
+                  <option value="{{ section.settings.reason_1 }}">{{ section.settings.reason_1 }}</option>
+                {% endif %}
+                {% if section.settings.reason_2 != blank %}
+                  <option value="{{ section.settings.reason_2 }}">{{ section.settings.reason_2 }}</option>
+                {% endif %}
+                {% if section.settings.reason_3 != blank %}
+                  <option value="{{ section.settings.reason_3 }}">{{ section.settings.reason_3 }}</option>
+                {% endif %}
+                {% if section.settings.reason_4 != blank %}
+                  <option value="{{ section.settings.reason_4 }}">{{ section.settings.reason_4 }}</option>
+                {% endif %}
+                {% if section.settings.reason_5 != blank %}
+                  <option value="{{ section.settings.reason_5 }}">{{ section.settings.reason_5 }}</option>
+                {% endif %}
+              </select>
+            </div>
+          {% endif %}
+
+          <div class="form-field">
+            <textarea 
+              name="contact[body]" 
+              placeholder="{{ section.settings.message_placeholder | default: 'Message' }}"
+              class="form-input form-textarea {% if form.errors contains 'body' %}error{% endif %}"
+              rows="6"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-field">
+            <button type="submit" class="form-submit-button">
+              {{ section.settings.button_text | default: 'Submit' }}
+            </button>
+          </div>
+        {% endunless %}
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .faq-contact-section {
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_right }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_left }}px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .faq-contact-section__main-title {
+    font-size: {{ section.settings.main_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 32px;
+  }
+
+  #shopify-section-{{ section.id }} .faq-contact-section__container {
+    display: grid;
+    grid-template-columns: 60fr 35fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* FAQ Styles */
+  #shopify-section-{{ section.id }} .faq-item {
+    border: 1px solid {{ section.settings.border_color }};
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .faq-item__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: {{ section.settings.text_color }};
+    list-style: none;
+    border-color: {{ section.settings.border_color }};
+  }
+
+  #shopify-section-{{ section.id }} .faq-item__question::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .faq-item__icon {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .faq-item[open] .faq-item__icon {
+    transform: rotate(180deg);
+  }
+
+  #shopify-section-{{ section.id }} .faq-item[open] {
+    background-color: #f5f5f5;
+  }
+
+  #shopify-section-{{ section.id }} .faq-item__answer {
+    padding: 0 24px 20px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+  }
+
+  /* Form Styles */
+  #shopify-section-{{ section.id }} .faq-contact-section__form-title {
+    font-size: {{ section.settings.form_title_size }}px;
+    font-weight: 700;
+    color: {{ section.settings.heading_color }};
+    margin: 0 0 32px;
+  }
+
+  #shopify-section-{{ section.id }} .form-field {
+    margin-bottom: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .form-label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: {{ section.settings.text_color }};
+    margin-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .form-field__description {
+    font-size: 14px;
+    color: {{ section.settings.text_color }};
+    opacity: 0.8;
+    margin: 0 0 12px;
+    line-height: 1.5;
+  }
+
+  #shopify-section-{{ section.id }} .form-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 1px solid {{ section.settings.border_color }};
+    background: #fff;
+    color: {{ section.settings.text_color }};
+    appearance: none;
+  }
+
+  #shopify-section-{{ section.id }} .form-input:focus {
+    outline: none;
+    border-color: {{ section.settings.button_color }};
+  }
+
+  #shopify-section-{{ section.id }} .form-input::placeholder {
+    color: {{ section.settings.text_color }};
+    opacity: 0.6;
+  }
+
+  #shopify-section-{{ section.id }} .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6L8 10L12 6' stroke='%23333' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 48px;
+  }
+
+  #shopify-section-{{ section.id }} .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+
+  #shopify-section-{{ section.id }} .form-submit-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: {{ section.settings.button_color }};
+    color: {{ section.settings.button_text_color }};
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  #shopify-section-{{ section.id }} .form-submit-button:hover {
+    opacity: 0.85;
+  }
+
+  #shopify-section-{{ section.id }} .form-success {
+    padding: 16px;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .form-error {
+    padding: 16px;
+    background: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  @media screen and (max-width: 900px) {
+    #shopify-section-{{ section.id }} .faq-contact-section {
+      padding-top: 30px;
+      padding-bottom: 30px;
+      padding-left: max(20px, {{ section.settings.padding_left }}px);
+      padding-right: max(20px, {{ section.settings.padding_right }}px);
+    }
+
+    #shopify-section-{{ section.id }} .faq-contact-section__container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    #shopify-section-{{ section.id }} .faq-contact-section__main-title {
+      font-size: 23px;
+      margin-bottom: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .faq-contact-section__form-title {
+      font-size: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .faq-item__question {
+      font-size: 15px;
+      padding: 16px 20px;
+    }
+
+    #shopify-section-{{ section.id }} .faq-item__answer {
+      padding: 0 20px 16px;
+      font-size: 14px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ with Contact Form",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Main Title"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main title",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "range",
+      "id": "main_title_size",
+      "label": "Main title size",
+      "min": 24,
+      "max": 48,
+      "step": 2,
+      "default": 32,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Form Settings"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form title",
+      "default": "Please Send A Message If You Need Any Help."
+    },
+    {
+      "type": "range",
+      "id": "form_title_size",
+      "label": "Form title size",
+      "min": 18,
+      "max": 32,
+      "step": 1,
+      "default": 22,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name placeholder",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "reason_placeholder",
+      "label": "Reason placeholder",
+      "default": "Select reason for contacting"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message placeholder",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Submit button text",
+      "default": "Submit"
+    },
+    {
+      "type": "header",
+      "content": "Reason Dropdown"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_reason_dropdown",
+      "label": "Show reason dropdown",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "reason_1",
+      "label": "Reason 1",
+      "default": "Placing a Direct Order"
+    },
+    {
+      "type": "text",
+      "id": "reason_2",
+      "label": "Reason 2",
+      "default": "Asking a Question"
+    },
+    {
+      "type": "text",
+      "id": "reason_3",
+      "label": "Reason 3"
+    },
+    {
+      "type": "text",
+      "id": "reason_4",
+      "label": "Reason 4"
+    },
+    {
+      "type": "text",
+      "id": "reason_5",
+      "label": "Reason 5"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#1a1a1a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "label": "Button color",
+      "default": "#2d6a5d"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Lorem ipsum dolor sit amet consectetur."
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi. Volutpat tempor maecenas eros nam. Tincidunt."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ with Contact Form",
+      "category": "Contact",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Praesent lacus.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi. Volutpat tempor maecenas eros nam. Tincidunt."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Dis facilisis.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. At viverra.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Nulla risus.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        }
+      ]
+    }
+  ],
+  "enabled_on": {
+    "templates": [
+      "index",
+      "page"
+    ]
+  }
+}
+{% endschema %}

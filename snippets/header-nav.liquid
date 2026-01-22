@@ -14,8 +14,8 @@
   @param amazon_url {String}
     The URL for Amazon Storefront link.
 
-  @param bulk_ordering_url {String}
-    The URL for Explore Bulk Ordering link.
+  @param bulk_ordering_page {Page}
+    The page to link for Explore Bulk Ordering.
 
   @param section {Section}
     The section object for accessing settings.
@@ -192,7 +192,7 @@
       </li>
     {% endfor %}
 
-    {% if amazon_url != blank or bulk_ordering_url != blank %}
+    {% if amazon_url != blank or bulk_ordering_page != blank %}
       <li class="header-nav__tier-1-item header-nav__spacer"></li>
       
       {% if amazon_url != blank %}
@@ -204,9 +204,9 @@
         </li>
       {% endif %}
 
-      {% if bulk_ordering_url != blank %}
+      {% if bulk_ordering_page != blank %}
         <li class="header-nav__tier-1-item header-nav__tier-1-item--right">
-          <a href="{{ bulk_ordering_url }}" class="header-nav__tier-1-link header-nav__tier-1-link--icon" data-header-nav-link>
+          <a href="{{ bulk_ordering_page.url }}" class="header-nav__tier-1-link header-nav__tier-1-link--icon" data-header-nav-link>
             <img class="header-nav__link-icon" src="{{ 'bulk-order.svg' | asset_url }}" alt="" width="20" height="20">
             <span>Explore Bulk Ordering</span>
           </a>

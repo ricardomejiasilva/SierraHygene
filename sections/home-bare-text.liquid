@@ -1,0 +1,163 @@
+{% liquid
+  assign text = section.settings.text
+  assign font_size = section.settings.font_size
+  assign font_weight = section.settings.font_weight
+  assign font_style = section.settings.font_style
+  assign text_alignment = section.settings.text_alignment
+  assign text_color = section.settings.text_color
+  assign padding_top = section.settings.padding_top
+  assign padding_bottom = section.settings.padding_bottom
+  assign padding_left = section.settings.padding_left
+  assign padding_right = section.settings.padding_right
+%}
+
+<style>
+  #bare-text-{{ section.id }} {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+    padding-left: {{ padding_left }}px;
+    padding-right: {{ padding_right }}px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  #bare-text-{{ section.id }} .bare-text__content {
+    font-size: {{ font_size }}px;
+    font-weight: {{ font_weight }};
+    font-style: {{ font_style }};
+    text-align: {{ text_alignment }};
+    color: {{ text_color }};
+    line-height: 1.5;
+  }
+
+</style>
+
+<section id="bare-text-{{ section.id }}" class="bare-text-section">
+  {% if text != blank %}
+    <div class="bare-text__content">
+      {{ text }}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Bare Text",
+  "class": "bare-text-wrapper",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text content",
+      "default": "Enter your text here"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font size",
+      "min": 10,
+      "max": 72,
+      "step": 1,
+      "default": 15,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "options": [
+        { "value": "100", "label": "100 - Thin" },
+        { "value": "200", "label": "200 - Extra Light" },
+        { "value": "300", "label": "300 - Light" },
+        { "value": "400", "label": "400 - Normal" },
+        { "value": "500", "label": "500 - Medium" },
+        { "value": "600", "label": "600 - Semi Bold" },
+        { "value": "700", "label": "700 - Bold" },
+        { "value": "800", "label": "800 - Extra Bold" },
+        { "value": "900", "label": "900 - Black" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "font_style",
+      "label": "Font style",
+      "options": [
+        { "value": "normal", "label": "Normal" },
+        { "value": "italic", "label": "Italic" }
+      ],
+      "default": "italic"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_left",
+      "label": "Padding left",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_right",
+      "label": "Padding right",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 30,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bare Text"
+    }
+  ]
+}
+{% endschema %}

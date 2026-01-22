@@ -9,22 +9,182 @@
  */
 {
   "sections": {
+    "home_image_with_text_gkhgwm": {
+      "type": "home-image-with-text",
+      "name": "Image with text",
+      "settings": {
+        "style": "default-style",
+        "title": "",
+        "caption": "",
+        "button_text": "",
+        "button_link": "",
+        "image": "shopify://shop_images/support_2_1_d0487f16-5387-42fe-8402-cb25e463cf35.png",
+        "media_layout": "regular",
+        "title_color": "#000000",
+        "title_font_size": 32,
+        "title_italic": false,
+        "caption_color": "#000000",
+        "caption_font_size": 16,
+        "caption_italic": false
+      }
+    },
+    "home_icon_columns_eHYCxK": {
+      "type": "home-icon-columns",
+      "blocks": {
+        "column_gBbWGb": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/elements_3.png",
+            "heading": "Pricing",
+            "text": "For pricing, please contact us at",
+            "link_text": "info@sierrahygiene.com",
+            "link_url": "mailto:info@sierrahygiene.com"
+          }
+        },
+        "column_jRL8fr": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/elements_1_1.png",
+            "heading": "Ordering",
+            "text": "For ordering, please contact us at",
+            "link_text": "sales@sierrahygiene.com",
+            "link_url": "mailto:sales@sierrahygiene.com"
+          }
+        },
+        "column_MWx7E4": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/location-04_1.png",
+            "heading": "Address",
+            "text": "2207 Old Philadelphia Pike Lancaster, PA 17602",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "column_rgw8px": {
+          "type": "column",
+          "settings": {
+            "icon": "shopify://shop_images/elements_2_1.png",
+            "heading": "Phone",
+            "text": "(301) 689-8696",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_gBbWGb",
+        "column_jRL8fr",
+        "column_MWx7E4",
+        "column_rgw8px"
+      ],
+      "name": "Icon Columns",
+      "settings": {
+        "background_color": "#ffffff",
+        "heading_color": "#1a1a1a",
+        "text_color": "#4a4a4a",
+        "link_color": "#2d6a5d",
+        "icon_size": 50,
+        "heading_size": 22,
+        "text_size": 15,
+        "padding_top": 60,
+        "padding_bottom": 30
+      }
+    },
+    "home_bare_text_jQrdLN": {
+      "type": "home-bare-text",
+      "name": "Bare Text",
+      "settings": {
+        "text": "We sell to distributors by the half and full truckloads. Private Labeling is available for full truckload.",
+        "font_size": 15,
+        "font_weight": "600",
+        "font_style": "italic",
+        "text_alignment": "left",
+        "text_color": "#121212",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_left": 0,
+        "padding_right": 0
+      }
+    },
+    "faq_with_contact_form_9LKVnC": {
+      "type": "faq-with-contact-form",
+      "blocks": {
+        "faq_item_XMppyE": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Praesent lacus.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi. Volutpat tempor maecenas eros nam. Tincidunt."
+          }
+        },
+        "faq_item_feUh8z": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Dis facilisis.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        },
+        "faq_item_fgGWXM": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. At viverra.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        },
+        "faq_item_LE3ELU": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Lorem ipsum dolor sit amet consectetur. Nulla risus.",
+            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_XMppyE",
+        "faq_item_feUh8z",
+        "faq_item_fgGWXM",
+        "faq_item_LE3ELU"
+      ],
+      "name": "FAQ with Contact Form",
+      "settings": {
+        "main_title": "Frequently Asked Questions",
+        "main_title_size": 32,
+        "form_title": "Please Send A Message If You Need Any Help.",
+        "form_title_size": 22,
+        "name_placeholder": "Name",
+        "email_placeholder": "Email",
+        "reason_placeholder": "Select reason for contacting",
+        "message_placeholder": "Message",
+        "button_text": "Submit",
+        "show_reason_dropdown": true,
+        "reason_1": "Placing a Direct Order",
+        "reason_2": "Asking a Question",
+        "reason_3": "",
+        "reason_4": "",
+        "reason_5": "",
+        "heading_color": "#1c3d37",
+        "text_color": "#333333",
+        "border_color": "#121212",
+        "button_color": "#2d6a5d",
+        "button_text_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "main": {
       "type": "template-contact",
       "custom_css": [
         "h1 {margin-top: 6px;}",
         ".contact-form {padding-bottom: 24px;}"
       ],
-      "settings": {
-        "reason_option_1": "Placing a Direct Order",
-        "reason_option_2": "Ask a Question",
-        "reason_option_3": "",
-        "reason_option_4": "",
-        "reason_option_5": ""
-      }
+      "settings": {}
     }
   },
   "order": [
+    "home_image_with_text_gkhgwm",
+    "home_icon_columns_eHYCxK",
+    "home_bare_text_jQrdLN",
+    "faq_with_contact_form_9LKVnC",
     "main"
   ]
 }

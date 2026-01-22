@@ -9,11 +9,18 @@
  */
 {
   "sections": {
+    "spacer_B33BiT": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "60"
+      }
+    },
     "home_edge_image_with_text_ctLD66": {
       "type": "home-edge-image-with-text",
       "name": "Edge Image with Text",
       "settings": {
-        "image": "shopify://shop_images/support_3_1.png",
+        "image": "shopify://shop_images/support_1.png",
         "heading": "Sierra Hygiene prides ourselves on producing high quality, American-Made products",
         "description": "<p>Sierra Hygiene Products is a paper converting manufacturer that was formed in 2002 and is located in Frostburg, Maryland. Our 100,000 square foot facility located in scenic western Maryland operates with highly trained professionals who are experts in their field. Our goal is to continue to expand our manufacturing capabilities and product offering to our customers.</p>",
         "button_text": "Contact Us",
@@ -27,6 +34,123 @@
         "text_size": 16,
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "spacer_3LP8wJ": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "40"
+      }
+    },
+    "home_image_with_text_Yp3dgK": {
+      "type": "home-image-with-text",
+      "custom_css": [
+        "img {max-width: 444px;}"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "style": "default-style",
+        "title": "",
+        "caption": "",
+        "button_text": "",
+        "button_link": "",
+        "image": "shopify://shop_images/Group_1_1.png",
+        "media_layout": "regular",
+        "title_color": "#000000",
+        "title_font_size": 32,
+        "title_italic": false,
+        "caption_color": "#000000",
+        "caption_font_size": 16,
+        "caption_italic": false
+      }
+    },
+    "home_text_Jae4D9": {
+      "type": "home-text",
+      "blocks": {
+        "rich_text_JmaBkR": {
+          "type": "rich_text",
+          "settings": {
+            "title": "",
+            "content": "<p>At Sierra Hygiene, our values guide how we source, manufacture, and serve our customers. We focus on doing the work right and being a dependable partner at every step.</p>",
+            "title_color": "#000000",
+            "title_font_size": 24,
+            "title_italic": false,
+            "content_color": "#000000",
+            "content_font_size": 16,
+            "content_italic": false
+          }
+        }
+      },
+      "block_order": [
+        "rich_text_JmaBkR"
+      ],
+      "custom_css": [
+        ".home-text-feature {max-width: 700px;}",
+        "p {text-align: center;}"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "style": "default-style",
+        "show_borders": false
+      }
+    },
+    "home_four_column_text_99XHgX": {
+      "type": "home-four-column-text",
+      "blocks": {
+        "column_A6tFxW": {
+          "type": "column",
+          "settings": {
+            "heading": "Quality",
+            "text": "Great paper products start with the right materials. We use carefully selected paper to manufacture disposables in America—delivering consistent performance, roll after roll, case after case."
+          }
+        },
+        "column_xnxX6F": {
+          "type": "column",
+          "settings": {
+            "heading": "Affordability",
+            "text": "Rising costs are a reality. That's why we design our manufacturing and supply chain to deliver dependable paper products at a price that makes sense for high-volume operations."
+          }
+        },
+        "column_X7QREm": {
+          "type": "column",
+          "settings": {
+            "heading": "Integrity",
+            "text": "Integrity is built into our operation. We maintain clear standards, reliable processes, and accountability across sourcing, production, and delivery."
+          }
+        },
+        "column_itTAqP": {
+          "type": "column",
+          "settings": {
+            "heading": "Customer Focus",
+            "text": "We prioritize dependable supply and straightforward service. Our job is to make sure customers get the products they need—on time and at scale."
+          }
+        }
+      },
+      "block_order": [
+        "column_A6tFxW",
+        "column_xnxX6F",
+        "column_X7QREm",
+        "column_itTAqP"
+      ],
+      "name": "Four Column Text",
+      "settings": {
+        "background_color": "#ffffff",
+        "heading_color": "#1a1a1a",
+        "text_color": "#262626",
+        "heading_size": 22,
+        "text_size": 15,
+        "text_alignment": "center",
+        "text_max_width": 300,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "spacer_gUfzYc": {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": {
+        "spacing_height": "20"
       }
     },
     "home_logo_list_NGyTVm": {
@@ -69,7 +193,13 @@
     }
   },
   "order": [
+    "spacer_B33BiT",
     "home_edge_image_with_text_ctLD66",
+    "spacer_3LP8wJ",
+    "home_image_with_text_Yp3dgK",
+    "home_text_Jae4D9",
+    "home_four_column_text_99XHgX",
+    "spacer_gUfzYc",
     "home_logo_list_NGyTVm"
   ]
 }

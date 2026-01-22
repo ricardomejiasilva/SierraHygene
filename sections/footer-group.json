@@ -14,22 +14,14 @@
     "footer": {
       "type": "general-footer",
       "settings": {
-        "show_menu_heading": true,
+        "background_color": "#1a1a1a",
+        "background_image": "shopify://shop_images/footer_1.png",
+        "text_color": "#ffffff",
         "menu_1": "main-menu",
         "menu_2": "footer",
-        "show_social_buttons": true,
-        "social_heading": "We develop and provide high quality, value-added products, systems and services to distributors that are underserved by the major paper manufacturers.",
-        "show_share_buttons": false,
-        "sharing_heading": "Have a Question?",
-        "sharing_description": "Call our support at 555-555-5555",
-        "enable_twitter": true,
-        "enable_facebook": true,
-        "enable_pinterest": true,
-        "enable_fancy": true,
-        "show_follow_on_shop": true,
-        "show_locale_selector": false,
-        "show_currency_selector": false,
-        "show_payment_icons": false
+        "menu_3": "footer-menu-3",
+        "padding_top": 60,
+        "padding_bottom": 40
       }
     }
   },
