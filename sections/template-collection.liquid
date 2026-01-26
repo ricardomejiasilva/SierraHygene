@@ -84,6 +84,9 @@
                 </label>
                 <select id="mobile-sortby" class="collection-sidebar__sort-select" data-collection-sort>
                   {%- for option in collection.sort_options -%}
+                    {%- if option.value == 'created-ascending' or option.value == 'created-descending' or option.value == 'title-ascending' or option.value == 'title-descending' -%}
+                      {%- continue -%}
+                    {%- endif -%}
                     <option value="{{ option.value }}" {% if option.value == current_sort %}selected{% endif %}>
                       {{ option.name }}
                     </option>
@@ -240,6 +243,9 @@
                   data-collection-sort
                 >
                   {%- for option in collection.sort_options -%}
+                    {%- if option.value == 'created-ascending' or option.value == 'created-descending' or option.value == 'title-ascending' or option.value == 'title-descending' -%}
+                      {%- continue -%}
+                    {%- endif -%}
                     <option
                       value="{{ option.value }}"
                       {%- if option.value == current_sort -%}
@@ -428,6 +434,18 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Sort functionality
+  const sortSelects = document.querySelectorAll('[data-collection-sort]');
+  
+  sortSelects.forEach(function(select) {
+    select.addEventListener('change', function() {
+      const sortValue = this.value;
+      const url = new URL(window.location.href);
+      url.searchParams.set('sort_by', sortValue);
+      window.location.href = url.toString();
+    });
+  });
+  
   // Desktop elements
   const collectionCheckboxes = document.querySelectorAll('[data-collection-checkbox]');
   const productsGrid = document.querySelector('[data-products-grid]');

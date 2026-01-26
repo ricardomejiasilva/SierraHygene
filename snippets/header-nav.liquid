@@ -42,7 +42,7 @@
       <li class="header-nav__tier-1-item" data-header-nav-parent>
         <details data-header-nav-details>
           <summary class="header-nav__tier-1-link header-nav__tier-1-link--parent" data-header-nav-link aria-expanded="false" aria-controls="nav-tier-2-products" role="button">
-            <span>Products</span>
+            <a href="/collections/all" class="header-nav__tier-1-link-text">Products</a>
           </summary>
           <ul id="nav-tier-2-products" class="header-nav__tier-2" tabindex="-1" data-header-nav-tier-2 data-header-nav-submenu>
             {% for link in linklists[products_menu].links %}
@@ -139,7 +139,7 @@
                 {% assign has_tier_3 = true %}
               {% endif %}
               <li
-                class="header-nav__tier-2-item"
+                class=""
                 {% if has_tier_3 %}data-header-nav-parent{% endif %}
               >
                 {% if has_tier_3 %}

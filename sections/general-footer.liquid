@@ -185,19 +185,44 @@
     color: {{ section.settings.text_color }};
   }
   
-  /* Tablet styles */
+  /* Tablet styles - Logo left, links below in 3 columns stretched */
   @media (max-width: 900px) {
+    .site-footer__content {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 40px !important;
+    }
+    
+    .site-footer__logo {
+      max-width: 160px;
+    }
+    
     .site-footer__nav-columns {
-      gap: 50px !important;
+      flex-direction: row !important;
+      justify-content: flex-start !important;
+      gap: 0 !important;
+      width: 100%;
+    }
+    
+    .site-footer__nav-column {
+      flex: 1;
+    }
+    
+    .site-footer__bottom {
+      text-align: left;
     }
   }
   
-  /* Mobile styles */
-  @media (max-width: 600px) {
+  /* Mobile styles - Logo centered, links stacked vertically */
+  @media (max-width: 480px) {
+    .site-footer__container {
+      padding: 0 20px;
+    }
+    
     .site-footer__content {
       flex-direction: column !important;
       align-items: center !important;
-      text-align: left;
+      text-align: center;
       gap: 30px !important;
     }
     
@@ -205,30 +230,43 @@
       align-self: center;
     }
     
+    .site-footer__logo {
+      max-width: 180px;
+    }
+    
     .site-footer__nav-columns {
-      flex-direction: row !important;
-      justify-content: flex-start;
-      gap: 30px !important;
-      flex-wrap: nowrap !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      gap: 0 !important;
       width: 100%;
     }
     
+    .site-footer__nav-column {
+      width: 100%;
+      text-align: center;
+      flex: none;
+    }
+    
+    .site-footer__nav-list {
+      align-items: center;
+      gap: 0;
+    }
+    
+    .site-footer__nav-item {
+      padding: 8px 0;
+    }
+    
     .site-footer__nav-link {
-      font-size: 13px;
+      font-size: 18px;
     }
     
     .site-footer__bottom {
       text-align: left;
       width: 100%;
-    }
-  }
-  
-  @media (max-width: 400px) {
-    .site-footer__nav-columns {
-      gap: 40px !important;
+      margin-top: 40px;
     }
     
-    .site-footer__nav-link {
+    .site-footer__copyright {
       font-size: 12px;
     }
   }

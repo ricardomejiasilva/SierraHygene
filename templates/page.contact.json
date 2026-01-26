@@ -55,8 +55,8 @@
           "type": "column",
           "settings": {
             "icon": "shopify://shop_images/location-04_1.png",
-            "heading": "Address",
-            "text": "2207 Old Philadelphia Pike Lancaster, PA 17602",
+            "heading": "Corporate Address",
+            "text": "2257 Old Philadelphia Pike Lancaster, PA 17602",
             "link_text": "",
             "link_url": ""
           }
@@ -110,40 +110,88 @@
     "faq_with_contact_form_9LKVnC": {
       "type": "faq-with-contact-form",
       "blocks": {
-        "faq_item_XMppyE": {
+        "faq_shipping_1": {
           "type": "faq_item",
           "settings": {
-            "question": "Lorem ipsum dolor sit amet consectetur. Praesent lacus.",
-            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi. Volutpat tempor maecenas eros nam. Tincidunt."
+            "question": "How long does shipping take?",
+            "answer": "Orders are typically shipped within two business days. Our orders generally ship via FedEx standard shipping, which takes 1-5 business days within the contiguous U.S. Customers will also receive tracking information shortly after placing their order, so shipments can be monitored in real time."
           }
         },
-        "faq_item_feUh8z": {
+        "faq_shipping_2": {
           "type": "faq_item",
           "settings": {
-            "question": "Lorem ipsum dolor sit amet consectetur. Dis facilisis.",
-            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+            "question": "Do you ship internationally? What states do you ship to?",
+            "answer": "Unfortunately, we do not currently ship outside of the contiguous United States."
           }
         },
-        "faq_item_fgGWXM": {
+        "faq_shipping_3": {
           "type": "faq_item",
           "settings": {
-            "question": "Lorem ipsum dolor sit amet consectetur. At viverra.",
-            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+            "question": "Can I change my shipping address?",
+            "answer": "Absolutely! Please feel free to contact us with your updated shipping address. As long as the shipping label hasn't been printed, we'll be happy to make the change.<br><br>If the order has already shipped, however, we're unable to modify the shipping address."
           }
         },
-        "faq_item_LE3ELU": {
+        "faq_shipping_4": {
           "type": "faq_item",
           "settings": {
-            "question": "Lorem ipsum dolor sit amet consectetur. Nulla risus.",
-            "answer": "Lorem ipsum dolor sit amet consectetur. Risus accumsan viverra dignissim consequat lectus facilisi."
+            "question": "My package was marked as delivered but never showed up. What do I do?",
+            "answer": "Your package typically arrives within a few days to a week. Occasionally, shipping carriers may mark a package as \"delivered\" in advance to meet internal timelines. Because of this, we recommend keeping an eye out for its arrival.<br><br>Once a package leaves our warehouse, it is in the hands of the shipping carrier. If your order has been marked as delivered but hasn't arrived after 5 business days, please don't hesitate to contact us. We'll be happy to assist you."
+          }
+        },
+        "faq_shipping_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "My order is missing an item/I received the wrong item.",
+            "answer": "Please contact us so that we can investigate the matter and make things right."
+          }
+        },
+        "faq_purchasing_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I modify my order?",
+            "answer": "As long as the shipping label for the order has not been printed, you can make modifications by contacting us."
+          }
+        },
+        "faq_purchasing_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I cancel my order?",
+            "answer": "As long as the shipping label for the order hasn't been printed, you can cancel an order by contacting us.<br><br>Once the shipping label has been printed, we cannot cancel an order."
+          }
+        },
+        "faq_purchasing_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you store my payment information?",
+            "answer": "No. All credit card information is processed securely by Shopify Payments. We do not store or have access to your credit card information. Only your last four digits will be retained in our records in compliance with the credit card services we accept for payment."
+          }
+        },
+        "faq_purchasing_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "I am a tax-exempt customer. How do I use my tax-exempt status?",
+            "answer": "To apply your tax-exempt status to your account, follow these steps:<br><br>1. Sign in: Click on the \"Account\" link on our homepage and log in with the email you'll use for all future orders. This ensures your tax exemption is properly applied.<br>2. Verify your status: Send us a message at info@sierrahygiene.com with proof of your tax-exempt status. Please ensure the email you use matches the one associated with your account.<br>3. Confirmation: Once we receive your proof, we'll update your account to reflect your tax-exempt status and notify you when it's complete."
+          }
+        },
+        "faq_wholesale_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you sell wholesale?",
+            "answer": "Thank you for considering us for your wholesale needs. For wholesale inquiries, please contact us."
           }
         }
       },
       "block_order": [
-        "faq_item_XMppyE",
-        "faq_item_feUh8z",
-        "faq_item_fgGWXM",
-        "faq_item_LE3ELU"
+        "faq_shipping_1",
+        "faq_shipping_2",
+        "faq_shipping_3",
+        "faq_shipping_4",
+        "faq_shipping_5",
+        "faq_purchasing_1",
+        "faq_purchasing_2",
+        "faq_purchasing_3",
+        "faq_purchasing_4",
+        "faq_wholesale_1"
       ],
       "name": "FAQ with Contact Form",
       "settings": {
@@ -159,7 +207,7 @@
         "show_reason_dropdown": true,
         "reason_1": "Placing a Direct Order",
         "reason_2": "Asking a Question",
-        "reason_3": "",
+        "reason_3": "Tax Exempt",
         "reason_4": "",
         "reason_5": "",
         "heading_color": "#1c3d37",
@@ -168,7 +216,9 @@
         "button_color": "#2d6a5d",
         "button_text_color": "#ffffff",
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "padding_left": 0,
+        "padding_right": 0
       }
     },
     "main": {
