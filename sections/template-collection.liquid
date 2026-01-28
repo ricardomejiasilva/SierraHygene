@@ -123,37 +123,39 @@
             
             {%- comment -%} Filter content {%- endcomment -%}
             <div class="collection-mobile-modal__filters">
-              {%- comment -%} Collections filter (always open, not collapsible) {%- endcomment -%}
-              <div class="collection-mobile-modal__collections">
-                <div class="collection-mobile-modal__collections-title">Collections</div>
-                <div class="collection-sidebar__filter-content">
-                  <ul class="collection-sidebar__filter-list">
-                    {%- for coll in collections -%}
-                      {%- if coll.products_count > 0 and coll.handle != 'all' -%}
-                        <li class="collection-sidebar__filter-item">
-                          <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
-                            <input 
-                              type="checkbox" 
-                              class="collection-sidebar__filter-input visually-hidden"
-                              data-modal-collection-checkbox
-                              data-collection-handle="{{ coll.handle }}"
-                              data-collection-title="{{ coll.title }}"
-                            >
-                            <span class="collection-sidebar__checkbox" data-checkbox-visual>
-                              <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                              </svg>
-                            </span>
-                            <span class="collection-sidebar__filter-label">
-                              {{ coll.title }} ({{ coll.products_count }})
-                            </span>
-                          </label>
-                        </li>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </ul>
+              {%- comment -%} Collections filter (always open, not collapsible) - Only show on All Products page {%- endcomment -%}
+              {%- if collection.handle == 'all' -%}
+                <div class="collection-mobile-modal__collections">
+                  <div class="collection-mobile-modal__collections-title">Collections</div>
+                  <div class="collection-sidebar__filter-content">
+                    <ul class="collection-sidebar__filter-list">
+                      {%- for coll in collections -%}
+                        {%- if coll.products_count > 0 and coll.handle != 'all' -%}
+                          <li class="collection-sidebar__filter-item">
+                            <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                              <input 
+                                type="checkbox" 
+                                class="collection-sidebar__filter-input visually-hidden"
+                                data-modal-collection-checkbox
+                                data-collection-handle="{{ coll.handle }}"
+                                data-collection-title="{{ coll.title }}"
+                              >
+                              <span class="collection-sidebar__checkbox" data-checkbox-visual>
+                                <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                              <span class="collection-sidebar__filter-label">
+                                {{ coll.title }} ({{ coll.products_count }})
+                              </span>
+                            </label>
+                          </li>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
                 </div>
-              </div>
+              {%- endif -%}
               
               {%- comment -%} Other filters {%- endcomment -%}
               {%- for filter in collection.filters -%}
@@ -269,49 +271,51 @@
           {% if enable_filters %}
             <div class="collection-sidebar__filters" data-faceted-filter>
               
-              {%- comment -%} Collections filter (multi-select) {%- endcomment -%}
-              <div class="collection-sidebar__filter-group">
-                <details class="collection-sidebar__filter-details" data-collections-filter>
-                  <summary class="collection-sidebar__filter-summary">
-                    <span class="collection-sidebar__filter-title">Collections</span>
-                    <span class="collection-sidebar__filter-toggle">
-                      <svg class="collection-sidebar__filter-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </span>
-                  </summary>
-                  
-                  <div class="collection-sidebar__filter-content">
-                    <ul class="collection-sidebar__filter-list" data-collection-filter-list>
-                      {%- comment -%} Individual collections as checkboxes {%- endcomment -%}
-                      {%- for coll in collections -%}
-                        {%- if coll.products_count > 0 and coll.handle != 'all' -%}
-                          <li class="collection-sidebar__filter-item">
-                            <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
-                              <input 
-                                type="checkbox" 
-                                class="collection-sidebar__filter-input visually-hidden"
-                                data-collection-checkbox
-                                data-collection-handle="{{ coll.handle }}"
-                                data-collection-title="{{ coll.title }}"
-                                data-collection-url="{{ coll.url }}"
-                              >
-                              <span class="collection-sidebar__checkbox" data-checkbox-visual>
-                                <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                              </span>
-                              <span class="collection-sidebar__filter-label">
-                                {{ coll.title }} ({{ coll.products_count }})
-                              </span>
-                            </label>
-                          </li>
-                        {%- endif -%}
-                      {%- endfor -%}
-                    </ul>
-                  </div>
-                </details>
-              </div>
+              {%- comment -%} Collections filter (multi-select) - Only show on All Products page {%- endcomment -%}
+              {%- if collection.handle == 'all' -%}
+                <div class="collection-sidebar__filter-group">
+                  <details class="collection-sidebar__filter-details" data-collections-filter>
+                    <summary class="collection-sidebar__filter-summary">
+                      <span class="collection-sidebar__filter-title">Collections</span>
+                      <span class="collection-sidebar__filter-toggle">
+                        <svg class="collection-sidebar__filter-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </summary>
+                    
+                    <div class="collection-sidebar__filter-content">
+                      <ul class="collection-sidebar__filter-list" data-collection-filter-list>
+                        {%- comment -%} Individual collections as checkboxes {%- endcomment -%}
+                        {%- for coll in collections -%}
+                          {%- if coll.products_count > 0 and coll.handle != 'all' -%}
+                            <li class="collection-sidebar__filter-item">
+                              <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                                <input 
+                                  type="checkbox" 
+                                  class="collection-sidebar__filter-input visually-hidden"
+                                  data-collection-checkbox
+                                  data-collection-handle="{{ coll.handle }}"
+                                  data-collection-title="{{ coll.title }}"
+                                  data-collection-url="{{ coll.url }}"
+                                >
+                                <span class="collection-sidebar__checkbox" data-checkbox-visual>
+                                  <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                  </svg>
+                                </span>
+                                <span class="collection-sidebar__filter-label">
+                                  {{ coll.title }} ({{ coll.products_count }})
+                                </span>
+                              </label>
+                            </li>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </details>
+                </div>
+              {%- endif -%}
               
               {%- comment -%} Other filters (excluding price and availability) {%- endcomment -%}
               {%- for filter in collection.filters -%}
@@ -370,12 +374,14 @@
               {%- endfor -%}
             </div>
             
-            {%- comment -%} Active collection filters {%- endcomment -%}
-            <div class="collection-sidebar__active-filters" data-active-collection-filters style="display: none;">
-              <div class="collection-active-filters">
-                <a href="#" class="collection-active-filters__clear" data-clear-collection-filters>Clear all</a>
+            {%- comment -%} Active collection filters - Only show on All Products page {%- endcomment -%}
+            {%- if collection.handle == 'all' -%}
+              <div class="collection-sidebar__active-filters" data-active-collection-filters style="display: none;">
+                <div class="collection-active-filters">
+                  <a href="#" class="collection-active-filters__clear" data-clear-collection-filters>Clear all</a>
+                </div>
               </div>
-            </div>
+            {%- endif -%}
             
             {%- comment -%} Active filters (excluding price and availability) {%- endcomment -%}
             {% for filter in collection.filters %}
