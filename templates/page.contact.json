@@ -56,7 +56,7 @@
           "settings": {
             "icon": "shopify://shop_images/location-04_1.png",
             "heading": "Corporate Address",
-            "text": "2257 Old Philadelphia Pike Lancaster, PA 17602",
+            "text": "2257A Old Philadelphia Pike Lancaster, PA 17602",
             "link_text": "",
             "link_url": ""
           }
@@ -89,22 +89,6 @@
         "text_size": 15,
         "padding_top": 60,
         "padding_bottom": 30
-      }
-    },
-    "home_bare_text_jQrdLN": {
-      "type": "home-bare-text",
-      "name": "Bare Text",
-      "settings": {
-        "text": "We sell to distributors by the half and full truckloads. Private Labeling is available for full truckload.",
-        "font_size": 15,
-        "font_weight": "600",
-        "font_style": "italic",
-        "text_alignment": "left",
-        "text_color": "#121212",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "padding_left": 0,
-        "padding_right": 0
       }
     },
     "faq_with_contact_form_9LKVnC": {
@@ -149,14 +133,14 @@
           "type": "faq_item",
           "settings": {
             "question": "Can I modify my order?",
-            "answer": "As long as the shipping label for the order has not been printed, you can make modifications by contacting us."
+            "answer": "Absolutely! As long as the shipping label for the order has not been printed, you can make modifications by contacting us."
           }
         },
         "faq_purchasing_2": {
           "type": "faq_item",
           "settings": {
             "question": "Can I cancel my order?",
-            "answer": "As long as the shipping label for the order hasn't been printed, you can cancel an order by contacting us.<br><br>Once the shipping label has been printed, we cannot cancel an order."
+            "answer": "Absolutely! As long as the shipping label for the order hasn't been printed, you can cancel an order by contacting us.<br><br>Once the shipping label has been printed, we cannot cancel an order."
           }
         },
         "faq_purchasing_3": {
@@ -233,7 +217,6 @@
   "order": [
     "home_image_with_text_gkhgwm",
     "home_icon_columns_eHYCxK",
-    "home_bare_text_jQrdLN",
     "faq_with_contact_form_9LKVnC",
     "main"
   ]

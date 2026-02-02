@@ -7,228 +7,210 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
-    "home_image_with_text_overlay_gadgxw": {
-      "type": "home-image-with-text-overlay",
-      "custom_css": [
-        ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 1200px; margin: 0 auto;}",
-        "h2 {width: 722px; line-height: 84px;}",
-        "p {font-size: 20px; width: 722px; margin-bottom: 16px;}"
-      ],
-      "name": "Image with text overlay",
-      "settings": {
-        "image": "shopify://shop_images/SierraHero_11-11-25_2.gif",
-        "image_height_desktop": "large",
-        "image_height_mobile": "original",
-        "title": "Essentials For The Janitorial & Food Service Industries",
-        "caption": "<p>We produce high quality products with the most automated manufacturing systems in North America. We are here to serve the truckload buyer by utilizing primarily North American paper mills for nearly total Made in America product.</p>",
-        "overlay_opacity": 35,
-        "overlay_color": "#000000",
-        "overlay_text_color": "#ffffff",
-        "button_text": "SEE OUR PRODUCTS",
-        "button_link": "shopify://pages/product-listing",
-        "heading_font_size": "40",
-        "text_font_size": "20",
-        "full_width": false,
-        "hero_mode": true
-      }
-    },
-    "home_logo_list_ehHUHp": {
-      "type": "home-logo-list",
-      "blocks": {
-        "logo_w4Fn4G": {
-          "type": "logo",
+      "home_image_with_text_overlay_gadgxw": {
+          "type": "home-image-with-text-overlay",
+          "custom_css": [
+              ".image-with-text-overlay__content-wrapper {align-items: start; justify-content: start; text-align: left; padding-top: 64px; width: 1200px; margin: 0 auto;}",
+              "h2 {width: 722px; line-height: 84px;}",
+              "p {font-size: 20px; width: 722px; margin-bottom: 16px;}"
+          ],
+          "name": "Image with text overlay",
           "settings": {
-            "collection": "janitorial",
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
-            "title": "Janitorial"
+              "image": "shopify://shop_images/SierraHero_11-11-25_2.gif",
+              "image_height_desktop": "large",
+              "image_height_mobile": "original",
+              "title": "Essentials For The Janitorial & Food Service Industries",
+              "caption": "<p>We’re a U.S.-based paper converting manufacturer delivering high-quality commercial roll towels, napkins, kitchen towels, center-pull towels, and jumbo and standard tissue products. In addition, we manufacture premium PE-coated paper hot cups — all proudly made in the USA.</p>",
+              "overlay_opacity": 35,
+              "overlay_color": "#000000",
+              "overlay_text_color": "#ffffff",
+              "button_text": "SEE OUR PRODUCTS",
+              "button_link": "shopify://collections/all",
+              "heading_font_size": "40",
+              "text_font_size": "20",
+              "full_width": false,
+              "hero_mode": true
           }
-        },
-        "logo_EnYjhM": {
-          "type": "logo",
-          "settings": {
-            "collection": "food-service",
-            "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_3.png",
-            "title": "Food Service"
-          }
-        }
       },
-      "block_order": [
-        "logo_w4Fn4G",
-        "logo_EnYjhM"
-      ],
-      "custom_css": [
-        "@media (max-width: 719px) {.dynamic-logo-list {margin: 0 32px !important; }}"
-      ],
-      "name": "Logo list",
-      "settings": {
-        "style": "default-style",
-        "title": "Markets We  Serve",
-        "logos_in_rows": 4
-      }
-    },
-    "home_product_list_GkReB9": {
-      "type": "home-product-list",
-      "blocks": {
-        "product_qb6gJK": {
-          "type": "product",
+      "home_logo_list_ehHUHp": {
+          "type": "home-logo-list",
+          "blocks": {
+              "logo_w4Fn4G": {
+                  "type": "logo",
+                  "settings": {
+                      "collection": "janitorial",
+                      "url": "",
+                      "logo": "shopify://shop_images/SierraHygieneWebsite_JCT-052_4_fec2da5d-710f-4962-8464-c9bad769260b.jpg",
+                      "title": "Janitorial"
+                  }
+              },
+              "logo_EnYjhM": {
+                  "type": "logo",
+                  "settings": {
+                      "collection": "food-service",
+                      "url": "",
+                      "logo": "shopify://shop_images/SierraHygieneWebsite_DinnerNapkinsDinnerAirlaid_03_a11ebefb-3384-4734-aee8-7187454e280c.jpg",
+                      "title": "Food Service"
+                  }
+              }
+          },
+          "block_order": ["logo_w4Fn4G", "logo_EnYjhM"],
+          "custom_css": [
+              "@media (max-width: 719px) {.dynamic-logo-list {margin: 0 32px !important; }}"
+          ],
+          "name": "Logo list",
           "settings": {
-            "product": "",
-            "collection": "center-pull-roll-paper",
-            "hover_image": "shopify://shop_images/image_48_1.png"
+              "style": "default-style",
+              "title": "Markets We  Serve",
+              "logos_in_rows": 4
           }
-        },
-        "product_erpA9r": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "collection": "standard-toilet-tissue",
-            "hover_image": "shopify://shop_images/image_49_1.png"
-          }
-        },
-        "product_YEzPJC": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "collection": "white-dinner-napkins",
-            "hover_image": "shopify://shop_images/image_50_1.png"
-          }
-        },
-        "product_awigpn": {
-          "type": "product",
-          "settings": {
-            "product": "",
-            "collection": "coffee-cups",
-            "hover_image": "shopify://shop_images/image_51_1.png"
-          }
-        }
       },
-      "block_order": [
-        "product_qb6gJK",
-        "product_erpA9r",
-        "product_YEzPJC",
-        "product_awigpn"
-      ],
-      "custom_css": [
-        "h2 {color: #1c3d37 !important; font-size: 40px !important;}"
-      ],
-      "name": "Product list",
-      "settings": {
-        "style": "default-style",
-        "title": "Shop Our Products",
-        "show_product_count": false,
-        "grid_layout": "4",
-        "heading_font_size": 32,
-        "heading_color": "#000000",
-        "heading_italic": false,
-        "margin_top": 10,
-        "margin_bottom": 10,
-        "show_border": false,
-        "background_image": "shopify://shop_images/pattern_1.png",
-        "show_button": true,
-        "button_text": "Shop All Products",
-        "button_link": "shopify://collections/all",
-        "button_style": "primary"
+      "home_product_list_GkReB9": {
+          "type": "home-product-list",
+          "blocks": {
+              "product_qb6gJK": {
+                  "type": "product",
+                  "settings": {
+                      "product": "",
+                      "collection": "center-pull-roll-paper"
+                  }
+              },
+              "product_erpA9r": {
+                  "type": "product",
+                  "settings": {
+                      "product": "",
+                      "collection": "jumbo-toiler-paper"
+                  }
+              },
+              "product_YEzPJC": {
+                  "type": "product",
+                  "settings": {
+                      "product": "",
+                      "collection": "dinner-napkins"
+                  }
+              },
+              "product_awigpn": {
+                  "type": "product",
+                  "settings": {
+                      "product": "",
+                      "collection": "coffee-cups"
+                  }
+              }
+          },
+          "block_order": [
+              "product_qb6gJK",
+              "product_erpA9r",
+              "product_YEzPJC",
+              "product_awigpn"
+          ],
+          "custom_css": [
+              "h2 {color: #1c3d37 !important; font-size: 40px !important;}"
+          ],
+          "name": "Product list",
+          "settings": {
+              "style": "default-style",
+              "title": "Shop Our Products",
+              "show_product_count": false,
+              "grid_layout": "4",
+              "heading_font_size": 32,
+              "heading_color": "#000000",
+              "heading_italic": false,
+              "margin_top": 10,
+              "margin_bottom": 10,
+              "show_border": false,
+              "background_image": "shopify://shop_images/pattern_1.png",
+              "show_button": true,
+              "button_text": "Shop All Products",
+              "button_link": "shopify://collections/all",
+              "button_style": "primary"
+          }
+      },
+      "spacer_Y8XKHB": {
+          "type": "spacer",
+          "name": "Spacer",
+          "settings": {
+              "spacing_height": "20"
+          }
+      },
+      "home_image_with_text_overlay_XXrVYC": {
+          "type": "home-image-with-text-overlay",
+          "name": "Image with text overlay",
+          "settings": {
+              "image": "shopify://shop_images/image_break_2.png",
+              "image_height_desktop": "large",
+              "image_height_mobile": "original",
+              "title": "Why Sierra?",
+              "caption": "<p>Built on a simple idea: to produce high-quality paper products in the United States, powered by the American workforce and driven by innovation.</p>",
+              "overlay_opacity": 35,
+              "overlay_color": "#000000",
+              "overlay_text_color": "#ffffff",
+              "button_text": "LEARN MORE",
+              "button_link": "shopify://pages/about-us",
+              "heading_font_size": "40",
+              "text_font_size": "20",
+              "full_width": false,
+              "hero_mode": false
+          }
+      },
+      "home_featured_collection_rwUXtg": {
+          "type": "home-featured-collection",
+          "custom_css": [".collection-list__cta {margin-bottom: 0;}"],
+          "name": "Featured collection",
+          "settings": {
+              "style": "default-style",
+              "title": "Our Best Sellers",
+              "button": "",
+              "link": "shopify://collections/best-sellers",
+              "collection": "best-sellers",
+              "products_in_rows": 3,
+              "number_of_rows": 1,
+              "enable_filters": false,
+              "enable_product_type_filter": true,
+              "default_product_type": "",
+              "enable_color_filter": true,
+              "default_color": "",
+              "enable_featured_filter": true,
+              "default_sort": "price-low-high"
+          }
+      },
+      "spacer_CBhK9T": {
+          "type": "spacer",
+          "name": "Spacer",
+          "settings": {
+              "spacing_height": "60"
+          }
+      },
+      "home_image_with_text_overlay_wMw9Qz": {
+          "type": "home-image-with-text-overlay",
+          "name": "Image with text overlay",
+          "settings": {
+              "image": "shopify://shop_images/image_break_1_1.png",
+              "image_height_desktop": "large",
+              "image_height_mobile": "original",
+              "title": "Customer Focused",
+              "caption": "<p>Here at Sierra Hygiene, we are passionate about customer service and customer needs. We know you by name – not by customer number - and will do what's best to grow your business.</p>",
+              "overlay_opacity": 35,
+              "overlay_color": "#000000",
+              "overlay_text_color": "#ffffff",
+              "button_text": "Learn More",
+              "button_link": "shopify://pages/about-us",
+              "heading_font_size": "40",
+              "text_font_size": "20",
+              "full_width": false,
+              "hero_mode": false
+          }
       }
-    },
-    "spacer_Y8XKHB": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacing_height": "20"
-      }
-    },
-    "home_image_with_text_overlay_XXrVYC": {
-      "type": "home-image-with-text-overlay",
-      "name": "Image with text overlay",
-      "settings": {
-        "image": "shopify://shop_images/image_break_2.png",
-        "image_height_desktop": "large",
-        "image_height_mobile": "original",
-        "title": "The Sierra Hygiene Mission",
-        "caption": "<p>Bringing manufacturing and paper converting back to the North American continent through automation and efficiencies.    </p>",
-        "overlay_opacity": 35,
-        "overlay_color": "#000000",
-        "overlay_text_color": "#ffffff",
-        "button_text": "LEARN MORE",
-        "button_link": "shopify://pages/about",
-        "heading_font_size": "40",
-        "text_font_size": "20",
-        "full_width": false,
-        "hero_mode": false
-      }
-    },
-    "home_featured_collection_rwUXtg": {
-      "type": "home-featured-collection",
-      "custom_css": [
-        ".collection-list__cta {margin-bottom: 0;}"
-      ],
-      "name": "Featured collection",
-      "settings": {
-        "style": "default-style",
-        "title": "Our Best Sellers",
-        "button": "VIEW ALL BEST SELLERS",
-        "link": "shopify://collections/home-best-sellers",
-        "collection": "home-best-sellers",
-        "products_in_rows": 3,
-        "number_of_rows": 1,
-        "enable_filters": false,
-        "enable_product_type_filter": true,
-        "default_product_type": "",
-        "enable_color_filter": true,
-        "default_color": "",
-        "enable_featured_filter": true,
-        "default_sort": "price-low-high"
-      }
-    },
-    "spacer_CBhK9T": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacing_height": "60"
-      }
-    },
-    "home_image_with_text_overlay_wMw9Qz": {
-      "type": "home-image-with-text-overlay",
-      "name": "Image with text overlay",
-      "settings": {
-        "image": "shopify://shop_images/image_break_1_1.png",
-        "image_height_desktop": "large",
-        "image_height_mobile": "original",
-        "title": "Profitable Partnerships",
-        "caption": "<p>We create mutually profitable partnerships with our distributors and end users by having the most efficient and  automated systems and the quickest on-time deliveries.  That’s what makes a profitable partnership.</p>",
-        "overlay_opacity": 35,
-        "overlay_color": "#000000",
-        "overlay_text_color": "#ffffff",
-        "button_text": "Learn More",
-        "button_link": "shopify://pages/about",
-        "heading_font_size": "40",
-        "text_font_size": "20",
-        "full_width": false,
-        "hero_mode": false
-      }
-    },
-    "spacer_FHY6eG": {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": {
-        "spacing_height": "200",
-        "background_image": "shopify://shop_images/sierra-collage_1_1_1.png"
-      }
-    }
   },
   "order": [
-    "home_image_with_text_overlay_gadgxw",
-    "home_logo_list_ehHUHp",
-    "home_product_list_GkReB9",
-    "spacer_Y8XKHB",
-    "home_image_with_text_overlay_XXrVYC",
-    "home_featured_collection_rwUXtg",
-    "spacer_CBhK9T",
-    "home_image_with_text_overlay_wMw9Qz",
-    "spacer_FHY6eG"
+      "home_image_with_text_overlay_gadgxw",
+      "home_logo_list_ehHUHp",
+      "home_product_list_GkReB9",
+      "spacer_Y8XKHB",
+      "home_image_with_text_overlay_XXrVYC",
+      "home_featured_collection_rwUXtg",
+      "spacer_CBhK9T",
+      "home_image_with_text_overlay_wMw9Qz"
   ]
 }

@@ -152,7 +152,9 @@
         "button_color": "#2d6a5d",
         "button_text_color": "#ffffff",
         "padding_top": 60,
-        "padding_bottom": 60
+        "padding_bottom": 60,
+        "padding_left": 0,
+        "padding_right": 0
       }
     },
     "home_featured_collection_4UpNUA": {
@@ -164,9 +166,9 @@
       "settings": {
         "style": "default-style",
         "title": "Our Best Sellers",
-        "button": "View all best sellers",
+        "button": "",
         "link": "shopify://collections/home-best-sellers",
-        "collection": "home-best-sellers",
+        "collection": "best-sellers",
         "products_in_rows": 3,
         "number_of_rows": 1,
         "enable_filters": false,

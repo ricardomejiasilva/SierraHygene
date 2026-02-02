@@ -9,38 +9,51 @@
  */
 {
   "sections": {
-    "spacer_B33BiT": {
-      "type": "spacer",
-      "name": "Spacer",
+    "about_us_title_9JgmXn": {
+      "type": "about-us-title",
+      "name": "Page Title",
       "settings": {
-        "spacing_height": "60"
+        "title": "The Sierra Hygiene Story",
+        "heading_font_size": 40,
+        "heading_color": "#1C3D37",
+        "heading_italic": false,
+        "padding_top": 30,
+        "padding_bottom": 10
       }
     },
-    "home_edge_image_with_text_ctLD66": {
-      "type": "home-edge-image-with-text",
-      "name": "Edge Image with Text",
+    "home_alternating_content_eXAftr": {
+      "type": "home-alternating-content",
+      "blocks": {
+        "image_KTPxeh": {
+          "type": "image",
+          "settings": {
+            "media_alignment": "left",
+            "title": "",
+            "caption": "Sierra was built with a simple belief: great products start with great operations—and a commitment to doing things the right way.\n\nWith manufacturing operations in Frostburg, Cumberland, and Baltimore, Maryland, we are a U.S.-based paper converting company proudly producing high-quality commercial roll towels, napkins, kitchen towels, center-pull towels, and both jumbo and standard tissue. We also manufacture premium paper hot cups. Every product we make is produced right here in the USA.\n\nFrom the beginning, we set out to be more than a traditional manufacturer. Sierra is a forward-thinking, technology-driven company focused on innovation, consistency, and long-term partnership. Over the past several years, we’ve made significant investments in fully automated, state-of-the-art production lines—enhancing efficiency, improving quality, and increasing reliability at every stage of production.",
+            "button_text": "",
+            "button_link": "shopify://pages/contact-us-1",
+            "image": "shopify://shop_images/Eagle_Logo_7833061b-078e-4e1c-8b1a-efcec8c0d863.png"
+          }
+        }
+      },
+      "block_order": [
+        "image_KTPxeh"
+      ],
+      "name": "Alternating content",
       "settings": {
-        "image": "shopify://shop_images/support_1.png",
-        "heading": "Sierra Hygiene prides ourselves on producing high quality, American-Made products",
-        "description": "<p>Sierra Hygiene Products is a paper converting manufacturer that was formed in 2002 and is located in Frostburg, Maryland. Our 100,000 square foot facility located in scenic western Maryland operates with highly trained professionals who are experts in their field. Our goal is to continue to expand our manufacturing capabilities and product offering to our customers.</p>",
-        "button_text": "Contact Us",
-        "button_link": "shopify://pages/contact-us-1",
-        "background_color": "#ffffff",
-        "heading_color": "#1c3d37",
-        "text_color": "#262626",
-        "button_background": "#2d6a5d",
-        "button_text_color": "#ffffff",
-        "heading_size": 42,
-        "text_size": 16,
-        "padding_top": 0,
-        "padding_bottom": 0
+        "style": "default-style",
+        "title": "",
+        "show_borders": true
       }
     },
-    "spacer_3LP8wJ": {
-      "type": "spacer",
-      "name": "Spacer",
+    "horizontal_divider_DJMt3x": {
+      "type": "horizontal-divider",
+      "name": "Horizontal Divider",
       "settings": {
-        "spacing_height": "40"
+        "divider_color": "#e0e0e0",
+        "divider_style": "solid",
+        "top_spacing": 20,
+        "bottom_spacing": 20
       }
     },
     "home_image_with_text_Yp3dgK": {
@@ -101,29 +114,29 @@
         "column_A6tFxW": {
           "type": "column",
           "settings": {
-            "heading": "Quality",
-            "text": "Great paper products start with the right materials. We use carefully selected paper to manufacture disposables in America—delivering consistent performance, roll after roll, case after case."
+            "heading": "Integrity",
+            "text": "We live by the Golden Rule! “Do unto others as you would have them do unto you.” Integrity guides our decisions, relationships, and commitments—from how we operate our facilities to how we partner with customers and suppliers. We stand behind our products, honor our promises, and take accountability seriously."
           }
         },
         "column_xnxX6F": {
           "type": "column",
           "settings": {
-            "heading": "Affordability",
-            "text": "Rising costs are a reality. That's why we design our manufacturing and supply chain to deliver dependable paper products at a price that makes sense for high-volume operations."
+            "heading": "Value",
+            "text": "We believe quality products should deliver exceptional value. By optimizing operations, investing in efficient production lines, and continuously improving our processes, we provide competitive pricing without compromising performance."
           }
         },
         "column_X7QREm": {
           "type": "column",
           "settings": {
-            "heading": "Integrity",
-            "text": "Integrity is built into our operation. We maintain clear standards, reliable processes, and accountability across sourcing, production, and delivery."
+            "heading": "Quality",
+            "text": "Quality is at the core of everything we produce. From raw materials to finished goods, our processes are designed to deliver consistent, high-performance products customers can rely on. Our investment in advanced automation and modern manufacturing ensures rigorous standards are met—every batch, every time."
           }
         },
         "column_itTAqP": {
           "type": "column",
           "settings": {
             "heading": "Customer Focus",
-            "text": "We prioritize dependable supply and straightforward service. Our job is to make sure customers get the products they need—on time and at scale."
+            "text": "Our customers are at the center of everything we do. We listen, adapt, and collaborate to meet evolving needs and solve real-world challenges. Whether through dependable supply, responsive service, or tailored solutions, we’re committed to building long-term partnerships based on trust and results."
           }
         }
       },
@@ -161,7 +174,7 @@
           "settings": {
             "collection": "",
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_2_2.png",
+            "logo": "shopify://shop_images/SierraHygieneWebsite_JCT-052_4_fec2da5d-710f-4962-8464-c9bad769260b.jpg",
             "title": "Janitorial"
           }
         },
@@ -170,7 +183,7 @@
           "settings": {
             "collection": "",
             "url": "",
-            "logo": "shopify://shop_images/SierraTouch_2PlyDinnerNapkin_AmazonImages_06_002_4.png",
+            "logo": "shopify://shop_images/SierraHygieneWebsite_DinnerNapkinsDinnerAirlaid_03_a11ebefb-3384-4734-aee8-7187454e280c.jpg",
             "title": "Food Service"
           }
         }
@@ -193,9 +206,9 @@
     }
   },
   "order": [
-    "spacer_B33BiT",
-    "home_edge_image_with_text_ctLD66",
-    "spacer_3LP8wJ",
+    "about_us_title_9JgmXn",
+    "home_alternating_content_eXAftr",
+    "horizontal_divider_DJMt3x",
     "home_image_with_text_Yp3dgK",
     "home_text_Jae4D9",
     "home_four_column_text_99XHgX",

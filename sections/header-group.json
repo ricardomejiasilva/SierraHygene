@@ -13,11 +13,10 @@
   "sections": {
     "announcement_bar": {
       "type": "general-announcement-bar",
-      "disabled": true,
       "settings": {
         "promotion_home_only": false,
         "promotion_style": "standard-style",
-        "promotion_text": "Now offering free shipping on all orders over $50! See offer for details.",
+        "promotion_text": "Free Shipping on All Orders",
         "promotion_url": ""
       }
     },

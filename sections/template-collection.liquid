@@ -9,6 +9,40 @@
     {% assign collection_image = collection.image %}
   {% endif %}
 
+  {%- comment -%}
+    Tag-based filter configuration for specific collections.
+    Maps collection handles to their available tag filters.
+    Tags must match exactly what's set in Shopify Admin (case-sensitive, with spaces).
+  {%- endcomment -%}
+  {% assign has_tag_filters = false %}
+  {% assign tag_filter_title = '' %}
+  {% assign tag_filters = '' %}
+  
+  {% case collection.handle %}
+    {% when 'white-dinner-napkins' %}
+      {% assign has_tag_filters = true %}
+      {% assign tag_filter_title = 'Type' %}
+      {% assign tag_filters = 'Beverage Napkins,Dinner Napkins' %}
+    {% when 'paper-towel-all' %}
+      {% assign has_tag_filters = true %}
+      {% assign tag_filter_title = 'Type' %}
+      {% assign tag_filters = 'Centerpull Paper Towel,Hardwound Paper Towels,Household Paper Towel' %}
+    {% when 'toilet-tissue-all' %}
+      {% assign has_tag_filters = true %}
+      {% assign tag_filter_title = 'Type' %}
+      {% assign tag_filters = 'Jumbo Toilet Tissue,Standard Toilet Tissue' %}
+    {% when 'dispensers' %}
+      {% assign has_tag_filters = true %}
+      {% assign tag_filter_title = 'Type' %}
+      {% assign tag_filters = 'Towel Dispensers,Tissue Dispensers' %}
+    {% when 'coffee-cups' %}
+      {% assign has_tag_filters = true %}
+      {% assign tag_filter_title = 'Type' %}
+      {% assign tag_filters = 'Cups,Lids' %}
+  {% endcase %}
+  
+  {% assign tag_filters_array = tag_filters | split: ',' %}
+
   <div
     class="collection-header-wrapper {% if collection_image %}collection-header-has-image{% endif %}"
     {% if collection_image %}
@@ -151,6 +185,58 @@
                             </label>
                           </li>
                         {%- endif -%}
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                </div>
+              {%- endif -%}
+              
+              {%- comment -%} Tag-based filters for specific collections (mobile modal) {%- endcomment -%}
+              {%- if has_tag_filters -%}
+                <div class="collection-mobile-modal__collections">
+                  <div class="collection-mobile-modal__collections-title">{{ tag_filter_title }}</div>
+                  <div class="collection-sidebar__filter-content">
+                    <ul class="collection-sidebar__filter-list">
+                      {%- comment -%} "All" option to clear filters {%- endcomment -%}
+                      <li class="collection-sidebar__filter-item">
+                        <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                          <input 
+                            type="checkbox" 
+                            class="collection-sidebar__filter-input visually-hidden"
+                            data-modal-tag-all-checkbox
+                            checked
+                          >
+                          <span class="collection-sidebar__checkbox collection-sidebar__checkbox--checked" data-checkbox-visual>
+                            <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </span>
+                          <span class="collection-sidebar__filter-label">
+                            All
+                          </span>
+                        </label>
+                      </li>
+                      {%- for tag in tag_filters_array -%}
+                        {%- assign tag_handle = tag | handleize -%}
+                        <li class="collection-sidebar__filter-item">
+                          <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                            <input 
+                              type="checkbox" 
+                              class="collection-sidebar__filter-input visually-hidden"
+                              data-modal-tag-checkbox
+                              data-tag-value="{{ tag }}"
+                              data-tag-handle="{{ tag_handle }}"
+                            >
+                            <span class="collection-sidebar__checkbox" data-checkbox-visual>
+                              <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                            <span class="collection-sidebar__filter-label">
+                              {{ tag }}
+                            </span>
+                          </label>
+                        </li>
                       {%- endfor -%}
                     </ul>
                   </div>
@@ -310,6 +396,68 @@
                               </label>
                             </li>
                           {%- endif -%}
+                        {%- endfor -%}
+                      </ul>
+                    </div>
+                  </details>
+                </div>
+              {%- endif -%}
+              
+              {%- comment -%} Tag-based filters for specific collections (desktop sidebar) {%- endcomment -%}
+              {%- if has_tag_filters -%}
+                <div class="collection-sidebar__filter-group">
+                  <details class="collection-sidebar__filter-details" data-tag-filter open>
+                    <summary class="collection-sidebar__filter-summary">
+                      <span class="collection-sidebar__filter-title">{{ tag_filter_title }}</span>
+                      <span class="collection-sidebar__filter-toggle">
+                        <svg class="collection-sidebar__filter-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </summary>
+                    
+                    <div class="collection-sidebar__filter-content">
+                      <ul class="collection-sidebar__filter-list" data-tag-filter-list>
+                        {%- comment -%} "All" option to clear filters {%- endcomment -%}
+                        <li class="collection-sidebar__filter-item">
+                          <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                            <input 
+                              type="checkbox" 
+                              class="collection-sidebar__filter-input visually-hidden"
+                              data-tag-all-checkbox
+                              checked
+                            >
+                            <span class="collection-sidebar__checkbox collection-sidebar__checkbox--checked" data-checkbox-visual>
+                              <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                              </svg>
+                            </span>
+                            <span class="collection-sidebar__filter-label">
+                              All
+                            </span>
+                          </label>
+                        </li>
+                        {%- for tag in tag_filters_array -%}
+                          {%- assign tag_handle = tag | handleize -%}
+                          <li class="collection-sidebar__filter-item">
+                            <label class="collection-sidebar__filter-link collection-sidebar__filter-checkbox-label">
+                              <input 
+                                type="checkbox" 
+                                class="collection-sidebar__filter-input visually-hidden"
+                                data-tag-checkbox
+                                data-tag-value="{{ tag }}"
+                                data-tag-handle="{{ tag_handle }}"
+                              >
+                              <span class="collection-sidebar__checkbox" data-checkbox-visual>
+                                <svg class="collection-sidebar__checkbox-icon" width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                              </span>
+                              <span class="collection-sidebar__filter-label">
+                                {{ tag }}
+                              </span>
+                            </label>
+                          </li>
                         {%- endfor -%}
                       </ul>
                     </div>
@@ -868,6 +1016,366 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
       clearAllFilters();
     });
+  }
+  
+  // ============================================
+  // Tag-based filtering for specific collections
+  // ============================================
+  
+  const hasTagFilters = {{ has_tag_filters | json }};
+  const currentCollectionHandle = {{ collection.handle | json }};
+  
+  if (hasTagFilters) {
+    // Tag filter elements
+    const tagCheckboxes = document.querySelectorAll('[data-tag-checkbox]');
+    const tagAllCheckbox = document.querySelector('[data-tag-all-checkbox]');
+    const modalTagCheckboxes = document.querySelectorAll('[data-modal-tag-checkbox]');
+    const modalTagAllCheckbox = document.querySelector('[data-modal-tag-all-checkbox]');
+    
+    let selectedTags = [];
+    let allCollectionProducts = null;
+    
+    // Fetch all products from current collection
+    async function fetchCurrentCollectionProducts() {
+      if (allCollectionProducts) return allCollectionProducts;
+      
+      try {
+        const response = await fetch(`/collections/${currentCollectionHandle}/products.json?limit=250`);
+        const data = await response.json();
+        allCollectionProducts = data.products || [];
+        return allCollectionProducts;
+      } catch (error) {
+        console.error('Error fetching collection products:', error);
+        return [];
+      }
+    }
+    
+    // Update tag checkbox visual state
+    function updateTagCheckboxVisual(checkbox) {
+      const visual = checkbox.parentElement.querySelector('[data-checkbox-visual]');
+      if (visual) {
+        if (checkbox.checked) {
+          visual.classList.add('collection-sidebar__checkbox--checked');
+        } else {
+          visual.classList.remove('collection-sidebar__checkbox--checked');
+        }
+      }
+    }
+    
+    // Sync tag checkboxes between desktop and mobile
+    function syncTagCheckboxes(sourceCheckbox, isAllCheckbox = false) {
+      if (isAllCheckbox) {
+        const isChecked = sourceCheckbox.checked;
+        
+        // Sync all checkboxes
+        if (tagAllCheckbox) {
+          tagAllCheckbox.checked = isChecked;
+          updateTagCheckboxVisual(tagAllCheckbox);
+        }
+        if (modalTagAllCheckbox) {
+          modalTagAllCheckbox.checked = isChecked;
+          updateTagCheckboxVisual(modalTagAllCheckbox);
+        }
+        
+        // When "All" is checked, uncheck all tag checkboxes
+        if (isChecked) {
+          tagCheckboxes.forEach(cb => {
+            cb.checked = false;
+            updateTagCheckboxVisual(cb);
+          });
+          modalTagCheckboxes.forEach(cb => {
+            cb.checked = false;
+            updateTagCheckboxVisual(cb);
+          });
+        }
+      } else {
+        const tagValue = sourceCheckbox.dataset.tagValue;
+        const isChecked = sourceCheckbox.checked;
+        
+        // Sync desktop checkboxes
+        tagCheckboxes.forEach(cb => {
+          if (cb.dataset.tagValue === tagValue) {
+            cb.checked = isChecked;
+            updateTagCheckboxVisual(cb);
+          }
+        });
+        
+        // Sync modal checkboxes
+        modalTagCheckboxes.forEach(cb => {
+          if (cb.dataset.tagValue === tagValue) {
+            cb.checked = isChecked;
+            updateTagCheckboxVisual(cb);
+          }
+        });
+        
+        // Update "All" checkbox state
+        updateAllCheckboxState();
+      }
+    }
+    
+    // Update "All" checkbox based on other checkboxes
+    function updateAllCheckboxState() {
+      let anyTagSelected = false;
+      tagCheckboxes.forEach(cb => {
+        if (cb.checked) anyTagSelected = true;
+      });
+      
+      const allShouldBeChecked = !anyTagSelected;
+      
+      if (tagAllCheckbox) {
+        tagAllCheckbox.checked = allShouldBeChecked;
+        updateTagCheckboxVisual(tagAllCheckbox);
+      }
+      if (modalTagAllCheckbox) {
+        modalTagAllCheckbox.checked = allShouldBeChecked;
+        updateTagCheckboxVisual(modalTagAllCheckbox);
+      }
+    }
+    
+    // Update tag filter tags display
+    function updateTagFilterTags() {
+      const selectedItems = [];
+      
+      tagCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          selectedItems.push({
+            value: checkbox.dataset.tagValue,
+            handle: checkbox.dataset.tagHandle
+          });
+        }
+      });
+      
+      selectedTags = selectedItems.map(item => item.value);
+      
+      // Generate tags HTML
+      let tagsHTML = '';
+      if (selectedItems.length > 0) {
+        selectedItems.forEach(item => {
+          tagsHTML += `
+            <span class="filter-tag" data-filter-tag data-tag-value="${item.value}">
+              ${item.value}
+              <button type="button" class="filter-tag__remove" data-remove-tag-filter="${item.value}">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </span>
+          `;
+        });
+        
+        // Add Clear All button
+        tagsHTML += `
+          <button type="button" class="filter-tag filter-tag--clear" data-clear-all-tag-filters>
+            Clear All (${selectedItems.length})
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        `;
+      }
+      
+      // Update mobile tags
+      if (mobileFilterTags) {
+        mobileFilterTags.innerHTML = tagsHTML;
+        mobileFilterTags.style.display = selectedItems.length > 0 ? 'flex' : 'none';
+      }
+      
+      // Update modal tags
+      if (modalFilterTags) {
+        modalFilterTags.innerHTML = tagsHTML;
+        modalFilterTags.style.display = selectedItems.length > 0 ? 'flex' : 'none';
+      }
+      
+      // Add event listeners to remove buttons
+      document.querySelectorAll('[data-remove-tag-filter]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const tagValue = this.dataset.removeTagFilter;
+          removeTagFilter(tagValue);
+        });
+      });
+      
+      // Add event listeners to clear all buttons
+      document.querySelectorAll('[data-clear-all-tag-filters]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          clearAllTagFilters();
+        });
+      });
+    }
+    
+    // Remove a single tag filter
+    function removeTagFilter(tagValue) {
+      tagCheckboxes.forEach(checkbox => {
+        if (checkbox.dataset.tagValue === tagValue) {
+          checkbox.checked = false;
+          updateTagCheckboxVisual(checkbox);
+        }
+      });
+      
+      modalTagCheckboxes.forEach(checkbox => {
+        if (checkbox.dataset.tagValue === tagValue) {
+          checkbox.checked = false;
+          updateTagCheckboxVisual(checkbox);
+        }
+      });
+      
+      updateAllCheckboxState();
+      updateTagFilterTags();
+      handleTagFilterChange();
+    }
+    
+    // Clear all tag filters
+    function clearAllTagFilters() {
+      tagCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        updateTagCheckboxVisual(checkbox);
+      });
+      
+      modalTagCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+        updateTagCheckboxVisual(checkbox);
+      });
+      
+      // Check the "All" checkbox
+      if (tagAllCheckbox) {
+        tagAllCheckbox.checked = true;
+        updateTagCheckboxVisual(tagAllCheckbox);
+      }
+      if (modalTagAllCheckbox) {
+        modalTagAllCheckbox.checked = true;
+        updateTagCheckboxVisual(modalTagAllCheckbox);
+      }
+      
+      selectedTags = [];
+      updateTagFilterTags();
+      handleTagFilterChange();
+    }
+    
+    // Render products filtered by tags
+    function renderTagFilteredProducts(products) {
+      if (!productsGrid) return;
+      
+      // Hide loading
+      if (loadingIndicator) loadingIndicator.style.display = 'none';
+      
+      // Clear existing products
+      const existingProducts = productsGrid.querySelectorAll('.product-list-item');
+      existingProducts.forEach(el => el.remove());
+      
+      // Remove empty message if exists
+      const emptyMsg = productsGrid.querySelector('.empty');
+      if (emptyMsg) emptyMsg.remove();
+      
+      if (products.length === 0) {
+        const emptyEl = document.createElement('p');
+        emptyEl.className = 'empty';
+        emptyEl.textContent = 'No products found';
+        productsGrid.appendChild(emptyEl);
+        updateProductCount(0);
+        return;
+      }
+      
+      // Render products
+      products.forEach(product => {
+        const productEl = createProductElement(product);
+        productsGrid.appendChild(productEl);
+      });
+      
+      updateProductCount(products.length);
+      
+      // Hide pagination when filtering
+      if (paginationWrapper) {
+        paginationWrapper.style.display = selectedTags.length > 0 ? 'none' : 'block';
+      }
+    }
+    
+    // Handle tag filter changes
+    async function handleTagFilterChange() {
+      // Get selected tags
+      selectedTags = [];
+      tagCheckboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+          selectedTags.push(checkbox.dataset.tagValue);
+        }
+      });
+      
+      // Update filter tags display
+      updateTagFilterTags();
+      
+      // Show loading
+      if (loadingIndicator) loadingIndicator.style.display = 'flex';
+      
+      if (selectedTags.length === 0) {
+        // No filters selected - reload page to show all products with pagination
+        window.location.href = `/collections/${currentCollectionHandle}`;
+        return;
+      }
+      
+      // Fetch all products from current collection
+      const allProducts = await fetchCurrentCollectionProducts();
+      
+      // Filter products by selected tags
+      const filteredProducts = allProducts.filter(product => {
+        // Check if product has any of the selected tags
+        const productTags = product.tags || [];
+        return selectedTags.some(selectedTag => {
+          // Case-insensitive comparison
+          return productTags.some(productTag => 
+            productTag.toLowerCase() === selectedTag.toLowerCase()
+          );
+        });
+      });
+      
+      // Render filtered products
+      renderTagFilteredProducts(filteredProducts);
+    }
+    
+    // Event Listeners for tag checkboxes
+    
+    // Desktop tag checkboxes
+    tagCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        syncTagCheckboxes(this, false);
+        handleTagFilterChange();
+      });
+    });
+    
+    // Desktop "All" checkbox
+    if (tagAllCheckbox) {
+      tagAllCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          syncTagCheckboxes(this, true);
+          handleTagFilterChange();
+        } else {
+          // Prevent unchecking "All" directly - must select a specific filter
+          this.checked = true;
+          updateTagCheckboxVisual(this);
+        }
+      });
+    }
+    
+    // Modal tag checkboxes
+    modalTagCheckboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function() {
+        syncTagCheckboxes(this, false);
+        handleTagFilterChange();
+      });
+    });
+    
+    // Modal "All" checkbox
+    if (modalTagAllCheckbox) {
+      modalTagAllCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          syncTagCheckboxes(this, true);
+          handleTagFilterChange();
+        } else {
+          // Prevent unchecking "All" directly
+          this.checked = true;
+          updateTagCheckboxVisual(this);
+        }
+      });
+    }
   }
 });
 </script>
